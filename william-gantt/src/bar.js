@@ -181,12 +181,12 @@ export default class Bar {
 
         const start_date = date_utils.format(
             this.task._start,
-            'MMM D',
+            'YYYY年MM月D日 HH:mm:ss',
             this.gantt.options.language
         );
         const end_date = date_utils.format(
             date_utils.add(this.task._end, -1, 'second'),
-            'MMM D',
+            'YYYY年MM月D日 HH:mm:ss',
             this.gantt.options.language
         );
         const subtitle = start_date + ' - ' + end_date;
@@ -254,7 +254,9 @@ export default class Bar {
 
     set_action_completed() {
         this.action_completed = true;
-        setTimeout(() => (this.action_completed = false), 1000);
+        setTimeout(() => {
+            this.action_completed = false;
+        }, 100);
     }
 
     compute_start_end_date() {

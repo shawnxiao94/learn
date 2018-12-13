@@ -1,0 +1,41 @@
+.william-table-container {
+  width: 700px;
+  height: 200px;
+  font-size: 14px;
+}
+.william-table-container * {
+  box-sizing: border-box;
+}
+.william-table-container .william-hidden {
+  display: none;
+}
+.william-table-container .william-hidden-scroll {
+  overflow: hidden;
+}
+.william-table-container .william-table-wrapper {
+  overflow: hidden;
+}
+.william-table-container .william-table-wrapper .william-head,
+.william-table-container .william-table-wrapper .william-body {
+  position: relative;
+}
+.william-table-container .william-table-wrapper .william-head .william-head-fixed,
+.william-table-container .william-table-wrapper .william-body .william-head-fixed,
+.william-table-container .william-table-wrapper .william-head .william-body-fixed,
+.william-table-container .william-table-wrapper .william-body .william-body-fixed {
+  position: absolute;
+}
+.william-table-container .william-table-wrapper .william-head .william-head-fixed {
+  height: 100%;
+  background: #fff;
+}
+.william-table-container .william-table-wrapper .william-body .william-body-fixed {
+  background: #fff;
+}
+.william-table-container .william-table-wrapper .william-body .william-body-scroll {
+  overflow: auto;
+}
+.william-table-container .william-table {
+  table-layout: fixed;
+  height: 100%;
+}

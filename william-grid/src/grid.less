@@ -1,0 +1,43 @@
+@bg-color-white: #fff;
+@font-size: 14px;
+.william-table-container {
+  width:700px;
+  height:200px;
+  font-size:@font-size;
+  * {
+    box-sizing: border-box;
+  }
+  .william-hidden {
+    display:none;
+  }
+  .william-hidden-scroll {
+    overflow: hidden;
+  }
+  .william-table-wrapper {
+    overflow: hidden;
+    .william-head,.william-body {
+      position: relative;
+      .william-head-fixed,.william-body-fixed {
+        position: absolute;
+      }
+    }
+    .william-head {
+      .william-head-fixed {
+        height: 100%;
+        background: @bg-color-white;
+      }
+    }
+    .william-body {
+      .william-body-fixed {
+        background: @bg-color-white;
+      }
+      .william-body-scroll {
+        overflow: auto;
+      }
+    }
+  }
+  .william-table {
+    table-layout: fixed;
+    height: 100%;
+  }
+}

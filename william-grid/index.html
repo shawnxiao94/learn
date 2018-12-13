@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Page Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="./dist/william-grid.css"/>
+	<script src="./dist/william-grid.js"></script>
+</head>
+<body>
+  <div id="grid"></div>
+  <script>
+  (function() {
+        new Grid('#grid', {
+            dataSource: {
+                data: [
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                    {
+                        name: '李三',
+                        age: 43,
+                        work: '北京',
+                        work2: '上海'
+                    },
+                ]
+            },
+            width: 700,
+            height: 150,
+            columns: [
+                {
+                    title: '姓名',
+                    field: 'name',
+                    fixed: true,
+                    width: '200px',
+                    headAttrs: {
+                        style: 'text-align:center'
+                    }
+                },
+                {
+                    title: '年龄',
+                    field: 'age',
+                    fixed: true,
+                    width: 100,
+                    headAttrs: {
+                        style: 'text-align:center'
+                    }
+                },
+                {
+                    title: '工作经历',
+                    fixed: true,
+                    headAttrs: {
+                        style: 'text-align:center'
+                    },
+                    columns: [
+                        {
+                            title: '工作经历2',
+                            headAttrs: {
+                                style: 'text-align:center'
+                            },
+                            columns: [
+                                {
+                                    title: '工作经历2',
+                                    field: 'work',
+                                    width: 100
+                                },
+                                {
+                                    title: '工作经历5',
+                                    field: 'work2',
+                                    width: 200
+                                }
+                            ]
+                        },
+                        {
+                            title: '工作经历5',
+                            field: 'work2',
+                            width: 300
+                        }
+                    ]
+                }
+            ]
+        });
+    })();
+  </script>
+</body>
+</html>

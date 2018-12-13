@@ -19,7 +19,7 @@ export function createSVG(tag, attrs) {
     return elem;
 }
 
-export function createHTML(tag, attrs) {
+export function createHTML(tag, attrs, noSVG) {
     const elem = document.createElement(tag);
     for (let attr in attrs) {
         if (attr === 'append_to') {
@@ -43,7 +43,9 @@ export function createHTML(tag, attrs) {
             elem.setAttribute(attr, attrs[attr]);
         }
     }
-    elem.classList.add('gantt-svg');
+    if (!noSVG) {
+        elem.classList.add('gantt-svg');
+    }
     return elem;
 }
 
@@ -144,7 +146,7 @@ $.closest = (selector, element) => {
 };
 
 $.attr = (element, attr, value) => {
-    if (!value && typeof attr === 'string') {
+    if (!value && value !== 0 && typeof attr === 'string') {
         return element.getAttribute(attr);
     }
 
@@ -164,3 +166,19 @@ $.attr = (element, attr, value) => {
     }
     element.setAttribute(attr, value);
 };
+
+/* eslint-disable */
+if (!Element.prototype.matches)
+    Element.prototype.matches = Element.prototype.msMatchesSelector || 
+                                Element.prototype.webkitMatchesSelector;
+
+if (!Element.prototype.closest)
+    Element.prototype.closest = function(s) {
+        var el = this;
+        if (!document.documentElement.contains(el)) return null;
+        do {
+            if (el.matches(s)) return el;
+            el = el.parentElement || el.parentNode;
+        } while (el !== null && el.nodeType === 1); 
+        return null;
+    };

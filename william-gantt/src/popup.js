@@ -37,11 +37,9 @@ export default class Popup {
             this.title.innerHTML = options.title;
             this.subtitle.innerHTML =
                 options.subtitle + `<br>进度:${options.task.progress}%`;
-            this.parent.style.width = this.parent.clientWidth + 'px';
+            this.parent.style.width = this.parent.clientWidth || 200 + 'px';
         }
 
-        let position_meta;
-        position_meta = target_element.getBoundingClientRect();
         if (options.position === 'left') {
             this.parent.style.left =
                 target_element.offsetLeft +
@@ -55,10 +53,10 @@ export default class Popup {
             this.pointer.style.top = '2px';
         }
 
-        this.parent.style.opacity = 1;
+        this.parent.style.display = 'block';
     }
 
     hide() {
-        this.parent.style.opacity = 0;
+        this.parent.style.display = 'none';
     }
 }

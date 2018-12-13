@@ -9,7 +9,6 @@
 @text-color: #333;
 @blue: #a3a3ff;
 @handle-color: #ddd;
-@layout-line-color: #C1C1C1;
 
 .gantt-container {
 	position: relative;
@@ -17,15 +16,14 @@
 	font-size: 12px;
 	.gantt {
 		overflow: hidden;
-		.grid-background {
-			background: none;
-		}
+		position: relative;
 		.grid-header {
 			background: #ffffff;
 			border-bottom: 1px solid @border-color;
 		}
 		.grid-row {
 			background: #ffffff;
+			border-bottom: 1px solid @border-color;
 		}
 		.grid-row:nth-child(even) {
 			background: @light-bg;
@@ -36,7 +34,7 @@
 		.tick {
 			background: @border-color;
 			&.thick {
-				background: @bar-stroke;
+				background: @bar-color;
 			}
 		}
 		.today-highlight {
@@ -86,7 +84,7 @@
 				background: none;
 				border-width:0 5px 10px;
 				border-style:solid;
-				border-color:transparent transparent @handle-color;/*透明 透明  灰*/
+				border-color:transparent transparent @handle-color;
 			}
 		}
 	
@@ -158,14 +156,24 @@
 		}
 	}
 	.bar-arrow {
-		.arrow {
+		.gantt-arrow {
 			background: @text-muted;
+		}
+		.gantt-arrow-icon {
+			width:0;
+			height:0;
+			background: none;
+			border-width:5px 0 5px 6px;
+			border-style:solid;
+			border-color:transparent transparent transparent @text-muted;
 		}
 	}
 }
 
 .gantt-layout {
 	display: flex;
+	border: 1px solid @border-color;
+	// border-bottom: none;
 	* {
 		moz-user-select: -moz-none;
 		-moz-user-select: none;
@@ -177,37 +185,87 @@
 	}
 	.gantt-container {
 		flex: 1;
+		overflow-y: hidden;
 	}
 	.gantt-task-table{
 		position: relative;
 		overflow-x: auto;
+		.task-table-header,.task-table-row {
+			display: flex;
+			align-items: center;
+			font-size:12px;
+		}
 		.task-table-header {
 			background: #ffffff;
 			border-bottom: 1px solid @border-color;
 		}
 		.task-table-row {
 			background: #ffffff;
-			border-bottom: 1px solid @light-border-color;
-		}
-		.task-table-header,.task-table-row {
-			padding:10px;
-			display: flex;
-			align-items: center;
-			font-size:12px;
-			div {
-				padding:10px;
-			}
+			border-bottom: 1px solid @border-color;
 		}
 		.task-table-row:nth-child(even) {
 			background: @light-bg;
 		}
+		.task-table-header-column,.task-table-column {
+			display: flex;
+			align-items: center;
+			border-right: 1px solid @border-color;
+			height: 100%;
+			box-sizing: border-box;
+			padding:0 10px;
+		}
+		.task-table-header-column {
+			
+		}
+		.task-table-column {
+			word-break:break-all;
+			text-overflow: ellipsis;
+			overflow: hidden;
+		}
+		.task-table-column-id {
+			justify-content: center;
+		}
 	}
 	.gantt-layout-line {
-		width: 5px;
+		width: 7px;
 		cursor: ew-resize;
 		box-sizing: border-box;
-		background: @layout-line-color;
-		border: 1px solid @layout-line-color;
+		background: #ffffff;
+		border-left: 1px solid @border-color;
+		border-right: 1px solid @border-color;
+		display: flex;
+		flex-direction:column;
+		justify-content: center;
+		.gantt-layout-line-left, .gantt-layout-line-right {
+			width: 5px;
+			height: 50px;
+			border-top: 1px solid @border-color;
+			border-bottom: 1px solid @border-color;
+			display: flex;
+			align-items: center;
+			background: @light-border-color;
+			cursor: pointer;
+			&.hide {
+				display: none;
+			}
+			&:before {
+				content:'';
+				display:block;
+				width:0;
+				height:0;
+				background: none;
+				border-style:solid;
+				border-width:5px 5px 5px 0;
+				border-color:transparent @text-muted transparent transparent;
+			}
+		}
+		.gantt-layout-line-right {
+			margin-top:10px;
+			&:before {
+				border-width:5px 0 5px 5px;
+				border-color:transparent transparent transparent @text-muted;
+			}
+		}
 	}
 	.gantt-svg {
 		position: absolute;

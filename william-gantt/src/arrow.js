@@ -88,19 +88,23 @@ export default class Arrow {
     draw() {
         this.element_path_a = createHTML('div', {
             append_to: this.element,
-            class: 'arrow'
+            class: 'gantt-arrow'
         });
         this.element_path_b = createHTML('div', {
             append_to: this.element,
-            class: 'arrow'
+            class: 'gantt-arrow'
         });
         this.element_path_c = createHTML('div', {
             append_to: this.element,
-            class: 'arrow'
+            class: 'gantt-arrow'
         });
         this.element_path_d = createHTML('div', {
             append_to: this.element,
-            class: 'arrow'
+            class: 'gantt-arrow'
+        });
+        this.element_path_e = createHTML('div', {
+            append_to: this.element,
+            class: 'gantt-arrow-icon'
         });
     }
 
@@ -151,6 +155,9 @@ export default class Arrow {
                 this.path.end_x - this.path.left
             );
             $.attr(this.element_path_d, 'height', 2);
+            $.attr(this.element_path_e, 'data', 'left_e');
+            $.attr(this.element_path_e, 'x', this.path.end_x - 4);
+            $.attr(this.element_path_e, 'y', this.path.down_2 - 4);
         } else {
             $.attr(this.element_path_a, 'data', 'center_a');
             $.attr(this.element_path_a, 'x', this.path.start_x);
@@ -170,6 +177,9 @@ export default class Arrow {
                 this.path.end_x - this.path.start_x
             );
             $.attr(this.element_path_b, 'height', 2);
+            $.attr(this.element_path_e, 'data', 'left_e');
+            $.attr(this.element_path_e, 'x', this.path.end_x - 4);
+            $.attr(this.element_path_e, 'y', this.path.offset - 4);
             this.element_path_c.style.display = 'none';
             this.element_path_d.style.display = 'none';
         }
