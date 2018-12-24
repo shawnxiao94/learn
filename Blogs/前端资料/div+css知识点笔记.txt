@@ -1,0 +1,821 @@
+一。网页.每个html文件都要引用的css文件最近本的内容：
+一般这样写：
+*{margin:0;padding:0;}//设全部的边距与边框为0.(不提倡用)
+    a{ text-decoration:none;} //去掉下划线 。
+    ul{ list-style:none;} //去掉点。
+    img{ border:none;} //去掉图片边框。（一般在所有的css样式开头都有这几句）
+    body{ margin:0; padding:0;font-size: 12px; font-family: Arial, Helvetica, sans-serif, "宋体";}  
+2.<link type="text/css" rel="stylesheet" href="../css/Untitled-2.css" /> //连接样式表。一般在<head>标签中添加。
+     样式内联写法：<style type="text/css"></style>
+     js文件外链：<script type="text/javascript" src="images/js.js"></script> 
+     js内联文件：<SCRIPT> </SCRIPT>    
+*3.设主要内容的规则：body{ background:#fff; font-size:12px; text-align:center; font-family:Arial, Helvetica, sans-serif;};
+4.margin如果只给出一个值表示上右下左边的值都一样。给两个值表示前者表示上下边界的值，后者表示左右边界的值，给出三个值前者表示上边界的值，中间的表示左右表界的值，后者表示下表界的值。给出四个值以此表示上右下左边界的值。
+而： margin:0 auto;表示上和下的值是0，而左和右的值是自动；
+5.background:url(../imag es/search.gif) no-repeat; 是添加背景图片并且不要图片重复。
+*6.注意：header{ width:950px;height:60px; background:#fff; margin:0 auto;}//一般在母div中设margin:0 auto;表示上和下的值是0，而左和右的值是自动；
+*7.在当要图片当背景是记着两点。1.no-repeat禁止图片重复;如果它在最边上记着设上 float的属性left或者right;2.注意在设好图片当背景时在css中记得设上高度和宽度；
+*8.要让字体在边框或在div中垂直居中时设line-height:20px的值等于边框或者div中设的hight的值。
+*9.一般再设时是<li>标签包涵<a>标签，再设连接字体的样式时是在a标签的样式表中设字体的颜色、大小等。
+*10.将ul中<li>..</li>中的纵列变成横排是设属性：ul li{float:left}(eg:.navzi ul li{float:left; padding:0 0 0 30px; }
+.navzi ul li a{color:#FFF; font-size:14px; font-weight:bold;})注意再设字体间的距离是用的是padding属性而不是margin属性；
+*11.如果想让子div在父的div中居中时需要在子div中设上：margin:0 auto;
+*12.用来限制div中的字体的显示区域的div的css 属性：overflow: hidden;（隐藏溢出的文字及时超出半截字体也会隐藏半截字。）
+*13.white-space: nowrap;限制字体div中的文字在一行上显示且如果超出半个则显示一个整字。
+14.在vs中不支持：background-images.
+
+
+     a:link { text-decoration: none;color: blue} 
+　　 a:active { text-decoration:blink} 
+　　 a:hover { text-decoration:underline;color: red} 
+　　 a:visited { text-decoration: none;color: green} 
+     a:link 指正常的未被访问过的链接； 
+　 　a:active 指正在点的链接； 
+　 　a:hover 指鼠标在链接上； 
+　 　a:visited 指已经访问过的链接； 
+　 　text-decoration是文字修饰效果的意思； 
+　 　none参数表示超链接文字不显示下划线； 
+　 　underline参数表示超链接的文字有下划线 
+
+(在a标签中加一个title鼠标移动到链接的位置会弹出title里面的内容eg:
+
+<a class="logo" title="康义昭" href="http://www.weddingdressbee.net/">
+
+<img alt="weddingdressbee.net" src="http://www.weddingdressbee.net/skin/frontend/mercado/default/images/logo.png">
+
+</a>)
+
+
+bug:方法一：解决png格式的图片在ie6下蓝色背景问题：
+    在html中的head标签中加入即可：
+    <!--[if IE 6]>
+		<script src="/js/DD_belatedPNG_0.0.8a.js"></script>
+		<script>
+		/* EXAMPLE */
+		DD_belatedPNG.fix('.cn-slider-tab-gap, .cn-slider-tab-hover, .cn-slider-tab-normal, .cn-slider-tab-word-1, .cn-slider-tab-word-1-s, .cn-slider-tab-word-2, .cn-slider-tab-word-2-s, .cn-slider-tab-word-3, .cn-slider-tab-word-3-s,');
+
+		/* string argument can be any CSS selector */
+		/* .png_bg example is unnecessary */
+		/* change it to what suits you! */
+	</script>
+	<![endif]-->
+
+
+
+方法二：解决IE不能正确显示透明PNG——header内加入代码?
+Example?Source?Code?[www.downcodes.com]?<script?language="javascript">?function?correctPNG()?{?
+for(var?i=0;?i<document.images.length;?i++)?{?
+???var?img?=?document.images[i]?
+???var?imgName?=?img.src.toUpperCase()?
+???if?(imgName.substring(imgName.length-3,?imgName.length)?==?"PNG")????{?
+???var?imgID?=?(img.id)???"id='"?+?img.id?+?"'?"?:?""?
+???var?imgClass?=?(img.className)???"class='"?+?img.className?+?"'?"?:?""????var?imgTitle?=?(img.title)???"title='"?+?img.title?+?"'?"?:?"title='"?+?img.alt?+?"'?"????var?imgStyle?=?"display:inline-block;"?+?img.style.cssText????if?(img.align?==?"left")?imgStyle?=?"float:left;"?+?imgStyle????if?(img.align?==?"right")?imgStyle?=?"float:right;"?+?imgStyle????if?(img.parentElement.href)?imgStyle?=?"cursor:hand;"?+?imgStyle?????var?strNewHTML?=?"<span?"?+?imgID?+?imgClass?+?imgTitle?
+???+?"?style=\""?+?"width:"?+?img.width?+?"px;?height:"?+?img.height?+?"px;"?+?imgStyle?+?";"????+?"filter:progid:DXImageTransform.Microsoft.AlphaImageLoader"????+?"(src=\'"?+?img.src?+?"\',?sizingMethod='scale');\"></span>"????img.outerHTML?=?strNewHTML????i?=?i-1????}?}?}?
+window.attachEvent("onload",?correctPNG);?</script>?
+
+15.input,select,button{
+	font:12px Verdana,Arial,Tahoma;
+	vertical-align:middle;
+}
+
+
+vertical-align声明在很多中文文档中解释是“决定元素在垂直位置的显示”，它有下面几个参数baseline | sub | super | top | text-top | middle | bottom | text-bottom | 
+baseline：与元素的基线对齐。
+middle：与元素中部对齐。
+sub：字下沉。
+super：字上升。
+text-top：文本顶部对齐。
+text-bottom：文本底部对齐。
+top：和本行位置最高元素对齐。
+bottom：和本行位置最低元素对齐。
+vertical-align只作用于在同一行内的元素
+
+
+
+
+
+
+
+16.text-indent 属性规定文本块中首行文本的缩进。也可以进行段落的和缩进（应用在p属性中的时候允许使用负值。如果使用负值，那么首行会被缩进到左边） 
+
+
+17.鼠标经过时添加文字说明：<head>
+<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<title>鼠标经过图片,边框变色,图片上出现半透明文字</title>
+<style type="text/css">
+img{border:none}
+.wrap{margin:8px;position:relative;}
+.photo a{position:absolute;display:block;border:1px solid #888888;padding:2px}
+.photo a:hover{border:1px solid #fff;text-decoration:none}
+.photo a span {display:none;cursor:hand;text-align:center;font:bold 12px/30px Verdana, Arial;}
+.photo a:hover span{width:500px;margin:0 2px;background:#000;display:block;position:absolute;bottom:0;left:0;color:#fff;filter:alpha(opacity=56);-moz-opacity:0.6;opacity:0.6;}
+</style>
+</head>
+<body>
+<div class="wrap">
+<div class="photo"><a href="#">
+<img src="/jscss/demoimg/wall7.jpg" border="0" alt=""/><span>坝上春色，景色迷人</span></a></div>
+</div>
+</body>
+
+
+18:
+solid 边框由实线组成、
+
+dotted 边框由点组成、
+
+dashed 边框由短线组成、
+
+double 边框由双实线组成、
+
+groove 边框带有立体感的沟槽、
+
+ridge 边框成畸形、
+
+inset 边框内嵌一个立方体边框、
+
+outset 边框外嵌一个立方体--
+19：
+    opacity:0.8;（调在div中加背景颜色的透明度；只在ff下的方法。也可用在背景图片上的图片上；）
+    filter:alpha(opacity=80);（调在div中加背景颜色的透明度；只在ie下的方法。也可用在背景图片上的图片上；）
+  eg：filter: alpha(opacity=100,finishopacity=0,style=2)（alpha是来设置透明度的,它的基本属性是filter：alpha（opacity，finishopacity，
+style，startX，startY，finishX，finishY）.
+opacity代表透明度数,选值0-100,0是完全透明,100是不透明.
+finishopacity用来设置结束时的透明度,以达到渐变效果.取值范围也是0-100.style指渐变类型,0是无变化,1是线行渐变,2是放射渐变,3是X型渐变.
+filter：alpha（opacity=opcity，finishopacity=finishopacity，style=style，startX=startX，startY=startY，finishX=finishX，finishY=finishY）
+
+　Opacity代表透明度等级，可选值从0到100，0代表完全透明，100代表完全不透明。
+
+Style参数指定了透明区域的形状特征。其中0代表统一形状；1代表线形；2代表放射状；3代表长方形。 　　Finishopacity是一个可选项，用来设置结束时的透明度，从而达到一种渐变效果，它的值也是从0到100。 
+
+StartX和StartY代表渐变透明效果的开始坐标，finishX和finishY代表渐变透明效果的结束坐标。
+
+filter:alpha(opacity=20);  /* IE 浏览器支持 */ ;
+-moz-opacity:0.4;          /* 遨游浏览器 火狐浏览器 支持 */ ;
+opacity: 0.4;              /* 支持CSS3的浏览器（FF 1.5也支持）*/”>
+
+20:控制文字的样式： 
+控制文字的样式包括文字大小写、文字修饰两个部分。  
+1．文字大小写  
+文字大小写使网页的设计者不用在输入文字时就完成文字的大小写，而可以在输入完毕后，再根据需要对局部的文字设置大小写。  
+基本格式如下：  
+text-transform: 参数  
+参数取值范围：  
+·uppercase：所有文字大写显示  
+·lowercase：所有文字小写显示  
+·capitalize：每个单词的头字母大写显示  
+·none：不继承母体的文字变形参数  
+注意：继承是指HTML的标识符对于包含自己的标识符的参数会继承下来。  
+2．文字修饰  
+文字修饰的主要用途是改变浏览器显示文字链接时的下划线。  
+基本格式如下：  
+text-decoration: 参数  
+参数取值范围：  
+·underline：为文字加下划线  
+·overline：为文字加上划线  
+·line-through：为文字加删除线  
+·blink：使文字闪烁  
+·none：不显示上述任何效果  
+3.给文字添加阴影效果：text-shadow: 0 1px 1px rgba(0, 0, 0, 0.4);
+4个值的含义分别是：
+0：阴影水平偏移值（可取正负值）；
+1px：阴影垂直偏移值（可取正负值）；
+1px：阴影模糊值；
+rgba(0,0,0,0.8)：阴影颜色；
+4:实现字体添加删除线：第一种是：标签法：我被加<s>删除线</s>！。第二中：css属性：text-decoration:line-through。
+5.font: italic bold 23px georgia;字体倾斜、加粗、大小23像素、采用georgia字体！(一种规范字体的写法！)
+
+
+八．控制文本的样式  
+控制文本的样式包括单词距离、字母距离、文本行距、文本水平对齐、文本垂直对齐文本缩进六个部分。  
+1．单词间距  
+单词间距指的是英文每个单词之间的距离，不包括中文文字。  
+基本格式如下：  
+word-spacing: 间隔距离  
+间隔距离的取值：points、em、pixes、in、cm、mm、pc、ex、normal等。  
+2．字母间距  
+字母间距是指英文字母之间的距离，功能、用法，以及参数的设置和单词间距很相似。  
+基本格式如下：  
+letter-spacing: 字母间距  
+3．行距 
+行距是指上下两行基准线之间的垂直距离。一般地说，英文五线格练习本，从上往下数的第三条横线就是计算机所认为的该行的基准线。 
+基本格式如下： 
+line-height: 行间距离 
+行间距离取值： 
+·不带单位的数字：以1为基数，相当于比例关系的100% 
+·带长度单位的数字：以具体的单位为准 
+·比例关系 
+注意：如果文字字体很大，而行距相对较小的话，可能会发生上下两行文字互相重叠的现象。 
+4．文本水平对齐 
+文本水平对齐可以控制文本的水平对齐，而且并不仅仅指文字内容，也包括设置图片、影像资料的对齐方式。 
+基本格式如下： 
+text-align: 参数 
+参数的取值： 
+·left：左对齐 
+·right：右对齐 
+·center：居中对齐 
+·justify：相对左右对齐 
+但需要注意的是，text-alight是块级属性，只能用于< p>、< blockquqte>、< ul>、< h1>~< h6>等标识符里。 
+5．文本垂直对齐 
+文本的垂直对齐应当是相对于文本母体的位置而言的，不是指文本在网页里垂直对齐。比如说，表格的单元格里有一段文本，那么对这段文本设置垂直居中就是针对单元格来衡量的，也就是说，文本将在单元格的正中显示，而不是整个网页的正中。 
+基本格式如下： 
+vertical-align: 参数 
+参数取值： 
+·top：顶对齐 
+·bottom：底对齐 
+·text-top：相对文本顶对齐 
+·text-bottom：相对文本底对齐 
+·baseline：基准线对齐 
+·middle：中心对齐 
+·sub：以下标的形式显示 
+·super：以上标的形式显示 
+6．文本缩进 
+文本缩进可以使文本在相对默认值较窄的区域里显示，主要用于中文板式的首行缩进，或是为大段的引用文本和备注做成缩进的格式。 
+基本格式如下： 
+text-indent: 缩进距离 
+缩进距离取值： 
+·带长度单位的数字 
+·比例关系 
+但是需要注意的是，在使用比例关系的时候，有人会认为浏览器默认的比例是相对段落的宽度而言的，其实事实并非如此，整个浏览器的窗口才是浏览器所默认的参照物。 
+另外，text-indent是块级属性，只能用于< p>、< blockquqte>、< ul>、< h1>~< h6>等标识符里。
+7.<pre></pre>:保持文本原样输出！
+九．控制颜色和背景的样式  
+控制颜色和背景的样式包括颜色属性、背景颜色、背景图片、背景图片重复、背景图片固定、背景定位六个部分。  
+1．颜色属性  
+基本格式如下：  
+color: 参数  
+颜色参数取值范围：  
+·以RGB值表示  
+·以16进制（hex）的色彩值表示  
+·以默认颜色的英文名称表示  
+以默认颜色的英文名称表示无疑是最为方便的，但由于预定义的颜色种类太少，所以更多的网页设计者喜欢用RGB的方式。RGB方式的好处很多，不但可以用数字的形式精确地表示颜色，而且也是很多图像制作软件（如Photoshop）里默认使用的规范，这样一来就为图片和网页更好地结合打下了坚实的基础。  
+2．背景颜色  
+在HTML当中，要为某个对象加上背景色只有一种办法，那就是先做一个表格，在表格中设置完背景色，再把对象放进单元格。这样做比较麻烦，不但代码较多，还要为表格的大小和定位伤些脑筋。现在用CSS就可以轻松地直接搞定了，而且对象的范围很广，可以是一段文字，也可以只是一个单词或一个字母。  
+基本格式如下：  
+background-color: 参数  
+参数取值和颜色属性一样。  
+3．背景图片  
+基本格式如下：  
+background-image: url(URL)  
+URL就是背景图片的存放路径。如果用“none”来代替背景图片的存放路径，将什么也不显示。 
+4．背景图片重复  
+背景图片重复控制的是背景图片平铺与否，也就是说，结合背景定位的控制可以在网页上的某处单独显示一幅背景图片。  
+基本格式如下：  
+background-repeat: 参数  
+参数取值范围：  
+·no-repeat：不重复平铺背景图片  
+·repeat-x：使图片只在水平方向上平铺  
+·repeat-y：使图片只在垂直方向上平铺  
+如果不指定背景图片重复属性，浏览器默认的是背景图片向水平、垂直两个方向上平铺。  
+5．背景图片固定  
+背景图片固定控制背景图片是否随网页的滚动而滚动。如果不设置背景图片固定属性，浏览器默认背景图片随网页的滚动而滚动。为了避免过于花哨的背景图片在滚动时伤害浏览者的视力，所以可以解除背景图片和文字内容的捆绑，该为和浏览器窗口捆绑。  
+基本格式如下：  
+background-attachment: 参数  
+参数取值范围：  
+·fixed：网页滚动时，背景图片相对于浏览器的窗口而言，固定不动  
+·scroll：网页滚动时，背景图片相对于浏览器的窗口而言，一起滚动  
+6．背景定位  
+背景定位用于控制背景图片在网页中显示的位置。  
+基本格式如下：  
+background-position: 参数表  
+参数取值范围：  
+·带长度单位的数字参数  
+·top：相对前景对象顶对齐  
+·bottom：相对前景对象底对齐  
+·left：相对前景对象左对齐  
+·right：相对前景对象右对齐  
+·center：相对前景对象中心对齐  
+·比例关系  
+参数中的center如果用于另外一个参数的前面，表示水平居中；如果用于另外一个参数的后面，表示垂直居中。</P< p>
+ 
+
+20：display: 参数  
+参数取值范围：  
+·block（默认）：在对象前后都换行  
+·inline：在对象前后都不换行  
+·list-item：在对象前后都换行，增加了项目符号  
+·none：无显示  
+
+空白控制样式 ： 基本格式如下：  
+空白属性决定如何处理元素内的空格。  
+white-space: 参数  
+参数取值范围：  
+normal：把多个空格替换为一个来显示  
+pre：忠实地按输入显示空格  
+nowrap：禁止换行  
+但要注意的是，write-space也是一个块级属性。
+21。控制列表的样式  
+   列表是HTML里一种很有用的显示方式，可以把相关的并列内容整齐地垂直排列，使网页显得整洁专业，并让浏览者有一目了然的感觉。  
+   样式表为列表增加了一些功能，控制列表的样式包括列表样式、图形符号、列表位置三个部分。  
+   1．列表符号  
+   列表符号是指显示于每一个列表项目前的符号标识。  
+   基本格式如下：  
+   list-style-type：参数  
+   参数取值范围：  
+   ·disc：圆形  
+  ·circle：空心圆  
+  ·square：方块  
+  ·decimal：十进制数字  
+  ·lower-roman：小写罗马数字  
+  ·upper-roman：大写罗马数字  
+  ·lower-alpha：小写希腊字母  
+  ·upper-alpha：大写希腊字母  
+  ·none：无符号显示  
+  参数中的disc是默认选项。  
+   2．图形符号  
+   图形符号指原来列表的项目符号将可以使用图形来代替。  
+   基本格式如下：  
+   list-style-image：URL  
+   URL是用来代替项目符号的图形文件的地址，可以使用相对地址或绝对地址。  
+   3．列表位置  
+   列表位置描述列表在何处显示。  
+   基本格式如下：  
+   list-style-position：参数  
+   参数取值范围：  
+·inside：在BOX模型内部显示  
+·outside：在BOX模型外部显示  
+这里又出现了一个新的概念：BOX模型。BOX是指一种容器，包含了应用样式规则的对象，具体介绍将在后文中给出。  
+十一．控制用户界面的样式  
+在网页上，鼠标平时呈箭头形，指向链接时成为手形，等待网页下载时成为沙漏形……这似乎是约定俗成的。虽然这样的设计能使我们知道浏览器现在的状态或是可以做什么，但这些好像还不能完全地满足我们的需要。就拿链接来说，可以是指向一个帮助文件，也可以是向前进一页或是向后退一页，针对如此多的功能光靠千篇一律的手形鼠标是不能说明问题的。值得庆幸的是，CSS提供了多达13种的鼠标形状，供我们选择。 
+ 鼠标样式：
+基本格式如下：  
+cursor：鼠标形状参数  
+CSS鼠标形状参数表：  
+CSS代码  
+鼠标形状  
+style="cursor:hand"  
+手形  
+style="cursor:crosshair"  
+十字形  
+style="cursor:text"  
+文本形  
+style="cursor:wait"  
+沙漏形  
+style="cursor:move"  
+十字箭头形  
+style="cursor:help"  
+问号形  
+style="cursor:e-resize"  
+右箭头形  
+style="cursor:n-resize"  
+上箭头形  
+style="cursor:nw-resize"  
+左上箭头形  
+style="cursor:w-resize"  
+左箭头形  
+style="cursor:s-resize"  
+下箭头形  
+style="cursor:se-resize"  
+右下箭头形  
+style="cursor:sw-resize"  
+左下箭头形 
+
+22.position:relative的意思：
+relative是相对于自己来定位的，例如：#demo{position:relative;top:-50px;},这时#demo会在相对原来的位置上移50px。
+
+23： table属性：
+     border-collapse:collapse 属性设置表格的边框被合并为一个单一的边框｛指的是表格的边框线｝
+     border-collapse:separate 属性设置表格单一的边框边框分开为二条线｛指的是表格的边框线｝
+     colspan就是在表格中跨了2个列合并的意思，相对的还有RowSpan属性是行合并的意思
+
+24：*{ outline: none; }中outline的意思：
+    outline-style 属性用于设置元素的整个轮廓的样式。样式不能是 none，否则轮廓不会出现
+
+25：table中属性的:white-space : normal | pre | nowrap 
+      取值：
+normal  :　 默认值。默认处理方式。文本自动处理换行。假如抵达容器边界内容会转到下一行 
+pre :　  换行和其他空白字符都将受到保护。这个值需要IE6+或者 !DOCTYPE 声明为 standards-compliant mode 支持。如果 !DOCTYPE 声明没有指定为 standards-compliant mode ，此属性可以使用，但是不会发生作用。结果等同于 normal 。参阅 pre 对象 
+nowrap  :　 强制在同一行内显示所有文本，直到文本结束或者遭遇 br 对象。参阅 noWrap 属性 上.
+
+26.当鼠标移开和移上去图片的轮换：
+    eg:<a href="#"><img src="images/headerlink1.gif" width="44" height="15" alt="首页"           onmouseover="this.src='images/headerlink1on.gif'" onmouseout="this.src='images/headerlink1.gif'" /></a></li>
+   27.
+display:none属性后，HTML元素（对象）的宽度、高度等各种属性值都将“丢失”;而使用visibility:hidden属性后，HTML元素（对象）仅仅是在视觉上看不见（完全透明），而它所占据的空间位置仍然存在。
+28.绝对定位：当某个按钮或者某块相对于body或者其他区域不动时用也可以用在（子div相对父div中垂直除了用margin之外又一方法。用绝对定位的确定就是除非那个位置以后不动时用。）居中时用。一般用绝对定位时只设top、right、..。值就行了！
+<style>
+.wai{position:relative;width:500px;height:600px}
+.nei{position:absolute;top:50%;left:50%;width:100px;height:200px;margin:-100px 0 0 -50px}
+</style>
+<dide ass="wai">
+  <div class="nei"></div>
+</div>
+
+
+28：padding和margin的区别：http://www.hicss.net/use-margin-or-padding/
+29:选择合适的标签：
+什么是时候用<div>，什么时候用<span>呢，这样根据实际情况来定，通常情况下，对于页面中大的区块儿使用<div>标签， 而<span>标签仅仅用于需要单独设置样式风格的小元素，比如说一个单词，一个图片或是一个超链接等等。
+
+30:    !important的作用
+
+  　　{*rule !important}这个css规则当今在网页制作的时候的普及已经非常流行了，以前我对它的理解就停留在‘浏览器是否识别阶段’ 而没有真正去研究过，可是现在发生了变化。众所周知，!important这个规则对Ie6.0,Ie7.0和Firefox能写hack，现在就来讲解 这是什么原理：
+
+　　*对于Ie系列浏览器都能够识别， firefox 浏览器则不能识别;
+
+　　!important只有Ie7.0和firefox可以识别，但是Ie6.0不能成功应用.
+
+　　(1)区别ie与firefox的hack为:border:2px solid #f00;*border:1px solid #f00;
+
+     (2)区别Ie6.0 与Ie7.0、firefox的hack为:border:1px solid #f00!important;border:2px solid #f00;
+
+　　在(1)中，之所以把*放在后面是因为ff不识别*而导致只对它设置了一次border;而margin的默认效果??
+??div里的内容，ie默认为居中，而ff默认为左对齐。使ff内容居中的方法是增加代码margin:auto;
+?
+
+ie 系列进行了两次border设置后，后一个属性覆盖了前一个属性，故为一像素的边框。
+
+　 　在(2)中，之所以把!important放在第一个border 设置，是因为它把这次border的优先级提高了，即使后面在一次甚至在N次设置border 也无效，但是Ie6.0对这个规则不接受，而导致它应用了第二次的border 设置，也就是第二次覆盖了第一次的这一原理， 并不是它不识别!important;所以它的border为2 像素的红框. 
+
+31:    margin的默认效果div里的内容，ie默认为居中，而ff默认为左对齐。使ff内容居中的方法是增加代码margin:auto;
+32:ul在Firefox和IE下表现不同使用（padding:0; margin:0; list-style:inside;）或者（padding:0; margin:0; list-style:none;）实现兼容.
+33：Li中内容超过长度后以省略号显示的方法Example Source Code [www.downcodes.com]<meta content="text/html; charset=gb2312" http-equiv="Content-Type" /> <style type="text/css"> 
+<!-- li { 
+     width:200px; 
+     white-space:nowrap; 
+     text-overflow:ellipsis; 
+     -o-text-overflow:ellipsis; 
+     overflow: hidden;} 
+--></style> 
+
+<ul> 
+<li><a href="#">CSS Web Design 
+我爱CSS-Web标准化- www.52CSS.com</a></li> 
+<li><a href="#">web标准常见问题大全- www.downcodes.com</a></li> 
+</ul>
+34：解决超链接访问过后hover样式不显示的问题改变CSS属性clear:both;的排列顺序: 先后顺序标准应为：a:link—a:visited—a:hover—a:active
+35:  clear:both;当属性设置float（浮动）时，其所在的物理位置已经脱离文档流了，但是大多时候我们希望文档流能识别float（浮动），或者是希望float（浮动）后面的元素不被float（浮动）所影响，这个时候我们就需要用clear:both;来清除。
+
+36.在网页最上面现实图片方法：
+<head>……</head>块中加入代码。
+<link rel="Shortcut Icon" href="ico格式图片的网络地址（绝对地址不是本地上图片的地址）">eg:
+<HEAD>
+<link rel = "Shortcut Icon" href= http://bj.sushenqi.com/jw/img/favicon.ico>
+</HEAD> 
+37.网页图片热点：
+<img src="planets.jpg" border="0" usemap="#planetmap" alt="Planets" />
+
+<map name="planetmap" id="planetmap">
+  <area shape="circle" coords="180,139,14" href ="venus.html" alt="V    enus" />
+  <area shape="circle" coords="129,161,10" href ="mercur.html" alt="Mercury" />
+  <area shape="rect" coords="0,0,110,260" href ="sun.html" alt="Sun" />
+</map>
+在DW中右击图片属性后选择地图下面的热点工具有矩形的圆形的等，后在图片上要出现的热点区划出热区，后以上代码就会自动添加，其中：shape 属性用于定义图像映射中对鼠标敏感的区域的形状：
+圆形（circ 或 circle）
+多边形（poly 或 polygon）
+矩形（rect 或 rectangle）
+
+coords是指热区的大小划定区域后会自动生成。
+<area> 标签的 alt 属性指定了替代文本，用于在图像无法显示或者用户禁用图像显示时，代替图像显示在浏览器中的内容。语法：<area alt="value">alt 属性通常是他们了解图像内容的唯一方式。
+target ="_blank" target属性是规定区域中连接的目标一般是在href连接的是个网址是用到。
+_blank -- 在新窗口中打开链接 
+_parent -- 在父窗体中打开链接 
+_self -- 在当前窗体打开链接,此为默认值 
+_top -- 在当前窗体打开链接，并替换当前的整个窗体(框架页) 。
+href属性是指定连接到的区域或新的网页其中形式：href=“#gd”或者href=“www.baidu.com”其中href=“#gd”是通过给要到的位置给它加id再在map中的href连接到其id来完成本页面的指定跳转eg:
+<p><a href="#aaa">aaa</a></p><p><a href="#bbb">bbb</a></p>
+
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div style="height:20px; background:#CCCCCC" id=aaa>aaa</div>
+</p>
+
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+<div style="height:20px; background:#99FFCC" id=bbb>bbb</div>
+
+38.  text-indent:-9999px;和overflow:hidden;区别：
+
+使用text-indent:-9999px（em）;可是他有一个局限性 他只适用于块级元素（如实行内元素测需要用属性“block”将其变为块级元素。）隐藏文本的一种方法 。
+overflow:hidden;是隐藏容器溢出文本！
+
+39.
+display:none和visibility:hidden的区别?
+display:none属性，HTML元素（对象）的宽度、高度等各种属性值都将“丢失”;
+使用visibility:hidden属性，HTML元素（对象）仅仅是在视觉上看不见（完全透明），而它所占据的空间位置仍然存在。
+
+CSS display:none和visibility:hidden的区别
+
+visibility:hidden隐藏，但在浏览时保留位置；CSS display:none视为不存在，且不加载！
+
+Overflow属性值{visible|hidden|scroll|auto}前提是先要限制DIV的宽度（width）和高度（height）。二者都是隐藏HTML元素，在视觉效果上没有区别，但在一些DOM操作中二者还是有所不同的。
+visible 	默认值。内容不会被修剪，会呈现在元素框之外。
+hidden 	内容会被修剪，并且其余内容是不可见的。
+scroll 	内容会被修剪，但是浏览器会显示滚动条以便查看其余的内容。
+auto 	如果内容被修剪，则浏览器会显示滚动条以便查看其余的内容。
+inherit 	规定应该从父元素继承 overflow 属性的值。
+
+CSS display:none;
+
+使用该属性后，HTML元素（对象）的宽度、高度等各种属性值都将“丢失”;
+
+visibility:hidden;
+
+使用该属性后，HTML元素（对象）仅仅是在视觉上看不见（完全透明），而它所占据的空间位置仍然存在，也即是说它仍具有高度、宽度等属性值。
+40.
+定位：
+（1）绝对定位：绝对定位的元素的位置相对于最近的已定位祖先元素，如果元素没有已定位的祖先元素，那么它的位置相对于最初的包含块。（注意：绝对对位就是该定位的模块相对于最近的定位的元素来定位的，而相对的那个元素自身必须是定位过的不管是决定定位还是相对定位的。如果没有父级的定位块那么它就会相对于浏览器进行绝对定位的。）
+eg：
+<div style=" width:1500px; height:600px; border:1px solid black; float:left;">4
+<div style=" width:300px; height:300px; border:1px solid red; float:left;">1</div>
+<div style=" width:300px; height:300px; border:1px solid red; float:left; position:absolute; top:30px; left:30px;">2</div>
+<div style=" width:300px; height:300px; border:1px solid red; float:left;">3</div>
+</div>2号模块会相对于浏览器进行绝对定位的，而其中的top、left、的值是相对于浏览器的值。
+
+<div style=" width:1500px; height:600px; border:1px solid black; float:left; position:absolute;">4
+<div style=" width:300px; height:300px; border:1px solid red; float:left;">1</div>
+<div style=" width:300px; height:300px; border:1px solid red; float:left; position:absolute; top:30px; left:30px;">2</div>
+<div style=" width:300px; height:300px; border:1px solid red; float:left;">3</div>
+</div>2号模块就会相对于4的div模块进行绝对定位的其中4模块的属性可以是绝对定位也可以是相对定位。
+
+（2）相对定位：
+如果对一个元素进行相对定位，它将出现在它所在的位置上，可以通过设置垂直或水平位置，让这个元素“相对于”它的起点进行移动。
+eg：
+<div style=" width:1500px; height:600px; border:1px solid black; float:left;">4
+<div style=" width:300px; height:300px; border:1px solid red; float:left;">1</div>
+<div style=" width:300px; height:300px; border:1px solid red; float:left; position:relative; top:100px; left:100px;">2</div>
+<div style=" width:300px; height:300px; border:1px solid red; float:left;">3</div>
+（3）Z-index 
+
+Z-index 仅能在定位元素上奏效（例如 position:absolute;）该属性设置一个定位元素沿 z 轴的位置，z 轴定义为垂直延伸到显示区的轴。如果为正数，则离用户更近，为负数则表示离用户更远
+。
+eg：<div style=" width:300px; height:300px; background-color:#6C0; position:absolute; top:100px; ">1</div>
+<div style=" width:300px; height:300px; background-color:red;position:absolute; z-index:-1; ">2</div>
+
+(4) position:fixed 生成绝对定位的元素，相对于浏览器窗口进行定位。
+
+元素的位置通过 "left", "top", "right" 以及 "bottom" 属性进行规定。
+(eg:
+<DIV id=overlay><A href="#dg"><IMG border=0 
+alt="" src="images/qss.jpg" width=1003 height=50></A>
+</DIV>#overlay{
+	background-color: transparent;
+	filter: progid:DXImageTransform.Microsoft.AlphaImageLoader(src="../jw/img/overlay.png", sizingMethod="scale");
+	})
+
+41.dispaly:block属性详解：
+
+dispaly:block对所有的块元素都没有意义，块元素的dispaly属性默认值为block，没必要再显式定义——除非你之前对块元素的display属性重新定义过。
+===========================
+注意：
+display：block；比较常用于<a><span>这两个标签——因为这两个标签非块元素，如果不用display：block定义一下，那么定义width、height等和长宽相关的css属性时会发现完全不生效。你可以实际写几行简单代码感受一下。
+===========================
+ 是不是div里就没有必要写display：block呢？通常情况下是没有必要的。
+
+42.如何用background里的定位值来准确定位一个背景图片，返回去我们看一下开始的时候介绍的两个图片，我们就是可以用：背景定位和容器内才可见这两个性质来随意的调用整张图片的某一部分。
+
+但是我们为了调用方便，在排列这些小图片的时候要讲究一点规则，比如：小图之间的距离通常是调用小图的容器的大小，或者距离更大一点，这样就可以避免在容器内显示出我们不愿意显示的图片！
+
+<style type="text/css">
+ul li { list-style:none;}
+.kyz1{ height:160px; width:120px; border:1px solid  overflow:hidden(注意引用);}
+.kyz1 ul{ margin:0px; padding:0px;(注意引用)}
+.kyz1 ul li { width:120px; height:160px;  }
+.kyz1 ul li a{ width:120px; height:160px; display:block(注意引用); background-image:url(images/tubiao.gif); background-repeat:no-repeat; background-position:0px -80px; }
+.kyz1 ul li a:hover{ display:block(注意引用); width:120px; height:160px; display:block; background-image:url(images/tubiao.gif); background-repeat:no-repeat; background-position:right -80px; }
+
+
+
+</style>
+<title>无标题文档</title>
+</head>
+
+<body>
+
+<div class="kyz1">
+
+<ul>
+<li><a></a></li>
+
+</ul>
+
+</div>
+
+
+补充一点，如果定位用的是百分比话，算法比较特殊。我举个例子：
+
+代码：
+
+background:#FFF url(image) no-repeat fixed 50% -30%;
+
+这个时候图片应该在容器的什么位置呢,算法公式如下：
+
+图片左顶点距容器左顶点的坐标位置为
+x：（容器的宽度-图片的宽度）x50%
+y：（容器的高度-图片的高度）x（-30%）
+得到的结果应用坐标法则，差值如果为负数，百分比为正那么运算结果是负值。如果差值为负数，百分比也为负数，那么运算结果就是正数。总而言之就是这里的运算符合运算法则。把运算的结果带入坐标法则就能得到图片的位置。
+
+比如：容器是width：600px；height：600px；而图片是width：200px；height：200px；
+我们用上面的样式，可以得到图片位置为：
+x：(600px-200px)*50%
+y：(600px-200px)*(-30%) 
+
+43.   ie6下的双边距问题原因：
+举例：讲解：
+
+
+   一 .floatbox { float: left; width: 150px; height: 150px; margin: 5px 0 5px 100px; }
+
+复制代码
+
+很简单，对吧？但是当我们在IE6中查看时，会发现左侧外边距100像素，被扩大到200个像素。如下图：
+
+二、怎么会这样？
+
+说 实话，这个原因还真是不清楚。但是这样的结果确确实实在IE6中出现了。而且这种情况出现的条件是当浮动元素的浮动方向和浮动边界的方向一致时才会出现。 如同上面的例子一样，元素向左浮动并且设置了左侧的外边距出现了这样的双边距bug。同理，元素向右浮动并且设置右边距也会出现同样的情况。同一行如果有 多个浮动元素，第一个浮动元素会出现这个双边距bug，其它的浮动元素则不会。
+
+三、如何修正这个Bug？
+
+很简单，只需要给浮动元素加上display:inline;这样的CSS属性就可以了。就这么简单？对，就这么简单。如下图：
+
+CSS代码如下：
+
+    .floatbox {float: left; width: 150px;height: 150px; margin: 5px 0 5px 100px; display: inline; }
+
+复制代码
+display属性的inline和block inline是内联元素,block是块级元素
+
+它可以让行内显示为块的元素，变为行内显示，例如
+
+    <div> DIV1 </div>
+    <div> DIV2 </div>
+
+复制代码
+这里DIV1和DIV2分别占一行，但是你给他们加上属性后变了
+
+    <div   style= "display:inline "> DIV1 </div>
+    <div   style= "display:inline "> DIV2 </div>
+
+复制代码
+DIV1 和DIV2这时候显示在同一行了 和   display:inline   对应的是   display:block，block   会让应用了该   CSS   属性的   HTML   标记变成块级别元素，例如   SPAN   是行内显示的，但是你加了   display:block   属性就不一样了
+
+    <span   style= "display:block "> SPAN1 </span>
+    <span   style= "display:block "> SPAN2 </span>
+
+复制代码
+display:inline 比较经典的用法是用在 <ul> 下的 <li> 中内联block一般一个块占一行，除非floatinline是自动排为一行，就象段内的文字一样，可成为多行。display:inline   的作用是设置对象做为行内元素显示，      inline是内联对象的默认值（ps:内联对象就是不自动产生换行的元素，比如span）      而我们一般用的div是块级元素，默认display属性是block,      但将div的display设置为inline的话，则多个div可以象span一样显示在一行了。 
+44:border:0和border:none的区别：
+1.性能差异
+【border:0;】把border设为“0”像素虽然在页面上看不见，但按border默认值理解，浏览器依然对border-width/border-color进行了渲染，即已经占用了内存值。
+【border:none;】把border设为“none”即没有，浏览器解析“none”时将不作出渲染动作，即不会消耗内存值。
+
+2.兼容性差异
+兼容性差异只针对浏览器IE6、IE7与标签button、input而言，在win、win7、vista 的XP主题下均会出现此情况。
+
+【border:none;】当border为“none”时似乎对IE6/7无效边框依然存在，
+【border:0;】当border为“0”时，感觉比“none”更有效，所有浏览器都一致把边框隐藏。总结：
+1. 对比border:0;与border:none;之间的区别在于有渲染和没渲染，感觉他们和display:none;与visibility:hidden;的关系类似，而对于border属性的渲染性能对比暂时没找测试的方法，虽然认为他们存在渲染性能上的差异但也只能说是理论上。
+
+2. 如何让border:none;实现全兼容？只需要在同一选择符上添加背景属性即可对于border:0;与border:none;个人更向于使用,border:none;，因为border:none;毕竟在性能消耗没有争议，而且兼容性可用背景属性解决不足以成为障碍。
+45:关于DIV高度自动伸展的问题:
+.a{height:400px;height:au scroll 0% 0% transparent;）
+背景设置方法：
+background: url("http://www.hbrc.com/images/index/index2013_07_11.jpg") no-repeat scroll center top #FFFFFF;
+
+transparent：将背景图片设置成透明，一般如果为了显示出下面的元素就给上面元素用这个属性。
+
+47.  overflow-y(x) ： visible | auto | hidden | scroll 
+
+visible：不剪切内容也不添加滚动条。假如显式声明此默认值，对象将被剪切为包含对象的window或frame的大小。并且clip属性设置将失效
+auto：此为body对象和textarea的默认值。在需要时剪切内容并添加滚动条
+hidden：不显示超过对象尺寸的内容
+scroll：纵(横)向显示滚动条
+48.  background-attachment -- 定义背景图片随滚动轴的移动方式 
+取值: scroll | fixed | inherit 
+scroll: 随着页面的滚动轴背景图片将移动
+fixed: 随着页面的滚动轴背景图片不会移动
+inherit: 继承
+引用网址:http://www.dreamdu.com/css/property_background-attachment/
+初始值: scroll
+继承性: 否
+适用于: 所有元素
+background:背景.attachment:附着.
+一般给网页背景图片写时{ background: url("http://www.hbrc.com/images/index/index2013_07_11.jpg") no-repeat scroll center top #FFFFFF;}
+
+49.让背景图片全屏的方法 
+ （1.）设置图片大小为%。（不好的方面就是图片会变形模糊）：
+ （2.）绝对定位：
+<style type="text/css"> 
+#bg { 
+position:fixed;  
+top:0;  
+left:0;  
+width:100%;  
+height:100%; 
+} 
+ 
+#bg img { 
+position:absolute;  
+left:0;  
+right:0;  
+bottom:0;  
+margin:auto;  
+width:100%; 
+height:100%; 
+z-index:-1; 
+} 
+</style> 
+</head> 
+<body> 
+<div id="bg"> 
+<img src="back_main.png" alt=""> 
+</div> 
+<div> 
+Your content goes here! 
+</div>  
+
+49:在网页中嵌套网页的代码：<iframe src="index2.html" style="width:780px; height:500px;" border="0" marginwidth="0" marginheight="0" allowtransparency="yes" frameborder="no"scrolling="No"></iframe>
+
+<a href="http://www.baidu.com" target="_Blank">百度</a>
+
+_Blank是新窗口
+_Self是自身
+_Parent是父窗口
+_Top是顶层窗口
+当然也可以是自己定义的一个frame 的名字
+
+50:网页中几种居中的属性：
+
+首先，依旧是概念。介绍一下行内元素和块级元素，这个很重要，因为有的属性只能用于块元素，而有的正好相反，在一定的情况下，它们也可以相互转换，比如用display来进行设置。
+行内元素（又叫内联元素inline element）:
+①不占据一整行，随内容而定，有以下特点：
+②不可以设置宽高，也不可以设置行高，其宽度随着内容增加，高度随字体大小而改变。
+③内联元素可以设置外边界，但是外边界不对上下起作用，只能对左右起作用。
+④也可以设置内边界，但是内边界在ie6中不对上下起作用，只能对左右起作用。
+
+常用的内联元素有：
+a - 锚点，b - 粗体(不推荐)，br - 换行，em - 强调，font - 字体设定(不推荐)，i - 斜体，img - 图片，input - 输入框，label - 表格标签，select - 项目选择，small - 小字体文本，span - 常用内联容器，定义文本内区块，strike - 中划线，strong - 粗体强调
+块级元素block element：
+①总是在新行上开始，占据一整行；
+②高度，行高以及外边距和内边距都可控制；
+③宽带始终是与浏览器宽度一样，与内容无关；
+④它可以容纳内联元素和其他块元素。
+
+常用的块级元素有：
+div -最常用的块级元素，dl - 和dt dd搭配使用的块级元素，form - 交互表单，h1 - 大标题，hr - 水平分隔线，ol - 排序表单，p - 段落，ul - 非排序列表
+互相转换：使用display设置可以使得行内元素拥有块级元素的特性，反之也可以。
+如：
+<p style="display:inline; text-align:center">我是被设置了内联的块元素p，我现在的表现形式和内联元素一样啦</p>
+<span style="display:block; text-align:center">我是被设置了块级元素的span，我现在可以独占一行并且可以设置宽高</span>
+display: table-cell ，能把元素当作表格单元来显示，这个非常实用，显示效果也很好，只可惜某些浏览器不够兼容。要注意，和一个合法的<td>元素必须在<table>里一样，
+display: table-cell 元素必须作为 display: table 的元素的子元素出现。 
+
+  第一：text-align：块中文字水平居中：text-align 用于块级元素，作用在使用它的块元素中的文字或者图片上。使得它们在水平方向上居中。 父元素的这个属性对它下面的子元素也起作用，比如一个div设置了text-align居中，则它内部的文字可以居中，它的子div内部的文字也可以居中。但是子元素中文字的居中，是在子div中居中，而不是对于父div居中。也就是，它里面所有的文字，都会相对于最靠近自己的一层div来实现居中。（不仅仅是div，所有的表现为块元素的元素）。
+第二：块元素自身水平居中（确定设置了宽度的块）：可以设置margin:0 auto;这会使这个块级元素在它的父级元素中居中，上下左右都会居中。如果只要水平居中的话，就设置margin-left:auto;margin-right:auto;。
+第三：块元素自身水平居中（不确定宽度的块）：
+　　在其他的一些文章中，看到有不少方法来介绍不确定宽度的块的居中的。
+　　其实简单点说，不需要这么麻烦。我们可以这样来理解，没有明确设定宽度的block，根据块级元素的性质，它默认是独占一行的，所以这个时候block本身就是浏览器窗口的宽度，就不必要来设置水平居中了。
+　　若是此时对块中的内容进行居中的话：
+　　如果块元素的子元素也为块元素，就对子元素使用margin auto一类的方式就好啦；
+　　如果块级元素的子元素为行内元素，就用我们一开始介绍的text-align也就可以解决；
+　　对于子元素为块元素的，也可以用display设置为inline然后再用text-align。
+（这些在本文其他地方也都说过了）。
+第四：vertical-align用于行内元素中的垂直居中
+vertical-align，这个可以用的很复杂。看了一些文章和例子，自己也有点小混乱，只说一下最简单的用法：
+　　这个属性用于
+　　1、内联元素（以及被转化为内联元素的块元素）
+　　2 、display设置为table-cell的元素，
+　　在 firefox 和 ie8 下，可以设置块级元素的 display 值为 table-cell，来激活 vertical-align 属性，显示效果和就和表格中的 valign="center" 一样了。但 ie6,7 并不支持。
+　　3、<td><tr>这样的元素
+　　这样的写法：vertical-align:middle;就可以设置文字或者图片的垂直居中。只要具有行内元素的特性的元素使用这个属性，对它的子元素中的文字和图片也是起作用的。但是作用效果为使得文字或者图片相对于紧靠着它们的父元素来进行居中。这个和text-align上面说过的部分是类似的。
+第五：块级元素中的文字图片垂直居中（针对块的高度确定的，这个是从另一个博客上看到的，真的很实用哦，如果块内只有这些文字的话）
+文字在层（块级元素）中垂直居中vertical-align 属性是做不到的.我们这里有个比较巧妙的方法就是:设置height的高度与line-height的高度相同! 
+第六：块级元素中的文字图片垂直居中（块的高度不确定的）
+　　在块的高度不确定的情况下，其实它的高度就是取决于里面内容的高度。如果内部只有文字或者图片的话，那就自然垂直居中了，其实就不必特意要设置。
+如果非要设置什么的话，比如希望块大一些，文字在块中垂直居中好看一点，可以设置内边距，如padding-top:20px;padding-bottom:20px；
+　　 当然，如果上下内边距设置的不一样，就自然不居中了。
+第七：块级元素自身的垂直居中
+　　设置块级元素自身在父元素中的垂直居中，可以参照块级元素的水平居中的方法（上面说过），设置外边距即可。如果不想设置水平居中，只要设置上下外边距为auto就好。
+也可以采用vertical-align:middle;的方式，但是前提是把display设置为table-cell。这样的话要注意浏览器兼容性问题。
+
+51: 添加背景音乐：<bgsoung src=背景音乐地址 loop=播放次数>  eg:<bgsoung src="明月几时有.mp3" loop=5>
+52：插入多媒体文件<embed src="多媒体文件地址" width="文件宽度"height="文件高度" autostart=true|false  loop="true|false"></embed >
+           （autostart:是否自动播放。loop：播放次数true为无限循环。）
+53：设置滚动<maraquee bgcolor="#00ff00" width=200 height=50  hspace=20  vspace=10 direction="up" behavior="scroll" scrollamount=20 scrolldelay=20></marquee>
+            (vspace:垂直空白空间是距滚动范围的距离不是滚动范围的距离， hspace:水平空白空间是距滚动范围的距离不是滚动范围的距离。direction:滚动方向，behavior:设置滚动方式scroll循环往复滚动，slide滚动一次就停止，alternate来回交替滚动。scrollamount:设置滚动速度，scrolldelay:设置延迟时间单位是毫秒。width和height是设置滚动文字的范围.) 
+54:css滤镜特效：
+         filter:滤镜属性（参数1，参数2，........）(滤镜属性有：alpha：透明盒渐变效果，blur：快速移动的模糊效果，fliph/filipv：水平和垂直翻转的效果，gray:灰度效果，invert:反转效果类似底片，xray:X射线效果，wave:波浪效果，dropshadow:阴影效果，glow：边缘光晕效果，mask:遮罩效果，shadow：阴影渐变效果，chroma:颜色透明效果.)   
+
+55:onbeforeunload="return(&quot;温馨提示：您确定要关闭吗？\n\n古方生发液最新优惠信息您还不了解？ \n\n赶快咨询在线专家即可参与。 \n\n24小时免费订购热线：400-014-6678&quot;);" style="background-image: url('bgg.jpg');"( 在dody里面关闭提示语。)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
