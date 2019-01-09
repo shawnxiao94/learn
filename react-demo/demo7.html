@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/babel.min.js"></script>
+    <title>获取真实的DOM节点</title>
+  </head>
+  <body>
+    <div id="example"></div>
+     <!-- 
+      需要注意的是，由于 this.refs.[refName] 属性获取的是真实 DOM ，
+      所以必须等到虚拟 DOM 插入文档以后，才能使用这个属性，否则会报错。
+      上面代码中，通过为组件指定 Click 事件的回调函数，确保了只有等到真实 DOM 发生 Click 事件之后，
+      才会读取 this.refs.[refName] 属性。
+      React 组件支持很多事件，除了 Click 事件以外，还有 KeyDown 、Copy、Scroll 等
+      -->
+    <script type="text/babel">
+      class MyComponent extends React.Component {
+        constructor(props) {
+          super(props);
+          this.myTextInput = React.createRef();
+          this.handleClick = this.handleClick.bind(this)
+        }
+        handleClick() {
+          this.myTextInput.current.focus();
+        }
+        render() {
+          return (
+            <div>
+              <input type="text" ref={this.myTextInput} />
+              <input type="button" value="Focus the text input" onClick={this.handleClick} />
+            </div>
+          );
+        }
+      }
+      ReactDOM.render(
+        <MyComponent />,
+        document.getElementById('example')
+      );
+    </script>
+  </body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <script src="./build/react.development.js"></script>
+    <script src="./build/react-dom.development.js"></script>
+    <script src="./build/babel.min.js"></script>
+    <title>JSX 语法</title>
+  </head>
+  <body>
+    <div id="example"></div>
+    <!-- 
+      <script> 标签的 type 属性为 text/babel 。
+      这是因为 React 独有的 JSX 语法，跟 JavaScript 不兼容。
+      凡是使用 JSX 的地方，都要加上 type="text/babel" 
+      JSX 的基本语法规则：
+        遇到 HTML 标签（以 < 开头），就用 HTML 规则解析；遇到代码块（以 { 开头），就用 JavaScript 规则解析。
+     -->
+    <script type="text/babel">
+      var arr = [
+        <h1>Hello world!</h1>,
+        <h2>React is awesome</h2>,
+      ];
+      ReactDOM.render(
+        <div>{arr}</div>,
+        document.getElementById('example')
+      )
+    </script>
+  </body>
+</html>
