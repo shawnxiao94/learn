@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta http-equiv="X-UA-Compatible" content="IE=11"></meta>
+  <meta charset="UTF-8">
+  <title>Gantt</title>
+  <style>
+  </style>
+  <link rel="stylesheet" href="dist/w-wave.css" />
+  <script src="dist/w-wave.js"></script>
+</head>
+<style>
+  html,body {
+    width: 100%;
+    height: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  .g-container {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    margin: auto;
+    background: #f4f4f4;
+  }
+</style>
+<body>
+  <div class="g-container" id="wave">
+  </div>
+  <script>
+    let _data = [{
+      code: '01',
+      name: '车享家',
+      rangeValue: 20,
+      img: './dist/img/datong.png',
+      popupData:[{
+        name:'1'
+      },{
+        name:'2'
+      },{
+        name:'3'
+      },{
+        name:'4'
+      },{
+        name:'5'
+      }]
+    },{
+      code: '02',
+      name: '大通',
+      rangeValue: 56,
+      img: './dist/img/evcard-hui.png'
+    },{
+      code: '03',
+      name: 'EVCARD',
+      rangeValue: 87,
+      img: './dist/img/evcard.png'
+    },{
+      code: '02',
+      name: '大通',
+      rangeValue: 56,
+      img: './dist/img/evcard-hui.png'
+    },{
+      code: '03',
+      name: 'EVCARD',
+      rangeValue: 87,
+      img: './dist/img/evcard.png'
+    },{
+      code: '02',
+      name: '大通',
+      rangeValue: 56,
+      img: './dist/img/evcard-hui.png'
+    },{
+      code: '03',
+      name: 'EVCARD',
+      rangeValue: 87,
+      img: './dist/img/evcard.png'
+    }]
+    const wwave = new WWave("#wave", {
+      coreImg:'./dist/img/logo.png',
+      ball: {
+        boreBall: {
+        },
+        subBall: {
+          colors: [['#4AA5D8', '#439FD5'], ['#2A86C7', '#6CA8DB']]
+        },
+        lineWidth: 2,
+        lineColor: '#ddd'
+      },
+      popup: {
+        formatPopupData (item) {
+          let customHtml = {}
+          let $customHtml
+          $customHtml = `<div class="w-wave-custom-popup">
+            <h3>标题</h3>
+          <ul>`
+          for (let customData of item.popupData) {
+            $customHtml += `<li><a href="http://www.baidu.com">
+              ${customData.name}
+            </a></li>`
+          }
+          $customHtml += '</ul></div>'
+          customHtml = {
+            customHtml: $customHtml
+          }
+          return customHtml
+        }
+      }
+    }, _data);
+    window.onresize = function(){
+      wwave.refresh()
+    }
+  </script>
+</body>
+</html>
