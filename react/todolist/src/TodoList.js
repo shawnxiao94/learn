@@ -15,37 +15,59 @@ class TodoList extends Component {
   }
 
   handleClick () {
-    !!String(this.state.inputValue) && this.setState({
-      list: [...this.state.list, this.state.inputValue],
+    // !!String(this.state.inputValue) && this.setState({
+    //   list: [...this.state.list, this.state.inputValue],
+    //   inputValue: ''
+    // })
+    !!String(this.state.inputValue) && this.setState((prevState) => ({
+      list: [...prevState.list, prevState.inputValue],
       inputValue: ''
-    })
+    }))
   }
 
   handleChange (e) {
-    this.setState({
-      inputValue: e.target.value
-    })
+    // this.setState({
+    //   inputValue: e.target.value
+    // })
+    const value = e.target.value
+    // 异步设置值，提升性能
+    this.setState(() => ({
+      inputValue: value
+    }))
   }
 
   handleClickItem (index) {
-    const list = [...this.state.list]
-    list.splice(index,1)
-    this.setState({
-      list
+    // 老式写法
+    // const list = [...this.state.list]
+    // list.splice(index,1)
+    // this.setState({
+    //   list
+    // })
+    this.setState((prevState) => {
+      const list = [...prevState.list]
+      list.splice(index,1)
+      return {list}
     })
   }  
+
+  getTodoItem () {
+    return this.state.list.map((item,index) => {
+      return <TodoListItem handleDelete={this.handleClickItem} key={index} index={index} content={item}/>
+    })
+  }
 
   render() {
     return (
       <div className="App">
-        <input value={this.state.inputValue} onChange={this.handleChange}/>
+        {/** 
+          label for属性可以用来扩大input输入框光标聚焦的范围 
+          但react里用htmlFor
+        */}
+        <label htmlFor="insertArea">输入内容：</label>
+        <input id="insertArea" value={this.state.inputValue} onChange={this.handleChange}/>
         <button onClick={this.handleClick}>add</button>
         <ul>
-          {
-            this.state.list.map((item,index) => {
-              return <TodoListItem handleDelete={this.handleClickItem} key={index} index={index} content={item}/>
-            })
-          }
+          { this.getTodoItem() }
         </ul>
       </div>
     );

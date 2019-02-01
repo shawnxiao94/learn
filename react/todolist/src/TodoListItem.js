@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, Fragment } from 'react';
 
 class TodoListItem extends Component {
 // 子组件要和父组件通信，
@@ -10,16 +10,23 @@ class TodoListItem extends Component {
   }
 
   handleDelete() {
-    this.props.handleDelete(this.props.index)
+    const { handleDelete, index } = this.props
+    handleDelete(index)
   }
 
   render(){
     return (
-      <div>
+      <Fragment>
+        {/* 要这样写注释 
+          通过dangerouslySetInnerHTML不使HTML内容转义
+        */}
         {
-          <li onClick={this.handleDelete}>{this.props.content}</li>
+          <li
+           onClick={this.handleDelete}
+           dangerouslySetInnerHTML={{__html: this.props.content}}>
+          </li>
         }
-      </div>
+      </Fragment>
     )
   }
 }
