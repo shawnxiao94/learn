@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import TodoListItem from './TodoListItem.js'
+import axios from 'axios'
+
 
 class TodoList extends Component {
 
@@ -53,6 +55,18 @@ class TodoList extends Component {
   getTodoItem () {
     return this.state.list.map((item,index) => {
       return <TodoListItem handleDelete={this.handleClickItem} key={index} index={index} content={item}/>
+    })
+  }
+
+
+  componentDidMount() {
+    axios.get('/api/todolist').then((res) => {
+      alert('suc')
+      this.setState(() => ({
+        list: [...res.data]
+      }))
+    }).catch((err) => {
+      alert('err')
     })
   }
 

@@ -1,4 +1,5 @@
 import React, { Component, Fragment } from 'react';
+import PropTypes from 'prop-types'
 
 class TodoListItem extends Component {
 // 子组件要和父组件通信，
@@ -14,7 +15,17 @@ class TodoListItem extends Component {
     handleDelete(index)
   }
 
+  // 性能优化
+  shouldComponentUpdate (nextProps, nextState) {
+    if(nextProps.content !== this.props.content) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+
   render(){
+    let { content } = this.props
     return (
       <Fragment>
         {/* 要这样写注释 
@@ -23,12 +34,23 @@ class TodoListItem extends Component {
         {
           <li
            onClick={this.handleDelete}
-           dangerouslySetInnerHTML={{__html: this.props.content}}>
+           dangerouslySetInnerHTML={{__html: content}}>
           </li>
         }
       </Fragment>
     )
   }
+}
+
+TodoListItem.propTypes = {
+  content: PropTypes.string,
+  handleDelete: PropTypes.func,
+  index: PropTypes.number,
+  test: PropTypes.string.isRequired
+}
+
+TodoListItem.defaultProps = {
+  test: 'hello world'
 }
 
 export default TodoListItem
