@@ -3,7 +3,7 @@ import React from 'react';
 // react-redux 的connnet链接API
 import { connect } from 'react-redux'
 
-import { getInputchangeAction, getAddItemAction } from './store/actionCreators'
+import { getInputchangeAction, getAddItemAction, getDeleteItemAction } from './store/actionCreators'
 
 // 无状态组件无生命周期同时也不会生成真正的组件实例，性能最优
 const TodoList = (props) => {
@@ -18,7 +18,7 @@ const TodoList = (props) => {
        <ul>
           {
             list.map((item, index) => {
-              return <li key={index} onClick={handleDelete(index)}>{item}</li>
+              return <li key={index} onClick={handleDelete.bind(null,index)}>{item}</li>
             })
           }
        </ul>
@@ -46,12 +46,8 @@ const mapDispatchToProps = (dispatch) => {
       dispatch(action)
     },
     handleDelete (index) {
-      debugger
-      // const action = {
-      //   type: 'delete_item',
-      //   index: index
-      // }
-      // dispatch(action)
+      const action = getDeleteItemAction(index)
+      dispatch(action)
     }
   }
 }

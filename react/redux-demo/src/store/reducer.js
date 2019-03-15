@@ -1,4 +1,4 @@
-import { CHANGE_INPUT_VALUE, ADD_ITEM } from './actionTypes'
+import { CHANGE_INPUT_VALUE, ADD_ITEM, DELETE_ITEM } from './actionTypes'
 
 const defaultState = {
   list: [],
@@ -13,15 +13,16 @@ export default (state = defaultState, action) => {
   }
   if(action.type === ADD_ITEM) {
     const newState = JSON.parse(JSON.stringify(state))
-    newState.list.push(newState.inputValue)
-    newState.inputValue = ''
+    if(newState.inputValue !== ''){
+      newState.list.push(newState.inputValue)
+      newState.inputValue = ''
+      return newState
+    }
+  }
+  if(action.type === DELETE_ITEM) {
+    const newState = JSON.parse(JSON.stringify(state))
+    newState.list.splice(action.index,1)
     return newState
   }
-  // if(action.type === 'delete_item') {
-  //   const newState = JSON.parse(JSON.stringify(state))
-  //   debugger
-  //   newState.list.splice(newState.index,1)
-  //   return newState
-  // }
   return state
 }
