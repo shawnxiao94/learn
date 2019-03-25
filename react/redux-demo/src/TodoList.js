@@ -39,6 +39,14 @@ const TodoList = (props) => {
   )
 }
 
+
+//   componentDidMount() {
+//     const action = getTodoList()
+//     console.log(action)
+//     debugger
+//     dispath(action)
+//   }
+
 // 链接规则 映射数据 把todolist组建和store做链接
 const mapStateToProps = (state) => {
   return {
