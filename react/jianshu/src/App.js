@@ -1,8 +1,9 @@
 import React, { Component } from 'react';
-import Header from './common/header'
-import { GlobalStyle } from './style.js'
-import { IconFont } from './statics/iconfont/iconfont.js'
-
+import Header from './common/header';
+import { GlobalStyle } from './style.js';
+import { IconFont } from './statics/iconfont/iconfont.js';
+import { Provider } from 'react-redux';
+import store from './store';
 
 class App extends Component {
   render() {
@@ -10,7 +11,9 @@ class App extends Component {
       <div className="App">
         <GlobalStyle/>
         <IconFont/>
-        <Header></Header>
+        <Provider store={store}>
+          <Header/>
+        </Provider>
       </div>
     );
   }
