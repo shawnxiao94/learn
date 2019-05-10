@@ -1,0 +1,31 @@
+/*解决Element UI table暂无数据高度问题*/
+.el-table
+  .el-table__empty-block
+    height 150px
+    min-height 150px
+    line-height 150px!important
+/*End 解决Element UI table暂无数据高度问题*/
+/*table列表wrapper样式*/
+.card-table
+  padding 5px 20px 20px
+  border-radius $radius-size-medium
+  background-color $color-white
+  .pagination-container
+    text-align center
+/*End table列表卡片样式*/
+/*弹窗中DataList列表样式*/
+.ui-dialog
+  .el-dialog
+    .data-list
+      margin -30px -20px
+      &>.filter-box
+        margin-bottom 0
+        border-bottom 1px $color-line solid
+/*End 弹窗中DataList列表样式*/
+
+/*Element UI table组件样式去除hover背景滑过效果（IE体验不好）*/
+.el-table__body tr.hover-row.el-table__row--striped>td
+  background #FAFAFA
+.el-table__body tr.hover-row>td
+  background none
+/*End Element UI table组件样式去除hover背景滑过效果（IE体验不好）*/

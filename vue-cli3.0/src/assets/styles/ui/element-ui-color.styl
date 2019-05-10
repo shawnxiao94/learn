@@ -1,0 +1,96 @@
+// Element UI 色系变更
+/*Element UI 按钮风格色系变更*/
+// 默认风格
+// .el-button:focus,.el-button:hover
+//   color $color-02
+//   border-color none!important
+//   background-color $color-white
+// .el-button:active
+//   color $color-a
+//   border-color none!important
+// is-plain风格
+.el-button.is-plain:focus,.el-button.is-plain:hover
+  border-color $color-a
+  color $color-a
+.el-button.is-active,.el-button.is-plain:active
+  color $color-a
+  border-color $color-a
+// primary风格
+.el-button--primary
+  color $color-white
+  background-color $color-a 
+  border-color $color-a 
+.el-button--primary:hover
+  color $color-white
+  background-color $color-a 
+  border-color $color-a 
+  opacity .9
+.el-button--primary.is-active,.el-button--primary:active,.el-button--primary:focus
+  color $color-white
+  background-color $color-a 
+  border-color $color-a 
+// text风格
+.el-button--text,.el-button--text:focus,.el-button--text:hover,.el-button--text:active
+  color $color-a 
+/*End Element UI 按钮风格*/
+
+/*表单色系变更*/
+// 输入框
+.el-input.is-active .el-input__inner, .el-input__inner:focus
+  border-color $color-a!important
+// 多选框
+.el-cascader-menu__item.is-active
+  color $color-a
+// 日历
+.el-date-table td.today span,.el-date-table td.available:hover
+  color $color-a
+.el-date-table td.end-date span, .el-date-table td.start-date span
+  background $color-a
+/*End 表单色系变更*/
+
+/*分页色系变更*/
+.el-pagination
+  &.is-background 
+    .el-pager
+      li:not(.disabled).active
+        background $color-a
+/*End 分页色系变更*/
+
+/*弹窗关闭按钮色系*/
+.el-dialog__headerbtn:focus .el-dialog__close, .el-dialog__headerbtn:hover .el-dialog__close
+  color $color-a
+/*End 弹窗关闭按钮色系*/
+
+/*表格色系*/
+// 表格间隔背景色
+.el-table--striped .el-table__body tr.el-table__row--striped td
+  background $color-07
+/*End 表格色系*/
+
+/*标签色系*/
+.el-tag
+  &.theme-a
+    color $color-white
+    background $color-a
+    border-color $color-a
+  &.theme-b
+    color $color-white
+    background $color-b
+    border-color $color-b
+  &.theme-c
+    color $color-white
+    background $color-c
+    border-color $color-c
+  &.theme-d
+    color $color-white
+    background $color-d
+    border-color $color-d
+  &.theme-e
+    color $color-white
+    background $color-e
+    border-color $color-e
+  &.theme-f
+    color $color-white
+    background $color-f
+    border-color $color-f
+/*End 标签色系*/

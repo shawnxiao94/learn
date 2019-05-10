@@ -1,0 +1,94 @@
+/*卡片布局*/
+.box-card
+  margin-bottom 20px
+  // 图文布局
+  .box-card-imgtext
+    margin-bottom 20px
+    &.ts-bottom-none
+      margin-bottom 0
+    display-flex()
+    align-items stretch
+    .box-card-imgtext-imgbox
+      width 60px
+      height 60px
+      margin-right 20px
+      img
+        width 100%
+        height 100%
+        border-radius 100%
+    .box-card-imgtext-textbox
+      flex 1
+      display-flex()
+      flex-direction column
+      align-items flex-start
+      justify-content space-between
+      h3
+        font-weight bold
+        font-size $fontsize-large
+      .box-card-ts-labels
+        width 100%
+        .el-tag
+          width 30%
+          text-ellipsis()
+          padding 0 5px
+          &~.el-tag
+            margin-left 3%
+    &.theme-b
+      padding 10px
+      .box-card-imgtext-numbox
+        .ts-label
+          color $color-02
+          margin-bottom 10px
+        .ts-num
+          font-size $fontsize-large-xxxx
+          font-weight 700
+  // 信息布局
+  .box-card-info
+    margin-bottom 20px
+    ul
+      li
+        display-flex()
+        align-items flex-start
+        &~li
+          margin-top 20px
+        .box-card-info-li-label
+          width 20%
+          margin-right 15px
+          text-align right
+          display block
+          text-ellipsis()
+        .box-card-info-li-text
+          flex 1
+          color $color-03
+          text-ellipsis()
+  // 按钮
+  .box-card-btns
+    border-top 1px #ddd solid
+    margin-left -20px
+    margin-right -20px
+    margin-bottom -20px
+    display-flex()
+    justify-content space-around
+    padding 10px
+    .el-button
+      &~.el-button
+        margin-left 0
+/*重置Element UI card组件样式,去边框*/
+.el-card
+  border none
+/*End 重置Element UI card组件样式,去边框*/
+/*Element UI卡片面板头部样式*/
+.el-card
+  .el-card__header
+    padding 10px 20px
+    border-bottom 2px $color-05 solid
+    .card-title
+      font-size $fontsize-large
+      font-weight bold
+      display-flex()
+    // 修饰图标
+    .card-title-modification
+      font-size $fontsize-large-xxxx
+      color $color-b
+      margin-left 20px
+/*End Element UI卡片面板头部样式*/

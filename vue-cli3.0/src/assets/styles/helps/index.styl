@@ -1,0 +1,37 @@
+@require "./margin.styl"
+@require "./colors.styl"
+
+// 清除浮动
+.clearfix
+  &:after
+    visibility hidden
+    display block
+    font-size 0
+    content " "
+    clear both
+    height 0
+
+// 字体溢出省略号
+.ellipsis
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis
+
+// 鼠标滑过可点击图标  
+.cursor-pointer
+  cursor pointer
+
+.inline-block
+  display inline-block
+  
+.block
+  display block
+  
+.flex
+  display flex
+  
+.flex-align-center
+  align-items center
+  
+.flex-justify-center
+  justify-content center

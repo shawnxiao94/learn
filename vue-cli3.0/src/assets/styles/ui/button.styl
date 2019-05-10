@@ -1,0 +1,45 @@
+/*Element UI 解决button添加svg图表垂直居中的问题*/
+.el-button
+  span
+    display flex
+    align-items center
+    justify-content center
+  &:not(.icon-button)
+    .svg-icon
+      margin-right 10px
+  // 图标按钮
+  &.icon-button
+    display inline-block
+    width 24px
+    height 24px
+    border-radius 50%
+    padding 0
+    font-size $fontsize-medium
+    color $color-a
+    &.is-disabled
+      color $color-06!important
+    &:not(.is-disabled):hover
+      background $color-a
+      border-color $color-a
+      color $color-white
+    &.icon-button-red
+      color $color-e
+      &:not(.is-disabled):hover
+        background $color-e
+        border-color $color-e
+        color $color-white
+/*End Element UI 解决button添加svg图表垂直居中的问题*/
+/* 按钮组 */
+.btns-group
+  display-flex()
+  justify-content center
+.button-inline
+  >span
+    display inline-block
+  &~.button-inline
+    margin-left 10px
+/* End 按钮组 */
+/* 按钮间距调整 */
+.el-button--mini, .el-button--mini.is-round
+  padding 7px 10px
+/* End 按钮间距调整 */

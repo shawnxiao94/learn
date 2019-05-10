@@ -1,0 +1,71 @@
+/*
+* @see 手机端适配，表单
+*/
+@media (max-width 768px)
+  .el-form
+    .el-input--medium 
+      // 手机端表单样式光标顶边问题修复
+      .el-input__inner
+        padding 6px 15px
+        line-height 22px
+    .el-input--mini 
+      // 手机端表单样式光标顶边问题修复
+      .el-input__inner
+        padding-top 2px
+        padding-bottom 2px
+        line-height 22px
+  /*date-picker兼容移动端适配*/
+  .el-date-range-picker.el-picker-panel
+    width auto
+    left 0!important
+    right 0!important
+    .el-picker-panel__body
+      min-width auto
+      .el-date-range-picker__content
+        padding 0
+        .el-date-table
+          td
+            &,& div
+              height 28px
+            span
+              width 22px
+              height 22px
+              line-height 22px
+      .el-date-range-picker__header
+        div
+          font-size $fontsize-small
+          margin 0
+    .el-picker-panel__sidebar
+      padding 6px 0
+      width 100%
+      position relative
+      border-right 0
+      border-bottom 1px $color-line solid
+      clear-fix()
+      &+.el-picker-panel__body
+        margin-left 0
+      .el-picker-panel__shortcut
+        padding-left 5px
+        width auto
+        display inline-block
+        font-size $fontsize-small
+        line-height 1.6
+        float left
+        margin-right 10px
+    .el-date-range-picker__time-header
+      padding 5px
+      .el-date-range-picker__time-picker-wrap
+        padding 1px
+      .el-input__inner
+        font-size $fontsize-small
+        height 26px
+        line-height 24px
+        padding 0 5px
+      .el-icon-arrow-right
+        font-size $fontsize-small
+  /*End date-picker兼容移动端适配*/
+  /*解决radio在移动端聚焦外发光问题*/
+  .el-radio-button
+    &:focus
+      box-shadow none!important
+  /*End 解决radio在移动端聚焦外发光问题*/
