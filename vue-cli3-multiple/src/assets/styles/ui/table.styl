@@ -1,0 +1,16 @@
+/*解决Element UI table暂无数据高度问题*/
+.el-table
+  .el-table__empty-block
+    height 60px
+    min-height 60px
+    line-height 60px!important
+  th>.cell
+    color $color-01
+/*End 解决Element UI table暂无数据高度问题*/
+
+/*Element UI table组件样式去除hover背景滑过效果（IE体验不好）*/
+.el-table__body tr.hover-row.el-table__row--striped>td,.el-table__body tr.el-table__row--striped:hover>td
+  background #FAFAFA!important
+.el-table__body tr.hover-row>td,.el-table__body tr:hover>td
+  background none!important
+/*End Element UI table组件样式去除hover背景滑过效果（IE体验不好）*/

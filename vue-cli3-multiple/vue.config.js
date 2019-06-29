@@ -56,13 +56,15 @@ module.exports = {
   // 防止将某些 import 的包(package)打包到 bundle 中，
   // 而是在运行时(runtime)再去从外部获取这些扩展依赖
   configureWebpack: config => {
-    // config.externals = {
-    //   vue: 'Vue',
-    //   'element-ui': 'ELEMENT',
-    //   'vue-router': 'VueRouter',
-    //   vuex: 'Vuex',
-    //   axios: 'axios'
-    // }
+    config.externals = {
+      // cdn 版本的element-ui、vue、vue-router设置的全局变量分别是ELEMENT、Vue、VueRouter
+      vue: 'Vue',
+      'vue-router': 'VueRouter',
+      vuex: 'Vuex',
+      axios: 'axios',
+      'element-ui': 'ELEMENT',
+      i18n: 'i18n'
+    }
     if (IS_PROD) {
       const plugins = []
       // 去除多余无效的 css
