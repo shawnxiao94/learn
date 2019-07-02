@@ -9,8 +9,27 @@ Vue.use(Router)
 
 // 配置路由
 export const constantRouterMap = [
+  { path: '/login', component: _import('Login/index') },
   { path: '/404', component: _import('Error/404') }
 ]
+
+// 创建router
+export default new Router({
+  scrollBehavior(to, from, savedPosition) {
+    if (savedPosition) {
+      return savedPosition
+    } else {
+      if (!from.meta.noCache) {
+        from.meta.savedPosition =
+          document.body.scrollTop ||
+          document.documentElement.scrollTop ||
+          window.pageYoffset
+      }
+      return { x: 0, y: to.meta.savedPosition || 0 }
+    }
+  },
+  routes: constantRouterMap
+})
 
 // 全局路由定义
 export const asyncRouterMap = [
@@ -34,7 +53,7 @@ export const asyncRouterMap = [
         name: 'HomeIndex',
         component: _import('Home/index'),
         meta: {
-          title: '前台首页',
+          title: '首页',
           icon: '',
           sort: '',
           noCache: true,
@@ -45,23 +64,6 @@ export const asyncRouterMap = [
         }
       }
     ]
-  }
-]
-
-// 创建router
-export default new Router({
-  scrollBehavior(to, from, savedPosition) {
-    if (savedPosition) {
-      return savedPosition
-    } else {
-      if (!from.meta.noCache) {
-        from.meta.savedPosition =
-          document.body.scrollTop ||
-          document.documentElement.scrollTop ||
-          window.pageYoffset
-      }
-      return { x: 0, y: to.meta.savedPosition || 0 }
-    }
   },
-  routes: constantRouterMap.concat(asyncRouterMap)
-})
+  { path: '*', redirect: '/404' }
+]

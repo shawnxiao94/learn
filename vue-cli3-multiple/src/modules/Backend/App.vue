@@ -1,5 +1,5 @@
 <template>
-  <div id="app-home-backend" v-wechat-title="$route.meta.title">
+  <div id="app-home-backend">
     <router-view></router-view>
   </div>
 </template>

@@ -60,6 +60,7 @@
 
 <script>
 export default {
+  name: 'TreeTable',
   props: {
     data: {
       type: [Array, Object],

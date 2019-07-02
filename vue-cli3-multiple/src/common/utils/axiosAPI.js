@@ -1,22 +1,18 @@
 import axios from 'axios'
-import { getToken, loginOutCas } from '@/common/utils/auth'
+import { getStorage, loginOutCas } from '@/common/utils/auth'
 import ErrorMessage from '@/common/utils/errorMessage'
 import { MessageBox } from 'element-ui'
-import store from '@/data/store'
-import moment from 'moment'
-const w = window
 
-let base = 'api'
 const service = axios.create({
-  baseURL: base,
-  timeout: 60000
+  baseURL: process.env.VUE_APP_BASE_API,
+  timeout: 5000
 })
 service.interceptors.request.use(
   config => {
     // token
-    if (getToken()) {
+    if (getStorage()) {
       // && !/10.100.61.148/.test(config.url)
-      config.headers['Authorization'] = 'Bearer ' + getToken()
+      config.headers['Authorization'] = 'Bearer ' + getStorage()
     }
     config.headers['version'] = '1'
     return config
@@ -29,35 +25,27 @@ service.interceptors.request.use(
 service.interceptors.response.use(
   response => {
     if (response.data.ErrorCode !== 0) {
-      store.dispatch('AddErrorLog', {
-        title: 'response.data.ErrorCode 不等于 0',
-        message: response.data.ErrorMessage,
-        log: {
-          api: response.config.url,
-          params: response.config.data,
-          data: JSON.stringify(response.data) || '{}'
-        },
-        time: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
-        url: w.location.hash
+      MessageBox({
+        message: 'response.data.ErrorCode 不等于 0',
+        showCancelButton: false,
+        confirmButtonText: '确定',
+        callback() {
+          loginOutCas()
+        }
       })
-
       return Promise.reject(response)
     } else if (
       response.data.Result.errCode &&
       response.data.Result.errCode !== 0
     ) {
-      store.dispatch('AddErrorLog', {
-        title: 'response.data.Result.errCode !== 0',
-        message: response.data.Result.errMsg,
-        log: {
-          api: response.config.url,
-          params: response.config.data,
-          data: JSON.stringify(response.data) || '{}'
-        },
-        time: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
-        url: w.location.hash
+      MessageBox({
+        message: `response.data.ErrorCode 不等于 0${response.data.Result.errMsg}`,
+        showCancelButton: false,
+        confirmButtonText: '确定',
+        callback() {
+          loginOutCas()
+        }
       })
-
       return Promise.reject(response)
     } else {
       return Promise.resolve(response)
@@ -66,16 +54,13 @@ service.interceptors.response.use(
   error => {
     if (!error.response) {
       // 服务器请求失败时错误提示
-      store.dispatch('AddErrorLog', {
-        title: '请求超时',
-        message: ErrorMessage.API_ERROR_LOAD,
-        log: {
-          api: error.config.url,
-          params: error.config.data,
-          data: JSON.stringify(error.data) || '{}'
-        },
-        time: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
-        url: w.location.hash
+      MessageBox({
+        message: `请求超时${ErrorMessage.API_ERROR_LOAD}`,
+        showCancelButton: false,
+        confirmButtonText: '确定',
+        callback() {
+          loginOutCas()
+        }
       })
     } else {
       switch (error.response.status) {
@@ -121,16 +106,13 @@ service.interceptors.response.use(
           break
         default:
       }
-      store.dispatch('AddErrorLog', {
-        title: '请求失败',
-        message: error.message,
-        log: {
-          api: error.config.url,
-          params: error.config.data,
-          data: JSON.stringify(error.data) || '{}'
-        },
-        time: moment(new Date()).format('YYYY-MM-DD HH:mm:ss'),
-        url: w.location.hash
+      MessageBox({
+        message: `请求失败-${error.message}`,
+        showCancelButton: false,
+        confirmButtonText: '确定',
+        callback() {
+          loginOutCas()
+        }
       })
     }
     return Promise.reject(error)

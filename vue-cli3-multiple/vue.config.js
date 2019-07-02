@@ -57,13 +57,13 @@ module.exports = {
   // 而是在运行时(runtime)再去从外部获取这些扩展依赖
   configureWebpack: config => {
     config.externals = {
-      // cdn 版本的element-ui、vue、vue-router设置的全局变量分别是ELEMENT、Vue、VueRouter
+      // cdn 版本的element-ui、vue、vue-router设置的全局变量分别是ELEMENT、Vue、VueRouter、axios、VueI18n
       vue: 'Vue',
       'vue-router': 'VueRouter',
       vuex: 'Vuex',
       axios: 'axios',
       'element-ui': 'ELEMENT',
-      i18n: 'i18n'
+      i18n: 'VueI18n'
     }
     if (IS_PROD) {
       const plugins = []
@@ -118,6 +118,31 @@ module.exports = {
         }
       ])
     }
+    config.module
+      .rule('svg')
+      .exclude.add(resolve('src/assets/icons'))
+      .end()
+    // 链式配置
+    config.module.rules.delete('svg') //重点:删除默认配置中处理svg,
+    config.module
+      .rule('svg-sprite-loader')
+      .test(/\.svg$/)
+      .include.add(resolve('src/assets/icons')) //处理svg目录
+      .end()
+      .use('svg-sprite-loader')
+      .loader('svg-sprite-loader')
+      .options({
+        symbolId: 'icon-[name]'
+      })
+
+    const fileRule = config.module.rule('file')
+    fileRule.uses.clear()
+    fileRule
+      .test(/\.svg$/)
+      .exclude.add(resolve('src/assets/icons'))
+      .end()
+      .use('file-loader')
+      .loader('file-loader')
   },
   // 配置 proxy 跨域
   devServer: {
