@@ -21,10 +21,12 @@ export const initListAction = (data) => ({
 })
 
 // 引入redux-thunk|| redux-saga中间件后 action 返回的值可以是函数了，不仅仅只是对象
+// 此时是可以接收到dispatch方法进行直接调用的
 export const getTodoList = () => {
   return (dispatch) => {
     axios.get('/list.json').then((res) => {
       const data = res.data
+      debugger;
       const action = initListAction(data)
       dispatch(action)
     })
