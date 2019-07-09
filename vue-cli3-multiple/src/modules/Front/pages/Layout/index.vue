@@ -1,13 +1,11 @@
 <template>
-  <div>
-    <div class="main">
-      <!-- Header组件 -->
-      <Header></Header>
-      <!-- app-main组件 -->
-      <app-main></app-main>
-      <!-- Footer组件 -->
-      <Footer></Footer>
-    </div>
+  <div class="main full-screen">
+    <!-- Header组件 -->
+    <Header></Header>
+    <!-- app-main组件 -->
+    <app-main></app-main>
+    <!-- Footer组件 -->
+    <Footer></Footer>
   </div>
 </template>
 
@@ -31,4 +29,8 @@ export default {
 }
 </script>
 
-<style lang="stylus" scoped></style>
+<style lang="stylus" scoped>
+.main
+  box-sizing border-box
+  padding 60px 0 30px 0
+</style>

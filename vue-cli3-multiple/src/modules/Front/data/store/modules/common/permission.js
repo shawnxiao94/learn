@@ -1,17 +1,16 @@
-import { asyncRouterMap, constantRouterMap } from '../../../../router'
+import { asyncRouterMap, constantRouterMap } from 'routerF'
 // 如果有权限功能，则对路由过滤
-import * as api from '../../../api/PermissionList'
-import store from '../../../store'
-import {
-  filterRouters,
-  filterPermission
-} from '../../../../common/permission/check'
+import * as api from 'dataF/api/PermissionList'
+import store from 'dataF/store'
+
+import { filterRouters, filterPermission } from 'commonF/permission/check'
 
 const permission = {
   state: {
     routers: constantRouterMap,
     addRouters: [],
-    sideBarNavs: [],
+    // 导航菜单
+    menuNavs: [],
     // 按钮权限
     btnPermissions: [],
     // 数据权限
@@ -25,9 +24,9 @@ const permission = {
       state.addRouters = routers
       state.routers = constantRouterMap.concat(routers)
     },
-    // 侧边栏菜单
-    SET_SIDEBARNAVS(state, sideBarNavs) {
-      state.sideBarNavs = sideBarNavs
+    // 菜单
+    SET_MENUNAVS(state, menuNavs) {
+      state.menuNavs = menuNavs
     },
     // 按钮权限
     SET_BTNPERMISSIONS(state, btnPermissions) {
@@ -85,7 +84,8 @@ const permission = {
             )
             // let _asyncRouterMap = asyncRouterMap
             commit('SET_ROUTERS', _asyncRouterMap)
-            commit('SET_SIDEBARNAVS', _asyncRouterMap)
+            // 菜单导航模式，1 => 顶部菜单 || 2 => 侧边菜单|| 3 => TAB菜单
+            commit('SET_MENUNAVS', _asyncRouterMap)
             commit('SET_BTNPERMISSIONS', btnNameArr)
             if (DataPermissionArr.length > 1) {
               store.dispatch('SetSourceChannel', { name: '集团', code: '00' })

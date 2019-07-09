@@ -93,6 +93,17 @@ export function filterPermission(arr) {
   _filterFnArr(arr)
   return obj
 }
+// 过滤出TAB菜单 sidebar侧边栏菜单
+export function getNowRouter(asyncRouterMap, to) {
+  // 如果有孩子就遍历孩子
+  return asyncRouterMap.some(route => {
+    if (to.path.indexOf(route.path) !== -1) {
+      return true
+    } else if (route.children && route.children.length) {
+      return getNowRouter(route.children, to)
+    }
+  })
+}
 
 /**
  * 监听鼠标、键盘是否有操作 默认5分钟未有操作跳转登录页

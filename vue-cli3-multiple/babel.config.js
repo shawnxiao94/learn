@@ -5,6 +5,7 @@ if (['production', 'prod'].includes(process.env.NODE_ENV)) {
 }
 
 module.exports = {
+  //  IE 兼容配置
   presets: [['@vue/app', { useBuiltIns: 'entry' }]],
   plugins: plugins
 }

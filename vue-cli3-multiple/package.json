@@ -13,6 +13,7 @@
     "test:unit": "vue-cli-service test:unit"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.4.4",
     "core-js": "^2.6.5",
     "js-cookie": "^2.2.0",
     "mockjs": "^1.0.1-beta3",

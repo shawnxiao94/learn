@@ -1,18 +1,24 @@
-import Cookies from 'js-cookie'
+import { setCookie, getCookie } from 'common/utils/cookie'
 import * as constants from './constants'
 const app = {
   state: {
     sidebar: {
       // 侧边栏展开收起
-      opened: Cookies.get(constants.SIDEBARSTATUS)
-        ? !!+Cookies.get(constants.SIDEBARSTATUS)
-        : true,
+      opened: !+getCookie(constants.SIDEBARSTATUS),
       withoutAnimation: false
     },
     // 当前语言
-    language: Cookies.get(constants.LANGUAGE) || 'zh',
-    device: 'desktop',
-    size: Cookies.get(constants.SIZE) || 'medium'
+    language: getCookie(constants.LANGUAGE) || 'en',
+    device: getCookie(constants.DEVICE) || 'pc',
+    size: getCookie(constants.SIZE) || 'medium',
+    // 是否显示全屏按钮
+    fullScreen: !+getCookie(constants.FULLSCREEN),
+    // 设置左上边是否显示折叠菜单功能按钮
+    showHamburger: !+getCookie(constants.SHOWHAMBURGER),
+    // 设置菜单导航模式，1 => 顶部菜单 || 2 => 侧边菜单|| 3 => TAB菜单
+    menuMode: getCookie(constants.MENUMODE)
+      ? ~~getCookie(constants.MENUMODE)
+      : 3
   },
   mutations: {
     // toggle 侧边栏展开收起状态
@@ -20,32 +26,56 @@ const app = {
       state.sidebar.opened = !state.sidebar.opened
       state.sidebar.withoutAnimation = false
       if (state.sidebar.opened) {
-        Cookies.set(constants.SIDEBARSTATUS, 1)
+        setCookie(constants.SIDEBARSTATUS, 0)
       } else {
-        Cookies.set(constants.SIDEBARSTATUS, 0)
+        setCookie(constants.SIDEBARSTATUS, 1)
       }
     },
     // 设置侧边栏展开收起状态
     SET_SIDEBAR: (state, status) => {
-      Cookies.set(constants.SIDEBARSTATUS, status ? 1 : 0)
+      setCookie(constants.SIDEBARSTATUS, status ? 1 : 0)
       state.sidebar.opened = status
     },
     // 设置语言
     SET_LANGUAGE: (state, language) => {
       state.language = language
-      Cookies.set(constants.LANGUAGE, language)
+      setCookie(constants.LANGUAGE, language)
     },
     CLOSE_SIDEBAR: (state, withoutAnimation) => {
-      Cookies.set(constants.SIDEBARSTATUS, 0)
+      setCookie(constants.SIDEBARSTATUS, 0)
       state.sidebar.opened = false
       state.sidebar.withoutAnimation = withoutAnimation
     },
     TOGGLE_DEVICE: (state, device) => {
       state.device = device
+      setCookie(constants.SIZE, device)
     },
     SET_SIZE: (state, size) => {
       state.size = size
-      Cookies.set(constants.SIZE, size)
+      setCookie(constants.SIZE, size)
+    },
+    // 设置是否显示全屏按钮
+    SET_FULLSCREEN: state => {
+      state.fullScreen = !state.fullScreen
+      if (state.fullScreen) {
+        setCookie(constants.FULLSCREEN, 0)
+      } else {
+        setCookie(constants.FULLSCREEN, 1)
+      }
+    },
+    // 设置左上边是否显示折叠菜单功能按钮
+    SET_HAMBURGER: state => {
+      state.showHamburger = !state.showHamburger
+      if (state.showHamburger) {
+        setCookie(constants.SHOWHAMBURGER, 0)
+      } else {
+        setCookie(constants.SHOWHAMBURGER, 1)
+      }
+    },
+    // 设置菜单导航模式
+    SET_MENUMODE: (state, menuMode) => {
+      state.menuMode = menuMode
+      setCookie(constants.MENUMODE, menuMode)
     }
   },
   actions: {
@@ -72,6 +102,18 @@ const app = {
     // 设置UI尺寸
     setSize({ commit }, size) {
       commit('SET_SIZE', size)
+    },
+    // toggle 全屏按钮
+    ToggleFullscreen({ commit }) {
+      commit('SET_FULLSCREEN')
+    },
+    // toggle 设置左上边是否显示折叠菜单功能按钮
+    ToggleHamburger({ commit }) {
+      commit('SET_HAMBURGER')
+    },
+    // 设置菜单导航模式
+    setMenuMode({ commit }, menuMode) {
+      commit('SET_MENUMODE', menuMode)
     }
   }
 }

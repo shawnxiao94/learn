@@ -52,21 +52,10 @@ export function removeStorage(key) {
 
 // 获取链接参数
 export function getQueryString(name) {
-  let href = window.location.href
-  if (href.includes('?') && href.includes(name)) {
-    let arr = href
-      .split('?')
-      .filter(x => x.includes(name))
-      .join()
-      .split('&')
-    return arr
-      .find(_ => {
-        return _.includes(name)
-      })
-      .split('=')[1]
-  } else {
-    return null
-  }
+  var reg = new RegExp('(^|&)' + name + '=([^&]*)(&|$)')
+  var r = window.location.search.substr(1).match(reg)
+  if (r != null) return decodeURI(r[2])
+  return null
 }
 
 export function loginOutCas() {

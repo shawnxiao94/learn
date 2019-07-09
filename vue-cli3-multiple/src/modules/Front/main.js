@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import App from './App.vue'
-import Cookies from 'js-cookie'
 // 路由
 import router from './router'
 // vuex
 import store from './data/store'
 // 离线缓存
 import '@/registerServiceWorker.js'
+// IE 兼容
+import '@babel/polyfill'
 
 /*
  * UI框架相关
@@ -55,7 +56,8 @@ Object.keys(directives).forEach(key => {
 })
 // 注册Element UI
 Vue.use(Element, {
-  size: Cookies.get('size') || 'medium'
+  size: store.getters.app.size,
+  i18n: (key, value) => i18n.t(key, value)
 })
 // 全局验证
 Vue.use(Validate)

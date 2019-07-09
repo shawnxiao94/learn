@@ -1,7 +1,16 @@
 // 全局配置常量
 module.exports = {
-  title: '多页面开发',
+  front: {
+    /**
+     * @type {string}
+     * @description 标题
+     */
 
+    title: '多页面开发'
+  },
+  backend: {
+    title: '多页面开发'
+  },
   /**
    * @type {boolean} true | false
    * @description Whether show the settings right-panel

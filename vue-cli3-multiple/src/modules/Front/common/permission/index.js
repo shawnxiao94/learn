@@ -12,7 +12,7 @@ import {
   loginCas,
   loginOutCas
 } from '@/common/utils/auth' // get token from cookie
-import getPageTitle from '@/common/utils/getPageTitle'
+import getPageTitle from '../getPageTitle'
 
 import { checkTokenAccout } from '../../data/api/User'
 

@@ -1,3 +1,20 @@
+// ui size => medium,small,mini
+export function sizeFilters(val) {
+  if (String(val) === 'medium') {
+    return '中等尺寸'
+  } else if (String(val) === 'small') {
+    return '小型尺寸'
+  } else if (String(val) === 'mini') {
+    return '超小尺寸'
+  }
+  if (String(val) === '中等尺寸') {
+    return 'medium'
+  } else if (String(val) === '小型尺寸') {
+    return 'small'
+  } else if (String(val) === '超小尺寸') {
+    return 'mini'
+  }
+}
 // 未生效、生效中、已生效
 export function statusFilters(val) {
   if (Number(val) === 1) {

@@ -69,6 +69,104 @@ const getAllAuthorityTree = {
                     ]
                   }
                 ]
+              },
+              {
+                rightName: '系统管理',
+                rightRootId: 'PagePermission',
+                levelSort: 3,
+                sysId: 'DAM',
+                rightId: 'SystemManage',
+                state: 'on',
+                authorityUserBeanList: [
+                  {
+                    rightName: '人员管理',
+                    rightRootId: 'SystemManage',
+                    levelSort: 4,
+                    sysId: 'DAM',
+                    rightId: 'SystemManageUserManage',
+                    state: 'on',
+                    authorityUserBeanList: [
+                      {
+                        rightName: '查询',
+                        rightRootId: 'SystemManageUserManage',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'SystemManageUserManage_search',
+                        state: 'on'
+                      },
+                      {
+                        rightName: '新增',
+                        rightRootId: 'SystemManageUserManage',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'SystemManageUserManage_add',
+                        state: 'on'
+                      },
+                      {
+                        rightName: '日志详情',
+                        rightRootId: 'SystemManageUserManage',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'SystemManageUserManage_detail',
+                        state: 'on'
+                      }
+                    ]
+                  },
+                  {
+                    rightName: '日志管理',
+                    rightRootId: 'SystemManage',
+                    levelSort: 4,
+                    sysId: 'DAM',
+                    rightId: 'SystemManageLogManage',
+                    state: 'on',
+                    authorityUserBeanList: [
+                      {
+                        rightName: '查询',
+                        rightRootId: 'SystemManageLogManage',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'SystemManageUserManage_search',
+                        state: 'on'
+                      }
+                    ]
+                  },
+                  {
+                    rightName: '角色管理',
+                    rightRootId: 'SystemManage',
+                    levelSort: 4,
+                    sysId: 'DAM',
+                    rightId: 'SystemManageRoleManage',
+                    state: 'on',
+                    authorityUserBeanList: [
+                      {
+                        rightName: '查询',
+                        rightRootId: 'SystemManageRoleManage',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'SystemManageUserManage_search',
+                        state: 'on'
+                      }
+                    ]
+                  },
+                  {
+                    rightName: '系统设置',
+                    rightRootId: 'SystemManage',
+                    levelSort: 4,
+                    sysId: 'DAM',
+                    rightId: 'SystemManageSettings',
+                    state: 'on',
+                    authorityUserBeanList: [
+                      {
+                        rightName: '查询',
+                        rightRootId: 'SystemManageSettings',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'SystemManageSettings_search',
+                        state: 'on'
+                      }
+                    ]
+                  }
+                ]
               }
             ]
           },
@@ -81,7 +179,7 @@ const getAllAuthorityTree = {
             state: 'on',
             authorityUserBeanList: [
               {
-                rightName: '乘用车',
+                rightName: 'PC渠道',
                 rightRootId: 'DataPermission',
                 levelSort: 3,
                 sysId: 'DAM',
@@ -113,7 +211,7 @@ const getUserInfoByAccount = {
       sysId: 'DAM',
       mobile: '17601235412',
       updateAt: 1551346327165,
-      userName: 'admin',
+      userName: '张三',
       branch: '',
       userId: '17601235412',
       createAt: 1551346327165,

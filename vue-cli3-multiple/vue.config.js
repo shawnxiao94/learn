@@ -56,6 +56,7 @@ module.exports = {
   // 防止将某些 import 的包(package)打包到 bundle 中，
   // 而是在运行时(runtime)再去从外部获取这些扩展依赖
   configureWebpack: config => {
+    config.devtool = 'cheap-source-map'
     config.externals = {
       // cdn 版本的element-ui、vue、vue-router设置的全局变量分别是ELEMENT、Vue、VueRouter、axios、VueI18n
       vue: 'Vue',
@@ -110,6 +111,17 @@ module.exports = {
       .set('assets', resolve('src/assets'))
       .set('components', resolve('src/components'))
       .set('static', resolve('src/static'))
+      .set('common', resolve('src/common'))
+      .set('commonF', resolve('src/modules/Front/common'))
+      .set('componentsF', resolve('src/modules/Front/components'))
+      .set('dataF', resolve('src/modules/Front/data'))
+      .set('pagesF', resolve('src/modules/Front/pages'))
+      .set('routerF', resolve('src/modules/Front/router'))
+      .set('commonB', resolve('src/modules/Backend/common'))
+      .set('componentsB', resolve('src/modules/Backend/components'))
+      .set('dataB', resolve('src/modules/Backend/data'))
+      .set('pagesB', resolve('src/modules/Backend/pages'))
+      .set('routerB', resolve('src/modules/Backend/router'))
     // 打包分析
     if (process.env.IS_ANALYZ) {
       config.plugin('webpack-report').use(BundleAnalyzerPlugin, [

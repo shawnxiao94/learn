@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'i18n'
-import Cookies from 'js-cookie'
+import storeF from 'dataF/store'
 import enLocale from './en'
 import zhLocale from './zh'
 
@@ -14,9 +14,8 @@ const messages = {
     ...zhLocale
   }
 }
-
 const i18n = new VueI18n({
-  locale: Cookies.get('language') || 'zh',
+  locale: storeF.getters.app.language,
   messages
 })
 

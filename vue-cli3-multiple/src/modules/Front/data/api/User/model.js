@@ -3,6 +3,6 @@ export const getUser = {
     return params
   },
   response(data) {
-    return data
+    return data.Result.data
   }
 }
