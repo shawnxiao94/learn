@@ -8,6 +8,8 @@ import store from './data/store'
 import '@/registerServiceWorker.js'
 // IE 兼容
 import '@babel/polyfill'
+// 响应式布局
+import responsiveLayout from 'commonF/responsiveLayout/index'
 
 /*
  * UI框架相关
@@ -46,6 +48,10 @@ import Validate from '@/common/validate/index.js'
 // 引入自定义 全局组件
 import 'components'
 
+/**
+ * @see 响应式布局
+ *  */
+responsiveLayout({})
 // 注册vue模板过滤器
 Object.keys(filters).forEach(key => {
   Vue.filter(key, filters[key])
@@ -56,8 +62,7 @@ Object.keys(directives).forEach(key => {
 })
 // 注册Element UI
 Vue.use(Element, {
-  size: store.getters.app.size,
-  i18n: (key, value) => i18n.t(key, value)
+  size: store.getters.app.size
 })
 // 全局验证
 Vue.use(Validate)

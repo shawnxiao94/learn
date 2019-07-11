@@ -1,4 +1,4 @@
-const BASEFLAG = 'USERCENTER_FRONT'
+const BASEFLAG = 'U/C/F'
 
 // app
 
@@ -6,9 +6,10 @@ const BASEFLAG = 'USERCENTER_FRONT'
 export const SIDEBARSTATUS = `${BASEFLAG}_SIDEBARSTATUS`
 // 语言类型
 export const LANGUAGE = `${BASEFLAG}_LANGUAGE`
+export const TOPFIXED = `${BASEFLAG}_TOPFIXED`
 // 大小
 export const SIZE = `${BASEFLAG}_SIZE`
-export const DEVICE = `${BASEFLAG}_DEVICE`
+export const CLIENTTYPE = `${BASEFLAG}_CLIENTTYPE`
 // 是否显示全屏按钮
 export const FULLSCREEN = `${BASEFLAG}_FULLSCREEN`
 // 左上边是否显示折叠菜单功能按钮

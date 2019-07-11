@@ -15,7 +15,7 @@ const permission = {
     btnPermissions: [],
     // 数据权限
     dataPermissionArr: [],
-    // 数据权限
+    // 缓存页面name数组
     cachedViews: []
   },
   mutations: {

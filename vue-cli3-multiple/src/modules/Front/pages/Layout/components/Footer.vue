@@ -14,9 +14,10 @@
   background-color $color-04
   justify-content flex-end
   padding-right 20px
-  position absolute
+  position fixed
   left 0
   bottom 0
+  z-index 999
   .copyright
     max-width 360px
     white-space nowrap

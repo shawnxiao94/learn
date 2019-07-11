@@ -71,6 +71,52 @@ const getAllAuthorityTree = {
                 ]
               },
               {
+                rightName: '新闻首页',
+                rightRootId: 'PagePermission',
+                levelSort: 3,
+                sysId: 'DAM',
+                rightId: 'News',
+                state: 'on',
+                authorityUserBeanList: [
+                  {
+                    rightName: '新闻首页',
+                    rightRootId: 'News',
+                    levelSort: 4,
+                    sysId: 'DAM',
+                    rightId: 'NewsIndex',
+                    state: 'on',
+                    authorityUserBeanList: [
+                      {
+                        rightName: '查询',
+                        rightRootId: 'NewsIndex',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'NewsIndex_search',
+                        state: 'on'
+                      }
+                    ]
+                  },
+                  {
+                    rightName: '新闻详情',
+                    rightRootId: 'News',
+                    levelSort: 4,
+                    sysId: 'DAM',
+                    rightId: 'NewsDetail',
+                    state: 'on',
+                    authorityUserBeanList: [
+                      {
+                        rightName: '查询',
+                        rightRootId: 'NewsDetail',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'NewsDetail_search',
+                        state: 'on'
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
                 rightName: '系统管理',
                 rightRootId: 'PagePermission',
                 levelSort: 3,

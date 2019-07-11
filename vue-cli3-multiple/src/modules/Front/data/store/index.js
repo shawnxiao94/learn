@@ -12,6 +12,12 @@ import user from './modules/common/user'
 //页面仓库
 import pages from './modules/pages/index'
 
+/**
+ * 手机端适配
+ *   */
+import mobileApp from './modules/common/mobile/app'
+/* End */
+
 Vue.use(Vuex)
 
 const store = new Vuex.Store({
@@ -19,6 +25,7 @@ const store = new Vuex.Store({
     app,
     permission,
     user,
+    mobileApp,
     ...pages
   },
   getters

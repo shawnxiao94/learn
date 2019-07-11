@@ -1,7 +1,17 @@
 <template>
-  <el-form class="settings" ref="form" :model="data.form" label-width="260px">
+  <el-form
+    class="settings"
+    ref="form"
+    label-width="260px"
+    :size="$store.getters.app.size"
+    :model="data.form"
+  >
     <el-form-item label="菜单模式：">
-      <el-radio-group v-model="data.form.menuMode" @change="change('menu')">
+      <el-radio-group
+        v-model="data.form.menuMode"
+        @change="change('menu')"
+        :disabled="$store.getters.app.responsiveLayout.clientType === 'mobile'"
+      >
         <el-radio
           v-for="item in data.options.menu"
           :key="item.value"
@@ -46,6 +56,15 @@
         >
       </el-radio-group>
     </el-form-item> -->
+    <el-form-item label="顶部导航是否固定定位：">
+      <el-switch
+        :disabled="$store.getters.app.responsiveLayout.clientType === 'mobile'"
+        @change="change('topFixed')"
+        v-model="data.form.topFixed"
+        active-text="是"
+        inactive-text="否"
+      ></el-switch>
+    </el-form-item>
     <el-form-item label="是否允许全屏切换：">
       <el-switch
         @change="change('fullScreen')"
@@ -56,6 +75,7 @@
     </el-form-item>
     <el-form-item label="是否显示收缩展开侧边栏菜单按钮：">
       <el-switch
+        :disabled="$store.getters.app.responsiveLayout.clientType === 'mobile'"
         @change="change('showHamburger')"
         v-model="data.form.showHamburger"
         active-text="是"
@@ -76,6 +96,7 @@ export default {
           // 菜单模式
           menuMode: this.$store.getters.app.menuMode,
           language: this.$store.getters.app.language,
+          topFixed: this.$store.getters.app.topFixed,
           size: sizeFilters(this.$store.getters.app.size),
           // 全屏功能按钮是否显示
           showFullScreen: this.$store.getters.app.fullScreen,
@@ -138,6 +159,9 @@ export default {
           break
         case 'lan':
           this.$store.dispatch('SetLanguage', this.data.form.language)
+          break
+        case 'topFixed':
+          this.$store.dispatch('SetTopfixed', this.data.form.topFixed)
           break
         case 'fullScreen':
           this.$store.dispatch(

@@ -9,7 +9,13 @@ const app = {
     },
     // 当前语言
     language: getCookie(constants.LANGUAGE) || 'en',
-    device: getCookie(constants.DEVICE) || 'pc',
+    // 顶部导航是否固定定位
+    topFixed: !+getCookie(constants.TOPFIXED),
+    // 当前响应式模式
+    responsiveLayout: {
+      // 终端类型 pc、ipad、mobile
+      clientType: getCookie(constants.CLIENTTYPE) || 'pc'
+    },
     size: getCookie(constants.SIZE) || 'medium',
     // 是否显示全屏按钮
     fullScreen: !+getCookie(constants.FULLSCREEN),
@@ -33,7 +39,7 @@ const app = {
     },
     // 设置侧边栏展开收起状态
     SET_SIDEBAR: (state, status) => {
-      setCookie(constants.SIDEBARSTATUS, status ? 1 : 0)
+      setCookie(constants.SIDEBARSTATUS, status ? 0 : 1)
       state.sidebar.opened = status
     },
     // 设置语言
@@ -41,14 +47,19 @@ const app = {
       state.language = language
       setCookie(constants.LANGUAGE, language)
     },
+    // 设置顶部导航是否固定定位
+    SET_TOPFIXED: (state, topFixed) => {
+      setCookie(constants.TOPFIXED, topFixed ? 0 : 1)
+      state.topFixed = topFixed
+    },
     CLOSE_SIDEBAR: (state, withoutAnimation) => {
       setCookie(constants.SIDEBARSTATUS, 0)
       state.sidebar.opened = false
       state.sidebar.withoutAnimation = withoutAnimation
     },
-    TOGGLE_DEVICE: (state, device) => {
-      state.device = device
-      setCookie(constants.SIZE, device)
+    // 设置终端类型
+    SET_CLIENTTYPE: (state, type) => {
+      state.responsiveLayout.clientType = type
     },
     SET_SIZE: (state, size) => {
       state.size = size
@@ -91,13 +102,17 @@ const app = {
     SetLanguage({ commit }, language) {
       commit('SET_LANGUAGE', language)
     },
+    // 设置顶部导航是否固定定位
+    SetTopfixed({ commit }, topFixed) {
+      commit('SET_TOPFIXED', topFixed)
+    },
     // 关闭sideBar
     closeSideBar({ commit }, { withoutAnimation }) {
       commit('CLOSE_SIDEBAR', withoutAnimation)
     },
-    // 触发改变系统类型
-    toggleDevice({ commit }, device) {
-      commit('TOGGLE_DEVICE', device)
+    // 设置终端类型
+    SetClientType({ commit }, type) {
+      commit('SET_CLIENTTYPE', type)
     },
     // 设置UI尺寸
     setSize({ commit }, size) {

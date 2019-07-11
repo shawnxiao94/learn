@@ -15,7 +15,9 @@
     </div>
     <div class="view">
       <transition name="move" mode="out-in">
-        <router-view></router-view>
+        <keep-alive :include="cachedViews">
+          <router-view></router-view>
+        </keep-alive>
       </transition>
     </div>
   </div>
@@ -29,8 +31,24 @@ export default {
   components: {
     NavMenu
   },
+  watch: {
+    $route: {
+      immediate: true,
+      handler() {
+        this.addCachedViews()
+      }
+    }
+  },
   computed: {
     ...mapGetters(['app', 'permission']),
+    // 缓存路由name字符串
+    cachedViews() {
+      if (this.permission.cachedViews.length) {
+        return this.permission.cachedViews.toString()
+      } else {
+        return 'undefined'
+      }
+    },
     rootPath() {
       return this.app.menuMode === 3 ? `/${this.$route.path.split('/')[1]}` : ''
     },
@@ -40,15 +58,34 @@ export default {
         if (this.app.menuMode === 2) {
           flag = this.permission.menuNavs.length > 0
         } else {
-          flag =
-            this.permission.menuNavs.filter(item => {
+          // 非隐藏子菜单个数超过一个则显示侧边栏
+          let len = 0
+          this.permission.menuNavs
+            .filter(item => {
               return item.path === this.rootPath
-            })[0].children.length > 1
+            })[0]
+            .children.forEach(item => {
+              if (!item.meta.hidden) {
+                len += 1
+              }
+            })
+          flag = len > 1
         }
       } else {
         flag = false
       }
-      return flag
+      // 叠加如果是手机端则不显示侧边栏
+      return flag && !(this.app.responsiveLayout.clientType === 'mobile')
+    }
+  },
+  methods: {
+    // 动态更新记录页面缓存与否
+    addCachedViews() {
+      if (this.$route.name && !this.$route.meta.noCache) {
+        this.$store.dispatch('AddCachedViews', this.$route)
+      } else if (this.$route.name && this.$route.meta.noCache) {
+        this.$store.dispatch('DelCachedViews', this.$route)
+      }
     }
   }
 }
@@ -56,6 +93,11 @@ export default {
 
 <style lang="stylus" scoped>
 @import "~@/assets/styles/variable.styl"
+.move-leave-active, .move-leave-to
+  transition all 300ms
+  opacity 0
+.move-enter-active, .move-enter-to
+  opacity 1
 .wrapper-app
   width 100%
   height 100%

@@ -5,18 +5,7 @@
       v-show="$store.getters.mobileApp.mobileMenu.opened"
       @click.stop=""
     >
-      <!--滚动面板-->
-      <el-scrollbar ref="elScrollbar">
-        <!--菜单-->
-        <el-menu
-          :unique-opened="true"
-          mode="vertical"
-          :default-active="$route.path"
-        >
-          <!--子组件-->
-          <sidebar-item :routes="permission.sideBarNavs"></sidebar-item>
-        </el-menu>
-      </el-scrollbar>
+      <nav-menu class="nav-menu" mode="vertical"></nav-menu>
       <div @click="closeSideBar" class="mobile-menu-close">
         <i class="el-icon-close"></i>
       </div>
@@ -25,29 +14,16 @@
 </template>
 
 <script>
-// 调用数据仓库
-import { mapGetters } from 'vuex'
-// 菜单子组件
-import SidebarItem from '@/pages/Layout/components/Sidebar/SidebarItem'
+// 菜单组件
+import NavMenu from '@/components/NavMenu'
 
 export default {
   // 菜单子组件
-  components: { SidebarItem },
-  computed: {
-    // 引入数据仓库中权限及菜单数据
-    ...mapGetters(['permission'])
-  },
+  components: { NavMenu },
   mounted() {
-    // 浏览器视窗改变时重置elScrollbar插件解决滚动条显示问题
-    this.resizeElScrollbar()
-    window.addEventListener('resize', this.resizeElScrollbar)
     this.addCloseEvents()
   },
   methods: {
-    // 浏览器视窗改变时重置elScrollbar插件解决滚动条显示问题
-    resizeElScrollbar() {
-      this.$refs.elScrollbar.update()
-    },
     // 关闭
     closeSideBar(e) {
       this.$store.dispatch('SetMobileMenu', false)
@@ -60,16 +36,14 @@ export default {
     addCloseEvents() {
       // 点击body关闭侧边栏
       document
-        .querySelector('.container')
+        .querySelector('body')
         .addEventListener('click', this.closeSideBar)
     }
   },
   destroyed() {
-    // 注销组件关闭window resize事件
-    window.removeEventListener('resize', this.resizeElScrollbar)
     // 注销点击body关闭侧边栏
     document
-      .querySelector('.container')
+      .querySelector('body')
       .removeEventListener('click', this.closeSideBar)
   }
 }

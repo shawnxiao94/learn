@@ -1,5 +1,5 @@
 <template>
-  <div class="header">
+  <div class="header" :class="{ topFixed: app.topFixed }">
     <!-- header-left -->
     <div
       class="header-left"
@@ -17,7 +17,13 @@
     <!-- header-center -->
     <div class="header-center">
       <!-- 展开/关闭菜单 -->
-      <div class="fadeSideBar" @click="fadeSideBar" v-if="app.showHamburger">
+      <div
+        class="fadeSideBar"
+        @click="fadeSideBar"
+        v-show="
+          app.showHamburger && !(app.responsiveLayout.clientType === 'mobile')
+        "
+      >
         <svg-icon
           iconClass="layout-aside-toggle"
           class="hamburger"
@@ -25,7 +31,10 @@
         ></svg-icon>
       </div>
       <!-- 导航菜单 -->
-      <div class="header-menu">
+      <div
+        class="header-menu"
+        v-if="!(app.responsiveLayout.clientType === 'mobile')"
+      >
         <nav-menu
           class="nav-menu"
           v-if="app.menuMode === 1"
@@ -68,11 +77,11 @@
         </el-dropdown-menu>
       </el-dropdown>
       <!--手机端菜单-->
-      <!-- <template
+      <template
         v-if="$store.getters.app.responsiveLayout.clientType === 'mobile'"
       >
         <mobile-menu type="mobile-menu"></mobile-menu>
-      </template> -->
+      </template>
     </div>
     <!-- header-right end -->
   </div>
@@ -83,10 +92,10 @@ import { loginOutCas } from '@/common/utils/auth'
 import NavMenu from '@/components/NavMenu'
 import Nav from '@/components/NavMenu/Nav.vue'
 import { mapGetters } from 'vuex'
-// import MobileMenu from '@/components/Mobile/Menu/index'
+import MobileMenu from 'componentsF/Mobile/Menu/index'
 export default {
   components: {
-    // MobileMenu
+    MobileMenu,
     NavMenu,
     Nav
   },
@@ -166,6 +175,8 @@ export default {
   left 0
   top 0
   z-index 999
+  &.topFixed
+    position fixed
   .header-left
     display flex
     width 200px

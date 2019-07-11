@@ -55,10 +55,23 @@ export default {
       return _index + ''
     }
   },
+  mounted() {
+    // 浏览器视窗改变时重置elScrollbar插件解决滚动条显示问题
+    this.resizeElScrollbar()
+    window.addEventListener('resize', this.resizeElScrollbar)
+  },
   methods: {
     jumpTo(nav) {
       this.$router.push(`${nav.path}`)
+    },
+    // 浏览器视窗改变时重置elScrollbar插件解决滚动条显示问题
+    resizeElScrollbar() {
+      this.$refs.elScrollbar.update()
     }
+  },
+  destroyed() {
+    // 注销组件关闭window resize事件
+    window.removeEventListener('resize', this.resizeElScrollbar)
   }
 }
 </script>

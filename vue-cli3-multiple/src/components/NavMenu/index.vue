@@ -33,14 +33,25 @@ export default {
   computed: {
     // 引入数据仓库中权限及菜单数据
     ...mapGetters(['permission', 'app']),
-    // 是否展开收起菜单
+    // 是否展开收起菜单, 其中手机场景是展开状态
     isCollapse() {
-      return !this.app.sidebar.opened
+      return this.app.responsiveLayout.clientType === 'mobile'
+        ? false
+        : !this.app.sidebar.opened
     },
     rootPath() {
-      return this.app.menuMode === 3 ? `/${this.$route.path.split('/')[1]}` : ''
+      // 手机场景下，菜单是侧边栏菜单
+      return this.app.responsiveLayout.clientType === 'mobile'
+        ? ''
+        : this.app.menuMode === 3
+        ? `/${this.$route.path.split('/')[1]}`
+        : ''
     },
     sidebarMenu() {
+      if (this.app.responsiveLayout.clientType === 'mobile') {
+        // 手机场景下
+        return this.permission.menuNavs
+      }
       if (this.app.menuMode === 3) {
         return this.permission.menuNavs.filter(item => {
           return item.path === this.rootPath

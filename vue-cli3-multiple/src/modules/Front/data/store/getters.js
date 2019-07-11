@@ -8,6 +8,7 @@ const getters = {
   app: state => state.app,
   permission: state => state.permission,
   user: state => state.user,
+  mobileApp: state => state.mobileApp,
   ...pagesGetters
 }
 export default getters

@@ -43,7 +43,7 @@ export const asyncRouterMap = [
       title: '首页',
       icon: 'layout-aside-home',
       sort: '',
-      noCache: true,
+      noCache: false,
       hidden: false,
       index: 0,
       type: 'front'
@@ -57,11 +57,58 @@ export const asyncRouterMap = [
           title: '首页',
           icon: '',
           sort: '',
-          noCache: true,
+          noCache: false,
           hidden: false,
           index: 1,
           type: 'front',
           permissions: [{ name: '查询', code: 'HomeIndex_search' }]
+        }
+      }
+    ]
+  },
+  {
+    path: '/news',
+    component: _import('Layout/index'),
+    redirect: '/news/index',
+    name: 'News',
+    meta: {
+      title: '新闻首页',
+      icon: 'layout-aside-home',
+      sort: '',
+      noCache: false,
+      hidden: false,
+      index: 0,
+      type: 'front'
+    },
+    children: [
+      {
+        path: 'index',
+        name: 'NewsIndex',
+        component: _import('News/index'),
+        meta: {
+          title: '新闻列表',
+          icon: 'layout-aside-home',
+          sort: '',
+          noCache: false,
+          hidden: false,
+          index: 1,
+          type: 'front',
+          permissions: [{ name: '查询', code: 'NewsIndex_search' }]
+        }
+      },
+      {
+        path: 'index/:id',
+        name: 'NewsDetail',
+        component: _import('News/Detail'),
+        meta: {
+          title: '新闻详情',
+          icon: '',
+          sort: '',
+          noCache: false,
+          hidden: true,
+          index: 1,
+          type: 'front',
+          permissions: [{ name: '查询', code: 'NewsDetail_search' }]
         }
       }
     ]
@@ -135,7 +182,7 @@ export const asyncRouterMap = [
           icon: 'layout-aside-system',
           sort: '',
           hidden: false,
-          noCache: true,
+          noCache: false,
           permissions: []
         }
       }
