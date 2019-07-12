@@ -1,5 +1,5 @@
 import store from 'dataF/store'
-import { setStorage } from '@/common/utils/auth.js'
+import { setStorage, removeStorage } from '@/common/utils/auth.js'
 import * as constains from './constants'
 /**
  * @see 面包屑
@@ -16,6 +16,10 @@ const clearRouteCache = route => {
 }
 // 设置面包屑到本地存储
 const setCrumbs = state => {
+  if (!state.routerCrumbs.length) {
+    removeStorage(constains.ROUTERCRUMBS)
+    return
+  }
   let _routerCrumbs = state.routerCrumbs.map(item => {
     return {
       fullPath: item.fullPath,
