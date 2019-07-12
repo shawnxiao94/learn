@@ -257,31 +257,31 @@ export function deepClone(source) {
 
 // 数据深拷
 // export function deepClone(data) {
-//   const type = checkedType(data);
-//   let result;
-//   if (type === "Array") {
-//     result = [];
-//   } else if (type === "Object") {
-//     result = {};
+//   const type = checkedType(data)
+//   let result
+//   if (type === 'Array') {
+//     result = []
+//   } else if (type === 'Object') {
+//     result = {}
 //   } else {
-//     return data;
+//     return data
 //   }
-//   if (type === "Array") {
+//   if (type === 'Array') {
 //     for (let i = 0, len = data.length; i < len; i++) {
-//       result.push(deepClone(data[i]));
+//       result.push(deepClone(data[i]))
 //     }
-//   } else if (type === "Object") {
+//   } else if (type === 'Object') {
 //     // 对原型上的方法也拷贝了....
 //     for (const key in data) {
-//       result[key] = deepClone(data[key]);
+//       result[key] = deepClone(data[key])
 //     }
 //   }
-//   return result;
+//   return result
 // }
 
 // 定义检测数据类型的功能函数
 // function checkedType(target) {
-//   return Object.prototype.toString.call(target).slice(8, -1);
+//   return Object.prototype.toString.call(target).slice(8, -1)
 // }
 
 // 监听事件

@@ -94,22 +94,39 @@ export const asyncRouterMap = [
           index: 1,
           type: 'front',
           permissions: [{ name: '查询', code: 'NewsIndex_search' }]
-        }
-      },
-      {
-        path: 'index/:id',
-        name: 'NewsDetail',
-        component: _import('News/Detail'),
-        meta: {
-          title: '新闻详情',
-          icon: '',
-          sort: '',
-          noCache: false,
-          hidden: true,
-          index: 1,
-          type: 'front',
-          permissions: [{ name: '查询', code: 'NewsDetail_search' }]
-        }
+        },
+        children: [
+          {
+            path: ':id',
+            name: 'NewsIndexType',
+            component: _import('News/Type'),
+            meta: {
+              title: '新闻类型',
+              icon: '',
+              sort: '',
+              noCache: false,
+              hidden: true,
+              index: 2,
+              type: 'front',
+              permissions: [{ name: '查询', code: 'NewsType_search' }]
+            }
+          },
+          {
+            path: 'detail/:id',
+            name: 'NewsIndexDetail',
+            component: _import('News/Detail'),
+            meta: {
+              title: '新闻详情',
+              icon: '',
+              sort: '',
+              noCache: false,
+              hidden: true,
+              index: 2,
+              type: 'front',
+              permissions: [{ name: '查询', code: 'NewsDetail_search' }]
+            }
+          }
+        ]
       }
     ]
   },

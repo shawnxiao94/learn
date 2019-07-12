@@ -45,7 +45,7 @@ const permission = {
         state.cachedViews.push(route.name)
       }
     },
-    // 删除缓存
+    // 删减缓存
     DEL_CACHEDVIEWS(state, route) {
       let _index
       if (

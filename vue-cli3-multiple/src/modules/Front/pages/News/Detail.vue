@@ -1,7 +1,6 @@
 <template>
   <div>
-    <bread-crumb></bread-crumb>
-    NewsDetail -- {{ $route.params }}
+    NewsIndexDetail -- {{ $route.params }}
     <p>
       {{ content }}
     </p>
@@ -9,12 +8,8 @@
 </template>
 
 <script>
-import BreadCrumb from '@/components/BreadCrumb'
 export default {
-  name: 'NewsDetail',
-  components: {
-    BreadCrumb
-  },
+  name: 'NewsIndexDetail',
   data() {
     return {
       content: `

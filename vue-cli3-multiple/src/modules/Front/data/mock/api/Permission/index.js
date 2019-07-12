@@ -97,19 +97,37 @@ const getAllAuthorityTree = {
                     ]
                   },
                   {
-                    rightName: '新闻详情',
-                    rightRootId: 'News',
+                    rightName: '新闻类型',
+                    rightRootId: 'NewsIndex',
                     levelSort: 4,
                     sysId: 'DAM',
-                    rightId: 'NewsDetail',
+                    rightId: 'NewsIndexType',
                     state: 'on',
                     authorityUserBeanList: [
                       {
                         rightName: '查询',
-                        rightRootId: 'NewsDetail',
+                        rightRootId: 'NewsIndexType',
                         levelSort: 5,
                         sysId: 'DAM',
-                        rightId: 'NewsDetail_search',
+                        rightId: 'NewsIndexType_search',
+                        state: 'on'
+                      }
+                    ]
+                  },
+                  {
+                    rightName: '新闻详情',
+                    rightRootId: 'NewsIndex',
+                    levelSort: 4,
+                    sysId: 'DAM',
+                    rightId: 'NewsIndexDetail',
+                    state: 'on',
+                    authorityUserBeanList: [
+                      {
+                        rightName: '查询',
+                        rightRootId: 'NewsIndexDetail',
+                        levelSort: 5,
+                        sysId: 'DAM',
+                        rightId: 'NewsIndexDetail_search',
                         state: 'on'
                       }
                     ]
