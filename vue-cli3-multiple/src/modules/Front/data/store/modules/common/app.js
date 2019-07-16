@@ -17,6 +17,7 @@ const app = {
       clientType: getCookie(constants.CLIENTTYPE) || 'pc'
     },
     size: getCookie(constants.SIZE) || 'medium',
+    showTagsViews: !+getCookie(constants.SHOWTAGSVIEWS),
     // 是否显示全屏按钮
     fullScreen: !+getCookie(constants.FULLSCREEN),
     // 设置左上边是否显示折叠菜单功能按钮
@@ -64,6 +65,15 @@ const app = {
     SET_SIZE: (state, size) => {
       state.size = size
       setCookie(constants.SIZE, size)
+    },
+    // 设置是否显示tagsViews
+    SET_SHOWTAGSVIEWS: state => {
+      state.showTagsViews = !state.showTagsViews
+      if (state.showTagsViews) {
+        setCookie(constants.SHOWTAGSVIEWS, 0)
+      } else {
+        setCookie(constants.SHOWTAGSVIEWS, 1)
+      }
     },
     // 设置是否显示全屏按钮
     SET_FULLSCREEN: state => {
@@ -117,6 +127,10 @@ const app = {
     // 设置UI尺寸
     setSize({ commit }, size) {
       commit('SET_SIZE', size)
+    },
+    // 设置是否显示tagsViews
+    setShowTagsViews({ commit }) {
+      commit('SET_SHOWTAGSVIEWS')
     },
     // toggle 全屏按钮
     ToggleFullscreen({ commit }) {

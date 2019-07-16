@@ -105,7 +105,7 @@ const permission = {
     AddCachedViews({ commit }, route) {
       commit('ADD_CACHEDVIEWS', route)
     },
-    // 添加缓存
+    // 删减缓存缓存
     DelCachedViews({ commit }, route) {
       commit('DEL_CACHEDVIEWS', route)
     }

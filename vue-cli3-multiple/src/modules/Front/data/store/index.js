@@ -6,6 +6,8 @@ import getters from './getters'
 import app from './modules/common/app'
 // 权限数据
 import permission from './modules/common/permission'
+// tagsView
+import tagsView from './modules/common/tagsView'
 // 用户信息
 import user from './modules/common/user'
 
@@ -24,6 +26,7 @@ const store = new Vuex.Store({
   modules: {
     app,
     permission,
+    tagsView,
     user,
     mobileApp,
     ...pages

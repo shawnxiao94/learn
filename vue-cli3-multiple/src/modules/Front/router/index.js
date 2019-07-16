@@ -58,6 +58,7 @@ export const asyncRouterMap = [
           icon: '',
           sort: '',
           noCache: false,
+          // 控制是否在菜单栏显示与否，也代表是子路由还是父路由的标识位
           hidden: false,
           index: 1,
           type: 'front',

@@ -49,7 +49,6 @@ export default {
   methods: {
     // 如果VUEX为空，则去本地存储去取
     getCrumbsStorage() {
-      console.log(getStorage(constains.ROUTERCRUMBS))
       let arr = getStorage(constains.ROUTERCRUMBS)
       if (!this.crumbs.routerCrumbs.length && arr && arr.length) {
         this.$store.dispatch(
@@ -113,5 +112,10 @@ export default {
   line-height 50px
   padding 0 20px
   background-color $color-white
-  font-weight 700
+  font-weight normal
+  .el-breadcrumb__item
+    >>>.el-breadcrumb__inner
+      font-weight normal
+      &.is-link
+        font-weight normal
 </style>

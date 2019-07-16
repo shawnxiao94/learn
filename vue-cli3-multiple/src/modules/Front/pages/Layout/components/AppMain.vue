@@ -14,6 +14,7 @@
       <nav-menu class="nav-menu" mode="vertical"></nav-menu>
     </div>
     <div class="view">
+      <tags-view v-if="app.showTagsViews"></tags-view>
       <transition name="move" mode="out-in">
         <keep-alive :include="cachedViews">
           <router-view></router-view>
@@ -25,11 +26,13 @@
 
 <script>
 import NavMenu from '@/components/NavMenu'
+import TagsView from './TagsView.vue'
 import { mapGetters } from 'vuex'
 export default {
   name: 'AppMain',
   components: {
-    NavMenu
+    NavMenu,
+    TagsView
   },
   watch: {
     $route: {

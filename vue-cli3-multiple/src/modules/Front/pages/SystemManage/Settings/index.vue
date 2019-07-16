@@ -65,7 +65,15 @@
         inactive-text="否"
       ></el-switch>
     </el-form-item>
-    <el-form-item label="是否允许全屏切换：">
+    <el-form-item label="是否启用顶部选项卡菜单：">
+      <el-switch
+        @change="change('showTagsViews')"
+        v-model="data.form.showTagsViews"
+        active-text="是"
+        inactive-text="否"
+      ></el-switch>
+    </el-form-item>
+    <el-form-item label="是否启用全屏切换：">
       <el-switch
         @change="change('fullScreen')"
         v-model="data.form.showFullScreen"
@@ -73,7 +81,7 @@
         inactive-text="否"
       ></el-switch>
     </el-form-item>
-    <el-form-item label="是否显示收缩展开侧边栏菜单按钮：">
+    <el-form-item label="是否启用侧边栏菜单按钮：">
       <el-switch
         :disabled="$store.getters.app.responsiveLayout.clientType === 'mobile'"
         @change="change('showHamburger')"
@@ -100,6 +108,7 @@ export default {
           size: sizeFilters(this.$store.getters.app.size),
           // 全屏功能按钮是否显示
           showFullScreen: this.$store.getters.app.fullScreen,
+          showTagsViews: this.$store.getters.app.showTagsViews,
           showHamburger: this.$store.getters.app.showHamburger
         },
         options: {
@@ -162,6 +171,9 @@ export default {
           break
         case 'topFixed':
           this.$store.dispatch('SetTopfixed', this.data.form.topFixed)
+          break
+        case 'showTagsViews':
+          this.$store.dispatch('setShowTagsViews', this.data.form.showTagsViews)
           break
         case 'fullScreen':
           this.$store.dispatch(
