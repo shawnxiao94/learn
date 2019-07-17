@@ -37,7 +37,7 @@
 </template>
 
 <script>
-import BreadCrumb from '@/components/BreadCrumb'
+import BreadCrumb from 'componentsF/BreadCrumb'
 import { mapGetters } from 'vuex'
 export default {
   name: 'NewsIndex',

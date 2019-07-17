@@ -1,8 +1,8 @@
-import axiosAPI from '@/common/utils/axiosAPI'
+import axiosApi from '@/common/utils/axiosApi'
 import * as model from './model'
 export function userDistribution(params) {
-  return axiosAPI(
-    process.env.VUE_APP_BASE_API + '/OverviewOpenService/userDistribution',
+  return axiosApi(
+    '/OverviewOpenService/userDistribution',
     'post',
     model.userDistribution,
     params

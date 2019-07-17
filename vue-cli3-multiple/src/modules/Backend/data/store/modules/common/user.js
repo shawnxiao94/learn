@@ -1,5 +1,5 @@
-import { getUserName } from '@/data/api/User'
-import { loginOut } from '@/common/utils/auth'
+import { getCasUserName } from '../../../api/User'
+import { loginOutCas } from '@/common/utils/auth'
 
 const user = {
   state: {
@@ -36,7 +36,7 @@ const user = {
     // 获取用户信息
     GetCasUserName({ commit, state }) {
       return new Promise((resolve, reject) => {
-        getUserName({ sysId: state.userInfo.sysId })
+        getCasUserName({ sysId: state.userInfo.sysId })
           .then(res => {
             commit('SET_USERINFO', res)
             resolve()
@@ -44,7 +44,7 @@ const user = {
           .catch(res => {
             if (res.data.Result.errCode === -100001) {
               // 获取信息失败暂时走注销登录
-              loginOut()
+              loginOutCas()
             }
             reject(res)
           })

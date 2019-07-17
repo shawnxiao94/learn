@@ -1,19 +1,21 @@
-import { asyncRouterMap, constantRouterMap } from '@/router'
+import { asyncRouterMap, constantRouterMap } from 'routerB'
 // 如果有权限功能，则对路由过滤
-import * as api from '@/data/api/PermissionList'
-import store from '@/data/store'
-import { filterRouters, filterPermission } from '@/common/permission/check'
+import * as api from 'dataB/api/PermissionList'
+import store from 'dataB/store'
+
+import { filterRouters, filterPermission } from 'commonB/permission/check'
 
 const permission = {
   state: {
     routers: constantRouterMap,
     addRouters: [],
-    sideBarNavs: [],
+    // 导航菜单
+    menuNavs: [],
     // 按钮权限
     btnPermissions: [],
     // 数据权限
     dataPermissionArr: [],
-    // 数据权限
+    // 缓存页面name数组
     cachedViews: []
   },
   mutations: {
@@ -22,9 +24,9 @@ const permission = {
       state.addRouters = routers
       state.routers = constantRouterMap.concat(routers)
     },
-    // 侧边栏菜单
-    SET_SIDEBARNAVS(state, sideBarNavs) {
-      state.sideBarNavs = sideBarNavs
+    // 菜单
+    SET_MENUNAVS(state, menuNavs) {
+      state.menuNavs = menuNavs
     },
     // 按钮权限
     SET_BTNPERMISSIONS(state, btnPermissions) {
@@ -43,7 +45,7 @@ const permission = {
         state.cachedViews.push(route.name)
       }
     },
-    // 删除缓存
+    // 删减缓存
     DEL_CACHEDVIEWS(state, route) {
       let _index
       if (
@@ -82,7 +84,8 @@ const permission = {
             )
             // let _asyncRouterMap = asyncRouterMap
             commit('SET_ROUTERS', _asyncRouterMap)
-            commit('SET_SIDEBARNAVS', _asyncRouterMap)
+            // 菜单导航模式，1 => 顶部菜单 || 2 => 侧边菜单|| 3 => TAB菜单
+            commit('SET_MENUNAVS', _asyncRouterMap)
             commit('SET_BTNPERMISSIONS', btnNameArr)
             if (DataPermissionArr.length > 1) {
               store.dispatch('SetSourceChannel', { name: '集团', code: '00' })
@@ -102,7 +105,7 @@ const permission = {
     AddCachedViews({ commit }, route) {
       commit('ADD_CACHEDVIEWS', route)
     },
-    // 添加缓存
+    // 删减缓存缓存
     DelCachedViews({ commit }, route) {
       commit('DEL_CACHEDVIEWS', route)
     }

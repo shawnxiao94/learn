@@ -7,7 +7,9 @@ Object.keys(pages).forEach(item => {
 const getters = {
   app: state => state.app,
   permission: state => state.permission,
+  tagsView: state => state.tagsView,
   user: state => state.user,
+  mobileApp: state => state.mobileApp,
   ...pagesGetters
 }
 export default getters

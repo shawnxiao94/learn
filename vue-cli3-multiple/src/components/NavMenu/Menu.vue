@@ -7,10 +7,16 @@
     router
   >
     <template v-for="item in tsRoutes">
-      <!-- 无子菜单场景 -->
+      <!-- 无子菜单场景或者有子菜单但全部都是不可见的子菜单 -->
       <el-menu-item
         :index="item.path"
-        v-if="!item.children"
+        v-if="
+          !item.children ||
+            (item.children &&
+              item.children.every(c => {
+                return c.meta.hidden
+              }))
+        "
         :to="item.path"
         :key="item.name"
       >

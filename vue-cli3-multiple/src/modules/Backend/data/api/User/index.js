@@ -1,4 +1,4 @@
-import axiosAPI from '@/common/utils/axiosAPI'
+import axiosAPI from '@/common/utils/axiosApi'
 import * as model from './model'
 
 // 获取菜单列表
