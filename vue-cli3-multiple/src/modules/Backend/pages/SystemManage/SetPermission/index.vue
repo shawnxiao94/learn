@@ -4,7 +4,9 @@
     <data-list ref="dataList" :notCard="true" @changeSort="value => {}">
       <template slot="form-box">
         <!--按钮组-->
-        <div class="form-box-left"></div>
+        <div class="form-box-left">
+          <el-tag class="set-role-per">{{ $route.params.name }}</el-tag>
+        </div>
         <!--表单组-->
         <div class="form-box-searchs"></div>
       </template>
@@ -44,4 +46,6 @@ export default {
   line-height 30px
   color $color-01
   font-weight normal
+.set-role-per
+  margin-bottom 10px
 </style>

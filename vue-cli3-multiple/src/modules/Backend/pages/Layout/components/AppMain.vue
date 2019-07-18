@@ -13,8 +13,8 @@
     >
       <nav-menu class="nav-menu" mode="vertical"></nav-menu>
     </div>
+    <tags-view v-if="app.showTagsViews"></tags-view>
     <div class="view">
-      <tags-view v-if="app.showTagsViews"></tags-view>
       <transition name="move" mode="out-in">
         <keep-alive :include="cachedViews">
           <router-view></router-view>
@@ -108,8 +108,14 @@ export default {
   box-sizing border-box
   &.wrapper-app-sidebar
     padding-left 200px
+    >>>.tagviews
+      left 210px
+      width calc(100% - 220px)
   &.wrapper-app-sidebar-collapse
     padding-left 64px
+    >>>.tagviews
+      left 74px
+      width calc(100% - 84px)
   .sidebar
     position fixed
     top 60px
@@ -219,7 +225,6 @@ export default {
     /*End 修复Element UI与我们结构不一致导致样式失效的问题*/
   .view
     width 100%
-    min-height 100%
-    padding 10px
+    padding 10px 10px 0 10px
     box-sizing border-box
 </style>

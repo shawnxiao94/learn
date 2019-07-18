@@ -113,6 +113,7 @@ export default {
   padding 0 20px
   background-color $color-white
   font-weight normal
+  margin-bottom 10px
   .el-breadcrumb__item
     >>>.el-breadcrumb__inner
       font-weight normal

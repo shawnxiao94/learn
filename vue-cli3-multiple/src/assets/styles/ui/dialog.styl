@@ -62,7 +62,25 @@
       margin-left 5px
 /*End Element UI 弹窗样式变更*/
 
-
+/*弹窗中DataList列表样式*/
+.ui-dialog
+  .el-dialog
+    .data-list
+      margin -30px -20px
+      &>.filter-box
+        margin-bottom 0
+        border-bottom 1px $color-line solid
+        // 解决IE弹窗内筛选栏溢出问题
+        .form-box
+          .form-box-searchs
+            float none
+        // End 解决IE弹窗内筛选栏溢出问题
+      // 单独只有搜索栏时样式风格
+      &.dialog-data-list-theme-a
+        margin-bottom 0
+        &>.filter-box
+          border-bottom none
+/*End 弹窗中DataList列表样式*/
 
 /*移动端适配*/
 @media (max-width 780px)

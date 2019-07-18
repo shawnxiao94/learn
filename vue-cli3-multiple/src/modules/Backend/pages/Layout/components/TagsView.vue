@@ -1,6 +1,10 @@
 <template>
-  <div class="tag-view-wrapper" v-if="tagsView.visitedViews.length">
-    <div class="tagviews">
+  <div
+    class="tag-view-wrapper"
+    ref="tagViewWrapper"
+    v-if="tagsView.visitedViews.length"
+  >
+    <div class="tagviews" ref="tagviews">
       <el-tabs
         v-model="data.activeTabName"
         type="card"
@@ -36,6 +40,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { setTimeout } from 'timers'
 export default {
   data() {
     return {
@@ -200,9 +205,13 @@ export default {
     width 100%
     height 45px
     line-height 45px
+    position fixed
+    left 0
+    top 60px
+    z-index 80
     background-color $color-white
     box-sizing border-box
-    padding-right 10px
+    transition all .5s ease-in-out
     .el-tabs
       height 100%
       .el-tabs__content

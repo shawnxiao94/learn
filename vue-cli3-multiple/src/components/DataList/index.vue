@@ -106,9 +106,9 @@ export default {
   // 筛选蓝样式
   .filter-box
     background $color-white
-    padding 20px 20px 10px
+    padding 15px 15px 5px
     border-radius $radius-size-medium
-    margin-bottom 20px
+    margin-bottom 10px
     // box-shadow $box-shadow-content
     clearfix()
     // 排序组

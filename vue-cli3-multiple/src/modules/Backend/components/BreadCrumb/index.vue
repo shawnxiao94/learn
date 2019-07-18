@@ -4,6 +4,7 @@
     class="crumbs"
     v-if="crumbs.routerCrumbs.length > 1"
   >
+    <el-breadcrumb-item>当前位置：</el-breadcrumb-item>
     <el-breadcrumb-item
       v-for="item in crumbs.routerCrumbs"
       :key="item.path"
@@ -113,6 +114,7 @@ export default {
   padding 0 20px
   background-color $color-white
   font-weight normal
+  margin-bottom 10px
   .el-breadcrumb__item
     >>>.el-breadcrumb__inner
       font-weight normal
