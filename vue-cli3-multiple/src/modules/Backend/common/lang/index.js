@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueI18n from 'i18n'
-import storeF from 'dataF/store'
+import store from 'dataB/store'
 import enLocale from './en'
 import zhLocale from './zh'
 
@@ -15,7 +15,7 @@ const messages = {
   }
 }
 const i18n = new VueI18n({
-  locale: storeF.getters.app.language,
+  locale: store.getters.app.language,
   messages
 })
 

@@ -17,7 +17,7 @@ import responsiveLayout from 'commonF/responsiveLayout/index'
  */
 import Element from 'element-ui'
 // 翻译库
-import i18n from '@/common/lang'
+import i18n from './common/lang'
 
 /*
  * 样式相关
