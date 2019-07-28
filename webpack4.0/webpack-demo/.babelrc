@@ -1,0 +1,14 @@
+{
+  "presets": [
+    [
+      "babel/preset-env",{
+        "targets": {
+          "chrome": "67"
+        },
+        "useBuiltIns": "usage"
+      }
+    ],
+    // 打包前react语法编译下，再执行上面的ES6转ES5
+    "@babel/preset-react"
+  ]
+}
