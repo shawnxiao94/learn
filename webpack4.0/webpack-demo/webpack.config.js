@@ -128,7 +128,28 @@ module.exports = {
 	optimization: {
 		// 按需对引入方法或文件进行打包
 		// tree shaking只支持 ES module
-		usedExports: true
+		usedExports: true,
+		splitChunks: {
+			chunks: "async",
+			minSize: 30000,
+			minChunks: 1,
+			maxAsyncRequests: 5,
+			maxInitialRequests: 3,
+			automaticNameDelimiter: "~",
+			name: true,
+			cacheGroups: {
+				vendors: {
+					test: /[\\/]node_modules[\\/]/,
+					priority: -10
+				},
+				default: {
+					// cacheGroups重写继承配置，设为false不继承
+					minChunks: 2,
+					priority: -20,
+					reuseExistingChunk: true
+				}
+			}
+		}
 	},
 	// 输入配置
 	output: {

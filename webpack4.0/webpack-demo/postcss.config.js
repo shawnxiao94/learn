@@ -2,7 +2,9 @@
 // module.exports = {
 //   plugins:[
 //     require('autoprefixer')({
-//       browsers : ['last 100 versions'] //必须设置支持的浏览器才会自动添加前缀浏览器兼容
+//  // 必须设置支持的浏览器才会自动添加前缀浏览器兼容
+// // 兼容每个主流浏览器的最后10个版本
+//       browsers : ['last 10 versions'] 
 //     })
 //   ]
 // }
