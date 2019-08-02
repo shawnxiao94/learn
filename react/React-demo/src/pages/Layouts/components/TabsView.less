@@ -1,0 +1,28 @@
+/*
+ * 全局标签选项卡
+*/
+.tabs-view {
+  padding: 0 16px;
+  background: #fff;
+  border-top: 1px #ddd solid;
+  // 主体tabs面板
+  .ant-tabs-bar {
+    margin-bottom: 0;
+    .ant-tabs-tab {
+      border: none!important;
+      background: none!important;
+    }
+    .ant-tabs-tab-active {
+      &:after {
+        content: ' ';
+        display: block;
+        height: 2px;
+        background: #ccc;
+        position: absolute;
+        left:10px;
+        bottom:0;
+        right:10px;
+      }
+    }
+  }
+}

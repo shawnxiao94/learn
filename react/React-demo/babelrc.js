@@ -1,0 +1,24 @@
+/**
+ * babelrc 打包配置文件
+ */
+module.exports = {
+    presets: [
+        '@babel/preset-react',
+        [
+            '@babel/preset-env',
+            {
+                targets: {
+                    browsers: ['last 2 versions', 'ie > 8']
+                }
+            }
+        ]
+    ],
+    plugins: [
+        ['@babel/plugin-transform-runtime'],
+        ['@babel/plugin-proposal-decorators', { legacy: true }],
+        ['@babel/plugin-proposal-class-properties', { loose: true }],
+        ['@babel/plugin-proposal-object-rest-spread', { loose: true, useBuiltIns: true }],
+        ['@babel/plugin-syntax-dynamic-import'],
+        ['import', { libraryName: 'antd', style: true }]
+    ]
+}
