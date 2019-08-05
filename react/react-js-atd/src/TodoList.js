@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import 'antd/dist/antd.css';
 
 import store from './store'
-import { getInputChangeAction, getAddTodoAction, getDeleteTotoAction } from './store/actionCreators'
+import { getInputChangeAction, getAddTodoAction, getDeleteTotoAction, getTodoList } from './store/actionCreators'
 import TodoListUI from './TodoListUI';
 class TodoList extends Component {
   
@@ -28,6 +28,11 @@ class TodoList extends Component {
         handleItemDlete={this.handleItemDlete}
       />
     )
+  }
+
+  componentDidMount () {
+    const action = getTodoList();
+    store.dispatch(action)
   }
 
   handleInputChange(e) {
