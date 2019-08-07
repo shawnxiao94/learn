@@ -20,7 +20,7 @@ service.interceptors.request.use(
 // 响应拦截器
 service.interceptors.response.use(
   response => {
-    return Promise.reject(response)
+    return Promise.resolve(response)
   },
   error => {
     return Promise.reject(error)
