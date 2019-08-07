@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
 import { SidebarWrapper } from './style'
-// import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 
 class Sidebar extends PureComponent {
 	render() {
@@ -9,11 +9,11 @@ class Sidebar extends PureComponent {
 		return (
 			<SidebarWrapper>
         {
-          menuList.map((item, index) => (
-          <a key={index} href={item.get('path')} style={{display:"block",margin:"10px"}}>
-            {item.get('title')}
-          </a>          
-        ))          
+          menuList.map((item, index) => (        
+            <Link key={index} to={item.get('path')} style={{display:"block",margin:"10px"}}>
+              {item.get('title')}
+            </Link>          
+          ))          
         }
 			</SidebarWrapper>
 		)

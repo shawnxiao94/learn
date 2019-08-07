@@ -11,7 +11,7 @@ import Foot from './components/Foot'
 
 const Layout = () => {
   return (
-    <LayoutWrapper>
+    <LayoutWrapper> 
       <LeftWrapper>
         <Sidebar/>
       </LeftWrapper>
@@ -19,7 +19,7 @@ const Layout = () => {
         <Header/>
         <Main/>
         <Foot/>
-      </MainWrapper>      
+      </MainWrapper>  
     </LayoutWrapper>
   )
 }
