@@ -1,5 +1,6 @@
 import * as constants from './constants';
 import * as api from '@data/api/Login'
+import { setStorage } from '@common/utils/auth'
 
 const changeLogin = () => ({
 	type: constants.CHANGE_LOGIN,
@@ -14,8 +15,9 @@ export const logout = () => ({
 export const handelLogin = (accout, password) => {
   return dispatch => {
     api.checkLogin({accout, password}).then(res => {
-      if(res[0] === accout && res[1] === password) {
+      if(res[1].accout === accout && res[1].password === password) {
         dispatch(changeLogin())
+        setStorage('Admin-Token',res[0].TokenKey)
         console.log('登录成功')
       } else {
         alert('登录失败,admin/123')

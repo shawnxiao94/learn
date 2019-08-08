@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  withRouter
+} from 'react-router-dom';
 import { 
   LayoutWrapper,
   LeftWrapper,
@@ -24,4 +27,4 @@ const Layout = () => {
   )
 }
 
-export default Layout;
+export default withRouter(Layout);

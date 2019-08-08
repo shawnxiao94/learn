@@ -1,11 +1,25 @@
 import Loadable from 'react-loadable'
 import DelayLoading from '@/components/DelayLoading'
 
-const Home = Loadable({loader: () => import('@pages/Home'), loading: DelayLoading, delay:3000})
-const Login = Loadable({loader: () => import('@pages/Login'), loading: DelayLoading, delay:3000})
-const ErrorPage = Loadable({loader: () => import('@pages/ErrorPage'), loading: DelayLoading, delay:3000})
+const Home = Loadable({
+  loader: () => import('@pages/Home'),
+  loading: DelayLoading, delay:3000
+})
+const Login = Loadable({
+  loader: () => import('@pages/Login'),
+  loading: DelayLoading, delay:3000
+})
+const ErrorPage = Loadable({
+  loader: () => import('@pages/ErrorPage'),
+  loading: DelayLoading, delay:3000
+})
 
 export default [
+  {
+    redirectUrl: '/home',
+    exact: true,
+    path: '/'
+  },  
   {
     name: '首页',
     path: '/home',
@@ -33,10 +47,12 @@ export default [
     path: '/404',
     meta: {
       title: '找不到页面',
-      icon: '',
       hidden: false,
       cache: false
     },
+    component: ErrorPage
+  },
+  {
     component: ErrorPage
   }
 ]

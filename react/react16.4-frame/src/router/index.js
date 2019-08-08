@@ -4,30 +4,39 @@ import {
   Switch,
   Redirect
 } from 'react-router-dom';
-import routeArr from './config';
-import ErrorPage from '@pages/ErrorPage';
+import routers from './config';
+
+// 路由列表
+const routerList = routers.map((item, index) => {
+  const ComponentPage = item.component;
+  if(item.path) {
+    if(item.children && item.children.length) {
+      return <Route
+        exact={item.exact}
+        path={item.path}
+        render={(props) => {
+          return <ComponentPage {...props} routers={item.children}/>
+        }}
+        key={`page_${item.path}`}/>;
+    }
+    // {/* Redirect代表重定向，如果加了exact代表精准匹配 */}
+    return <Route
+      exact={item.exact}
+      path={item.path}
+      render={(props) => {
+        document.title = (item.meta && item.meta.title) || ''
+        return item.redirectUrl ? <Redirect to={item.redirectUrl} push /> : <ComponentPage {...props}/>;
+      }}
+      key={`page_${item.path}`}/>;
+  }
+  return <Route component={ComponentPage} key={`page_${index}`}></Route>;
+})
 
 const Routes = () => (
   <Fragment>
     {/* <Switch>是唯一的因为它仅仅只会渲染一个路径 */}
     <Switch>
-      {/* Redirect代表重定向，如果加了exact代表精准匹配 */}
-      <Redirect exact from="/" to="/home"></Redirect>
-      {
-        routeArr.map(item => (
-          <Route
-           path={item.path}
-           key={item.path}
-           exact 
-           render={(props) => {
-             document.title = item.meta.title
-             return <item.component {...props} path={item.path}></item.component>
-           }}
-          >
-          </Route>
-        ))
-      }
-      <Route component={ErrorPage} />
+      { routerList }
     </Switch>
   </Fragment>
 )

@@ -26,7 +26,7 @@ class Login extends PureComponent {
 
 const mapState = (state) => ({
   loginStatus: state.getIn(['login','loginStatus'])
-})
+});
 
 const mapDispatch = (dispatch) => ({
   handelClickLogin (accountElem, passwordElem) {
