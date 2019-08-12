@@ -6,6 +6,10 @@ const changeLogin = () => ({
 	type: constants.CHANGE_LOGIN,
 	status: true
 })
+const setPermission = (permission) => ({
+	type: constants.SET_PERMISSION,
+	permission: permission
+})
 
 export const logout = () => ({
 	type: constants.LOGOUT,
@@ -15,8 +19,9 @@ export const logout = () => ({
 export const handelLogin = (accout, password) => {
   return dispatch => {
     api.checkLogin({accout, password}).then(res => {
-      if(res[1].accout === accout && res[1].password === password) {
+      if(res[1].account === accout && res[1].password === password) {
         dispatch(changeLogin())
+        dispatch(setPermission(res[2]))
         setStorage('Admin-Token',res[0].TokenKey)
         console.log('登录成功')
       } else {

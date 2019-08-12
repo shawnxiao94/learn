@@ -1,27 +1,31 @@
 import React, { PureComponent } from 'react';
 import { connect } from 'react-redux';
-import { Redirect,withRouter } from 'react-router-dom';
-import Routes from '@router'
+import {
+  Redirect
+} from 'react-router-dom';
 import { MainWrapper } from './style'
+
+import { getRouterDoms } from '@router';
+
+
 
 class Main extends PureComponent {
 	render() {
-    const { loginStatus } = this.props
-    if(loginStatus) {
-      return (
-        <MainWrapper>
-          <Routes></Routes>
-        </MainWrapper>
-      )
-    } else {
-      return <Redirect to="/login" push/>
-      // this.props.history.push('/login');
+    const { routerPermissions } = this.props
+    const Routers = () => {
+      return getRouterDoms(routerPermissions)
     }
+		return (
+			<MainWrapper>
+        <Redirect from="/" to="/home"></Redirect>
+        <Routers/>
+			</MainWrapper>
+		)
 	}
 }
 
 const mapState = (state) => ({
-  loginStatus: state.getIn(['login','loginStatus'])
-});
+  routerPermissions: state.getIn(['login','routerPermissions'])
+})
 
-export default connect(mapState, null)(withRouter(Main));
+export default connect(mapState, null)(Main);

@@ -1,20 +1,20 @@
 import styled from 'styled-components';
 
 export const LoginWrapper = styled.div`
-	z-index: 0;
-	position: absolute;
-	left: 0;
-	right: 0;
-	bottom: 0;
-	top: 45px;
+	width:100%;
+  height:100vh;
+  background-color:#eee;
+  position:relative;
 `;
 
 export const LoginBox = styled.div`
 	width: 400px;
 	height: 180px;
-	margin: 200px auto;
-	padding-top: 20px;
 	background: #fff;
+  position:absolute;
+  left:50%;
+  top:50%;
+  transform:translate(-50%,-50%);
 	box-shadow: 0 0 8px rgba(0,0,0,.1);
 `;
 
