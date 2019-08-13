@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { actionCreators } from './store';
 import { LoginWrapper, LoginBox, Input, Button } from './style';
+import { getStorage } from '@common/utils/auth'
 
 class Login extends PureComponent {
 	render() {
@@ -20,7 +21,11 @@ class Login extends PureComponent {
     } else {
       return <Redirect to="/" push />  
     }
-	}
+  }
+  
+  componentWillMount () {
+    this.props.checkLoginStatus()
+  }
 
 }
 
@@ -29,6 +34,10 @@ const mapState = (state) => ({
 });
 
 const mapDispatch = (dispatch) => ({
+  checkLoginStatus () {
+    let token = getStorage()
+    dispatch(actionCreators.changeLogin(!!token))
+  },
   handelClickLogin (accountElem, passwordElem) {
     dispatch(actionCreators.handelLogin(accountElem.value,passwordElem.value))
   }

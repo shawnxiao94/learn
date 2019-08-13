@@ -26,3 +26,4 @@
  */
 
 import './Login'
+import './Permission'

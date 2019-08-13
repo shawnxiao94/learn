@@ -8,22 +8,8 @@ import {
   Switch,
 } from 'react-router-dom';
 import store from './store';
-// import Pages from '@pages'
-
-import Loadable from 'react-loadable'
-import DelayLoading from '@/components/DelayLoading'
-
 import Pages from '@pages'
-
-export const Login = Loadable({
-  loader: () => import('@pages/Login'),
-  loading: DelayLoading, delay:3000
-});
-const ErrorPage = Loadable({
-  loader: () => import('@pages/ErrorPage'),
-  loading: DelayLoading, delay:3000
-});
-
+import { Login, ErrorPage404, ErrorPage403 } from '@router/config'
 
 const App = () => {
   return (
@@ -35,8 +21,9 @@ const App = () => {
         <BrowserRouter>
           <Switch>
             <Route exact path="/login" component={Login} />
-            <Route exact path="/404" component={ErrorPage} />
             <Pages/>
+            <Route exact path='/403' component={ErrorPage403}/>
+            <Route component={ErrorPage404} />
           </Switch>
         </BrowserRouter>
       </Provider>

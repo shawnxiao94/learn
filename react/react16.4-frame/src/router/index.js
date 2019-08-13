@@ -15,8 +15,17 @@ function filterAsyncRouterMap (authRoutes,asyncRouter) {
 export function getRouterDoms (authRoutes) {
 // 登录后权限过滤后的路由
   const asyncFilterRouter = filterAsyncRouterMap(authRoutes, asyncRouterMap)
-
+  if(asyncFilterRouter.length < 1) {
+    return (
+      <Redirect from="/" to="/403"/>
+    )
+  }
   const list = [];
+  if(asyncFilterRouter.some(item => item.path === '/home')) {
+    list.push(<Redirect key="/redirect/home" from="/" to="/home"/>)
+  } else {
+    // list.push(<Redirect key={`/redirect${asyncFilterRouter[0].path}`} from="/" to={asyncFilterRouter[0].path}/>)
+  }
   asyncFilterRouter.forEach(item => {
     list.push(
       <Route
