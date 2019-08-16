@@ -1,9 +1,10 @@
 import { fromJS } from 'immutable';
 import * as constants from './constants';
+import { getStorage } from '@common/utils/auth.js'
 
 const defaultState = fromJS({
   // 登录状态
-  loginStatus: false
+  loginStatus: !!getStorage()
 });
 
 export default (state = defaultState, action) => {

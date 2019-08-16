@@ -1,34 +1,35 @@
-import React, { Fragment } from 'react';
-import { ResetStyle } from '@assets/style/common/reset.js';
-import { IconFont } from '@assets/iconfont/iconfont.js';
-import { Provider } from 'react-redux';
+import React, { PureComponent } from 'react';
 import {
   BrowserRouter,
   Route,
+  Redirect,
   Switch,
 } from 'react-router-dom';
-import store from './store';
-import Pages from '@pages'
-import { Login, ErrorPage404, ErrorPage403 } from '@router/config'
+import { connect } from 'react-redux';
+import Layouts from '@pages/Layouts'
+import { Login, NotFound, ErrorPage403 } from '@router/config'
+import PrivateRoute from '@components/PrivateRoute'
 
-const App = () => {
-  return (
-    <Fragment>
-      <ResetStyle/>
-      <IconFont/>
-      {/* Provider 连接组件与仓库 */}
-      <Provider store={store}>
-        <BrowserRouter>
-          <Switch>
-            <Route exact path="/login" component={Login} />
-            <Pages/>
-            <Route exact path='/403' component={ErrorPage403}/>
-            <Route component={ErrorPage404} />
-          </Switch>
-        </BrowserRouter>
-      </Provider>
-    </Fragment>
-  )
+class App extends PureComponent {
+  render () {
+    const { loginStatus } = this.props;
+    return (
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" render={() => <Redirect to="/app/home" push />} />
+          <Route path='/404' component={NotFound}/>
+          <Route path='/403' component={ErrorPage403}/>
+          <Route path="/login" component={Login} />
+          <PrivateRoute path="/" component={Layouts} auth={loginStatus}/>
+          <Route component={NotFound} />
+        </Switch>
+      </BrowserRouter>
+    )     
+  }
 }
 
-export default App;
+const mapState = (state) => ({
+	loginStatus: state.getIn(['login', 'loginStatus'])
+})
+
+export default connect(mapState, null)(App)

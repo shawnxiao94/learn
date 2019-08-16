@@ -6,7 +6,7 @@ const permission = {
     status: "scusess",
     data: [
       {
-        'routerPermissions': ['Home','News'],
+        'routerPermissions': ['Home','News','NewsDetail'],
         'btnPermissions': []
       }
     ],

@@ -1,9 +1,34 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import {
   Route,
+  Switch, 
   Redirect
 } from 'react-router-dom';
 import { asyncRouterMap } from './config';
+
+function getRoutDom (r) {
+  const ComponentPage = r.component
+  return (
+    <Route
+      key={r.path}
+      exact
+      path={r.path}
+      render={props => {
+        console.log(props)
+        // const { params } = props.match;
+        const merge = {
+          ...props,
+          query: {}
+        }
+        // 重新包装组件
+        const WrapperComponent = (
+          <ComponentPage {...merge} />
+        )
+        return WrapperComponent;
+      }}
+    />
+  )
+}
 
 function filterAsyncRouterMap (authRoutes,asyncRouter) {
   return asyncRouter.filter(item => {
@@ -11,66 +36,33 @@ function filterAsyncRouterMap (authRoutes,asyncRouter) {
   })  
 }
 
-// 依据角色权限路由得到路由DOM
-export function getRouterDoms (authRoutes) {
-// 登录后权限过滤后的路由
-  const asyncFilterRouter = filterAsyncRouterMap(authRoutes, asyncRouterMap)
-  if(asyncFilterRouter.length < 1) {
-    return (
-      <Redirect from="/" to="/403"/>
-    )
+const AuthRoute = (authRoutes) => {
+  const routeList = [];
+  function formatRouteDom (arr) {
+    arr.forEach(r => {
+      if(!r.component) {
+        return
+      }
+      routeList.push(getRoutDom(r))
+      if(r.children && r.children.length) {
+        formatRouteDom(r.children)
+      }
+    })
   }
-  const list = [];
-  if(asyncFilterRouter.some(item => item.path === '/home')) {
-    list.push(<Redirect key="/redirect/home" from="/" to="/home"/>)
-  } else {
-    // list.push(<Redirect key={`/redirect${asyncFilterRouter[0].path}`} from="/" to={asyncFilterRouter[0].path}/>)
-  }
-  asyncFilterRouter.forEach(item => {
-    list.push(
-      <Route
-        exact
-        path={item.path} 
-        key={item.path}
-        render={(props => {
-        const ComponentPage = item.component
-        return <ComponentPage {...props}/>
-      })} />
-    )
-  })
-  return list;
+  formatRouteDom(filterAsyncRouterMap(authRoutes, asyncRouterMap))
+  return routeList
 }
 
-// 路由dom列表
-function getRouterDomList(routers) {
-  const routerList = routers.map((item, index) => {
-    const ComponentPage = item.component;
-    if(item.path) {
-      if(item.children && item.children.length) {
-        return <Route
-          exact={item.exact}
-          path={item.path}
-          render={(props) => {
-            return <ComponentPage {...props} routers={item.children}/>
-          }}
-          key={`page_${item.path}`}/>;
+const CRouter = (props) => {
+  const { routes } = props
+  return (
+    <Switch>
+      {
+        AuthRoute(routes)
       }
-      // {/* Redirect代表重定向，如果加了exact代表精准匹配 */}
-      return <Route
-        exact={item.exact}
-        path={item.path}
-        render={(props) => {
-          document.title = (item.meta && item.meta.title) || ''
-          return item.redirectUrl ? <Redirect to={item.redirectUrl} push /> : <ComponentPage {...props}/>;
-        }}
-        key={`page_${item.path}`}/>;
-    }
-    return <Route component={ComponentPage} key={`page_${index}`}></Route>;
-  })
-  return () => (
-    <Fragment>
-      {/* <Switch>是唯一的因为它仅仅只会渲染一个路径 */}
-        { routerList }
-    </Fragment>
-  )
+      <Route render={() => <Redirect to="/404" />} />
+    </Switch>
+  )     
 }
+
+export default CRouter;
