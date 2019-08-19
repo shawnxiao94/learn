@@ -14,7 +14,6 @@ function getRoutDom (r) {
       exact
       path={r.path}
       render={props => {
-        console.log(props)
         // const { params } = props.match;
         const merge = {
           ...props,
