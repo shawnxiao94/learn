@@ -12,7 +12,13 @@ const defaultState = fromJS({
     },
     {
       path: '/app/news',
-      title: '新闻列表 '
+      title: '新闻列表 ',
+      children: [
+        {
+          path: '/app/detail',
+          title: '新闻详情 '
+        }
+      ]
     }
   ],
   // 权限按钮数组

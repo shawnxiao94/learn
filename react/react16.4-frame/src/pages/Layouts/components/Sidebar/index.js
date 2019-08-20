@@ -12,7 +12,7 @@ const getMenuItems = (menuTree) => {
     if(item.get('children')) {
       return (
         <SubMenu
-          key={`sub_${item.get('index')}`}>
+          key={`${item.get('path')}`}>
           getMenuItems(item.get('children'))
         </SubMenu>
       )
