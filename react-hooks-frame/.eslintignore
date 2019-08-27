@@ -1,0 +1,8 @@
+public/*.js
+config/*.js
+scripts/*.js
+.eslintrc.js
+/dist/
+/dll/
+/node_modules/
+/src/serviceWorker.js
