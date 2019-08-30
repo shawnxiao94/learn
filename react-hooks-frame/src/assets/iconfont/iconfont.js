@@ -1,4 +1,4 @@
-import { createGlobalStyle } from 'styled-components';
+import { createGlobalStyle } from 'styled-components'
 
 export const IconFont = createGlobalStyle`
   @font-face {
@@ -17,10 +17,4 @@ export const IconFont = createGlobalStyle`
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
-`;
-
-
-
-
-
-
+`

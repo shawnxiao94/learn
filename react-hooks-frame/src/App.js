@@ -1,26 +1,49 @@
-import React from 'react'
-import logo from './logo.svg'
-import './App.css'
+import React, { useState } from 'react'
+import PropTypes from 'prop-types'
+// import NProgress from 'nprogress'
+// import 'nprogress/nprogress.css'
+import {
+  HashRouter,
+  Route,
+  Redirect,
+  Switch
+} from 'react-router-dom'
+import { connect } from 'react-redux'
+import Layouts from '@pages/Layouts'
+import { Login, NotFound, ErrorPage403 } from '@router/config'
+import PrivateRoute from '@components/PrivateRoute'
 
-function App () {
+function App (props) {
+  // let currHref = ''
+  // const href = window.location.href
+  // if (currHref !== href) {
+  //   NProgress.start()
+  //   setTimeout(() => {
+  //     NProgress.done()
+  //     currHref = href
+  //   }, 3000)
+  // }
+  const { loginStatus } = props
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <HashRouter>
+      <Switch>
+        <Route exact path="/" render={() => <Redirect to="/app/home" push />} />
+        <Route path='/404' component={NotFound}/>
+        <Route path='/403' component={ErrorPage403}/>
+        <Route path="/login" component={Login} />
+        <PrivateRoute path="/" component={Layouts} auth={loginStatus}/>
+        <Route component={NotFound} />
+      </Switch>
+    </HashRouter>
   )
 }
 
-export default App
+const mapState = (state) => ({
+  loginStatus: state.getIn(['login', 'loginStatus'])
+})
+
+App.propTypes = {
+  loginStatus: PropTypes.bool.isRequired
+}
+
+export default connect(mapState, null)(App)

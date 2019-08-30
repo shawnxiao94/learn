@@ -1,6 +1,9 @@
-import { createGlobalStyle } from 'styled-components';
+/* eslint-disable no-tabs */
+import { createGlobalStyle } from 'styled-components'
 
+// eslint-disable-next-line no-irregular-whitespace
 // 注：在styled-component V4版本中injectGlobal API除去，取而代之的是createGlobalStyle样式组件。
+// eslint-disable-next-line no-irregular-whitespace
 // 也就是说以前的 injectGlobal 全局样式在V4版本代替为使用 createGlobalStyle 渲染组件的方式来使用全局样式
 
 export const ResetStyle = createGlobalStyle`
