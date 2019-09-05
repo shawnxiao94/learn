@@ -10265,7 +10265,7 @@ events.forEach(function (event) {
 
 /***/ }),
 
-/***/ 1:
+/***/ 0:
 /*!***************************************************************************************************************************************************!*\
   !*** multi next-client-pages-loader?page=%2F&absolutePagePath=F%3A%5Cvue-react-webpack-learn%5Clearn%5Creact%5CnextJS-project%5Cpages%5Cindex.js ***!
   \***************************************************************************************************************************************************/
@@ -10288,5 +10288,5 @@ module.exports = dll_01f9a3fa864a7b7414d8;
 
 /***/ })
 
-},[[1,"static/runtime/webpack.js"]]]);
+},[[0,"static/runtime/webpack.js"]]]);
 //# sourceMappingURL=index.js.map

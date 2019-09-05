@@ -88,7 +88,7 @@ module.exports =
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 5);
 /******/ })
 /************************************************************************/
 /******/ ({
@@ -151,15 +151,19 @@ var __jsx = react__WEBPACK_IMPORTED_MODULE_1___default.a.createElement;
 
 
 class MyCount extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
-  constructor(...args) {
-    super(...args);
+  constructor() {
+    super();
 
     Object(_babel_runtime_corejs2_helpers_esm_defineProperty__WEBPACK_IMPORTED_MODULE_0__["default"])(this, "state", {
       count: 0
     });
+
+    this.spanRef = react__WEBPACK_IMPORTED_MODULE_1___default.a.createRef();
+    this.h2Ref = react__WEBPACK_IMPORTED_MODULE_1___default.a.createRef();
   }
 
   componentDidMount() {
+    console.log(this.h2Ref.current, this.spanRef.current);
     this.interval = setInterval(() => {
       this.setState({
         count: this.state.count + 1
@@ -174,7 +178,11 @@ class MyCount extends react__WEBPACK_IMPORTED_MODULE_1__["Component"] {
   }
 
   render() {
-    return __jsx("div", null, __jsx("h2", null, "c page"), __jsx("span", null, this.state.count));
+    return __jsx("div", null, __jsx("h2", {
+      ref: this.h2Ref
+    }, "c page"), __jsx("span", {
+      ref: this.spanRef
+    }, this.state.count));
   }
 
 }
@@ -189,15 +197,18 @@ function MyCountFunc() {
     0: name,
     1: setName
   } = Object(react__WEBPACK_IMPORTED_MODULE_1__["useState"])('jokcy');
-  Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
-    const interval = setInterval(() => {
-      // setCount(c => c + 1)
-      dispatchCount({
-        type: 'minus'
-      });
-    }, 1000);
-    return () => clearInterval(interval);
-  }, []); // useEffect 第二个参数作用 => 没有第二个参数时会不断重复渲染，第二个参数为空数组时只渲染一次。第二个参数有依赖时则依据依赖的变量变化而渲染，变量未变化则不渲染
+  const inputRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
+  const spanRef = Object(react__WEBPACK_IMPORTED_MODULE_1__["useRef"])();
+  const config = Object(react__WEBPACK_IMPORTED_MODULE_1__["useMemo"])(() => ({
+    text: `count is ${count}`,
+    color: count > 3 ? 'red' : 'blue'
+  }), [count]); // useEffect(() => {
+  //   const interval = setInterval(() => {
+  //     // setCount(c => c + 1)
+  //     dispatchCount({ type: 'add'})
+  //   }, 1000)
+  //   return () => clearInterval(interval)
+  // }, []) // useEffect 第二个参数作用 => 没有第二个参数时会不断重复渲染，第二个参数为空数组时只渲染一次。第二个参数有依赖时则依据依赖的变量变化而渲染，变量未变化则不渲染
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useEffect"])(() => {
     console.log('effect invoked');
@@ -206,16 +217,27 @@ function MyCountFunc() {
 
   Object(react__WEBPACK_IMPORTED_MODULE_1__["useLayoutEffect"])(() => {
     console.log('layout effect invoked');
+    console.log(inputRef.current, spanRef.current);
     return () => console.log('layout effect deteched');
   }, [name]);
-  return __jsx("div", null, __jsx("h2", null, "c page MyCountFunc"), __jsx("span", null, count), __jsx("input", {
+  const handleButtonClick = Object(react__WEBPACK_IMPORTED_MODULE_1__["useCallback"])(() => dispatchCount({
+    type: 'add'
+  }), []); // const handleButtonClick  = useMemo( () => () => dispatchCount({type: 'add'}) ,[])
+
+  return __jsx("div", null, __jsx("h2", null, "c page MyCountFunc"), __jsx("span", {
+    ref: spanRef
+  }, count), __jsx("input", {
+    ref: inputRef,
     value: name,
     onChange: e => setName(e.target.value)
   }), __jsx("button", {
     onClick: () => dispatchCount({
       type: 'add'
     })
-  }, count));
+  }, count), __jsx(Child, {
+    config: config,
+    onButtonClick: handleButtonClick
+  }));
 }
 
 function CountReducer(state, action) {
@@ -229,13 +251,28 @@ function CountReducer(state, action) {
     default:
       return state;
   }
-}
+} // memo 用于优化子组件不重复渲染类似shouldComponentUpdate
+// useMemo 用于优化业务逻辑不重复渲染
+// useCallback和useMemo功能一样，只是它接收的参数为函数,是useMemo的简化用法
 
+
+const Child = Object(react__WEBPACK_IMPORTED_MODULE_1__["memo"])(function Child({
+  onButtonClick,
+  config
+}) {
+  console.log('child render');
+  return __jsx("button", {
+    onClick: onButtonClick,
+    style: {
+      color: config.color
+    }
+  }, config.text);
+});
 /* harmony default export */ __webpack_exports__["default"] = (MyCountFunc);
 
 /***/ }),
 
-/***/ 6:
+/***/ 5:
 /*!**************************!*\
   !*** multi ./pages/c.js ***!
   \**************************/
