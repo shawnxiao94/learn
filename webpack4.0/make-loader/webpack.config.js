@@ -5,7 +5,7 @@ module.exports = {
   entry: {
     main: "./src/index.js"
   },
-  // 配置loader全局变量
+  // 配置loader全局变量,自定义loader
   resolveLoader: {
     modules: ['node_modules', './loaders']
   },

@@ -1,0 +1,19 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        },
+        "corejs": "2",
+        // 设置了此项 在业务逻辑页面可以不引入@babel/poryfill
+        "useBuiltIns": "usage"
+      }
+    ],
+    // 能把react代码中浏览器不兼容ES6的语法转化为ES5的插件loader
+    "@babel/preset-react"
+  ],
+  // webpack默认是this指向模块本身，通过这个loader可以改变this指向
+  "plugins": ["@babel/plugin-syntax-dynamic-import"]
+}

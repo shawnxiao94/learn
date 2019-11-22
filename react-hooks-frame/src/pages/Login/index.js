@@ -1,4 +1,4 @@
-import React, { PureComponent } from 'react'
+import React from 'react'
 import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 import './index.css'
@@ -6,59 +6,57 @@ import { actionCreators } from './store'
 
 import { Form, Icon, Input, Button, Checkbox } from 'antd'
 
-class NormalLoginForm extends PureComponent {
-   handleSubmit = e => {
-     e.preventDefault()
-     this.props.form.validateFields((err, values) => {
-       if (!err) {
-         this.props.handelClickLogin(values, this.props.history)
-       }
-     })
-   }
+const NormalLoginForm = ({ form, history, handelClickLogin }) => {
+  const handleSubmit = e => {
+    e.preventDefault()
+    form.validateFields((err, values) => {
+      if (!err) {
+        handelClickLogin(values, history)
+      }
+    })
+  }
 
-   render () {
-     const { getFieldDecorator } = this.props.form
-     return (
-       <Form onSubmit={this.handleSubmit} className="login-form">
-         <Form.Item>
-           {getFieldDecorator('username', {
-             rules: [{ required: true, message: 'Please input your username!' }]
-           })(
-             <Input
-               prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
-               placeholder="账号"
-             />)}
-         </Form.Item>
-         <Form.Item>
-           {getFieldDecorator('password', {
-             rules: [{ required: true, message: 'Please input your Password!' }]
-           })(
-             <Input
-               prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
-               type="password"
-               placeholder="密码"
-             />)}
-         </Form.Item>
-         <Form.Item>
-           {getFieldDecorator('remember', {
-             valuePropName: 'checked',
-             initialValue: true
-           })(
-             <Checkbox>Remember me</Checkbox>)}
-           <a className="login-form-forgot" href="">
+  const { getFieldDecorator } = form
+  return (
+    <Form onSubmit={handleSubmit} className="login-form">
+      <Form.Item>
+        {getFieldDecorator('username', {
+          rules: [{ required: true, message: 'Please input your username!' }]
+        })(
+          <Input
+            prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            placeholder="账号"
+          />)}
+      </Form.Item>
+      <Form.Item>
+        {getFieldDecorator('password', {
+          rules: [{ required: true, message: 'Please input your Password!' }]
+        })(
+          <Input
+            prefix={<Icon type="lock" style={{ color: 'rgba(0,0,0,.25)' }} />}
+            type="password"
+            placeholder="密码"
+          />)}
+      </Form.Item>
+      <Form.Item>
+        {getFieldDecorator('remember', {
+          valuePropName: 'checked',
+          initialValue: true
+        })(
+          <Checkbox>Remember me</Checkbox>)}
+        <a className="login-form-forgot" href="">
               Forgot password
-           </a>
-           <Button
-             type="primary"
-             htmlType="submit"
-             className="login-form-button">
+        </a>
+        <Button
+          type="primary"
+          htmlType="submit"
+          className="login-form-button">
               登陆
-           </Button>
+        </Button>
             Or <a href="">register now!</a>
-         </Form.Item>
-       </Form>
-     )
-   }
+      </Form.Item>
+    </Form>
+  )
 }
 
 const mapDispatch = (dispatch) => ({
