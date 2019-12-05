@@ -1,14 +1,10 @@
-import React, { Component } from 'react';
-import ReactDom from 'react-dom';
+import React, { Component } from 'react'
 
-class App extends Component {
-	render() {
-		return (
-			<div>
-				<div>This is List Page</div>
-			</div>
-		)
-	}
+class List extends Component {
+
+  render() {
+    return <div>ListPage</div>
+  }
 }
 
-ReactDom.render(<App />, document.getElementById('root'));
+export default List

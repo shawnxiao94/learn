@@ -14,6 +14,10 @@
     // 能把react代码中浏览器不兼容ES6的语法转化为ES5的插件loader
     "@babel/preset-react"
   ],
-  // webpack默认是this指向模块本身，通过这个loader可以改变this指向
-  "plugins": ["@babel/plugin-syntax-dynamic-import"]
+  "plugins": [
+    // webpack默认是this指向模块本身，通过这个loader可以改变this指向
+    "@babel/plugin-syntax-dynamic-import"
+    // react-hot-loader在--hot基础上做了额外的处理，来保证状态可以存下来
+    // "react-hot-loader/babel"
+  ]
 }

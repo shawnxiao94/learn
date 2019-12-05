@@ -1,3 +1,4 @@
+const path = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge')
 const commonConfig = require('./webpack.common.js')
@@ -15,12 +16,16 @@ const devConfig = {
   devServer: {
      // 监听的文件目录
     contentBase: './dist',
+    // 非hash路由模式时解决刷新页面404问题，=> 重定向index.html页面
+    historyApiFallback: true,
     // 启动webpack-dev-server 时自动打开浏览器
     open: true,
     // proxy: [{
     //   context: ["/auth", "/api"], // 代理多个目标
     //   target: "http://localhost:3000",
     // }],
+    // 浏览器页面上显示错误
+    overlay: true,
     proxy: {
       // index: '', // 对根目录设置代理时需要将这个配置为''
       // '/api': 'http://localhost:8080/'
@@ -82,7 +87,8 @@ const devConfig = {
 						// 	]
 						// }
 					}
-        ]
+        ],
+        include: path.resolve(__dirname, '../src')
       },
       {
         test: /\.css$/,
@@ -92,7 +98,8 @@ const devConfig = {
           'css-loader',
           // postcss可以设置css浏览器厂商前缀
           'postcss-loader'
-        ]
+        ],
+        include: path.resolve(__dirname, '../src')
       }     
     ]
   },
@@ -109,4 +116,13 @@ const devConfig = {
 }
 
 // 导出合并公共配置与开发配置的配置
-module.exports = merge(commonConfig, devConfig)
+module.exports = () => {
+  const envList = require('../config/dev.env.js')
+  devConfig.plugins.push(
+    // 注入环境变量
+    new webpack.DefinePlugin({
+      'process.env.envList': envList
+    })		
+  )
+  return merge(commonConfig, devConfig)  
+}

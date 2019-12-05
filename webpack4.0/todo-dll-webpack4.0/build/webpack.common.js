@@ -7,11 +7,33 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 // 将JavaScript或者CSS资产添加到 HTML web pack插件生成的HTML中的插件
 const AddAssetHtmlWebpackPlugin = require('add-asset-html-webpack-plugin');
 const webpack = require('webpack');
+// 引入 多进程插件 happypack
+const HappyPack = require('happypack');
+const os = require('os');
+// cpu支持多少进程就执行多少进程
+// const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+// 创建 happypack 共享进程池，其中包含 6 个子进程
+const happyThreadPool = HappyPack.ThreadPool({ size: 6 });
 
 const makePlugins = (configs) => {
-	const plugins = [
+	const plugins = [       
     // 打包前会自动把输出目录下的文件全删除的插件
-		new CleanWebpackPlugin()
+    new CleanWebpackPlugin(),
+    new HappyPack({
+      /*
+        * 必须配置项
+        */
+      // id 标识符，要和 rules 中指定的 id 对应起来
+      id: 'happyBabelLoader',
+      // 需要使用的 loader，用法和 rules 中 Loader 配置一样
+      // 可以直接是字符串，也可以是对象形式
+      loaders: ['babel-loader'],
+      // 共享进程池threadPool: HappyThreadPool 代表共享进程池，
+      // 即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
+      threadPool: happyThreadPool,
+      //允许 HappyPack 输出日志
+      verbose: true,      
+    })    
   ];
   // 如果有多个入口文件则遍历通过HtmlWebpackPlugin插件把打包生成的JS插入到HTML中
 	Object.keys(configs.entry).forEach(item => {
@@ -20,7 +42,15 @@ const makePlugins = (configs) => {
 			new HtmlWebpackPlugin({
 				template: 'src/index.html',
 				filename: `${item}.html`,
-				chunks: ['runtime', 'vendors', item]
+        chunks: ['runtime', 'vendors', item],
+        minify: {
+          //移除HTML中的注释
+          removeComments: true,
+          //折叠空白区域 也就是压缩代码
+          collapseWhitespace: true,
+          //去除属性引用
+          removeAttributeQuotes: true
+        }
 			})
 		)
   });
@@ -43,7 +73,7 @@ const makePlugins = (configs) => {
 
 const configs = {
   entry: {
-    main: './src/main.js',
+    index: './src/main.js',
     // 如果有第二个页面则配置第二个入口
     // list: './src/list.js'
   },
@@ -63,19 +93,23 @@ const configs = {
         // 问号表示x可有可无
         test: /\.jsx?$/,
         // node_modules下的除外的JS 执行babel-loader进行ES6转es5
-        exclude: /node_modules/,
+        // exclude: /node_modules/,
         // 或者include直接指定执行babel-oader的目录
-        // include: path.resolve(__dirname, '../src'),        
-        use: [
+        include: path.resolve(__dirname, '../src'),    
+        // 之前单进程是使用这种方式直接使用loader    
+        // use: [
           // 解析es6转成es5
-          {
-            loader: 'babel-loader'
-          },
+          // {
+          //   loader: 'babel-loader'
+          // },
           // webpack默认是this指向模块本身，通过这个loader可以改变this指向 this=>window 指向window
           // {
-          //   loader: 'imports-loader?this=>window',
+            // loader: 'imports-loader?this=>window',
           // }          
-        ]
+        // ]
+        // 现在多进程则用下面的方式替换成 happypack/loader，并使用 id 指定创建的 HappyPack 插件
+        //把对.js or .jsx 的文件处理交给id为happyBabelLoader 的HappyPack 的实例执行
+        use: ['happypack/loader?id=happyBabelLoader']
       },
       {
         // 是图片文件时候 采用url-loader或file-loader 方案进行打包
@@ -90,9 +124,10 @@ const configs = {
             // 输出路径
             outputPath: 'images/',
             // 大小超过102400B即100kb打包成图片,小于的话打包成base64
-            limit: 102400,
+            limit: 102400
           },
         },
+        include: path.resolve(__dirname, '../src')
       },
       {
         // 是字体文件时 采用file-loader 方案进行打包
@@ -100,8 +135,15 @@ const configs = {
         use: {
           loader: 'file-loader',
           // 配置项
-          options: {},
-        }
+          options: {
+            name: '[name]-[hash:5].min.[ext]',
+            // fonts file size <= 5kb,use 'base64';else output svg file
+            limit: 5000,
+            publicPath: 'fonts/',
+            outputPath: 'fonts/'
+          },
+        },
+        include: path.resolve(__dirname, '../src')
       }      
     ]
 	},
@@ -130,7 +172,7 @@ const configs = {
       // automaticNameDelimiter: "~",
       // name: true,
       cacheGroups: {
-        // 一条规则对应一个打包组,vendors和default分别是一个组,
+        // 抽离第三方插件,一条规则对应一个打包组,vendors和default分别是一个组,
         // 符合匹配规则的代码块会打包到同一个组里
         vendors: {
           // 检测静态引入的依赖是否是这个目录下引入的,是则按这套规则打包
@@ -139,7 +181,7 @@ const configs = {
           priority: -10,
           // 给打包文件取名,好像不起作用
           // filename: 'vendors.js',
-          name: 'vendors', // 自定义打包文件名
+          name: 'vendors', // 自定义打包后的文件名
         },
         // default: {
         // 	// cacheGroups重写继承配置，设为false不继承
