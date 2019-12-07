@@ -6,8 +6,11 @@
         "targets": {
           "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
         },
+        // 此项也是按需引入polyfill的配置项
+        // corejs 替代@babel/polyfill
         "corejs": "2",
-        // 设置了此项 在业务逻辑页面可以不引入@babel/poryfill
+        // 设置了此项 在业务逻辑页面可以不引入@babel/polyfill
+        // 按需引入polyfill,es6转es5语法，减少体积
         "useBuiltIns": "usage"
       }
     ],

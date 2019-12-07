@@ -1,4 +1,12 @@
 $red: red;
-.hello {
-  color: $red
+.avatar{
+    height:100px;
+    width:150px;
+    transform:rotate(7deg)
 }
+  .hello {
+    color: $red
+  }
+  .all {
+    color: black;
+  }  

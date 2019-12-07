@@ -68,7 +68,7 @@ const devConfig = {
               // 在样式里如果嵌套引入了其他的样式文件时，继续引入下面的两个loader进行打包
               importLoaders: 2,
               // 开启css模块化,这样子，在哪个模块里导入css，css则对某个模块起作用，不会影响全局,可对样式进行分别作用
-              modules: true
+              // modules: true
             }
           },
           // 将 Sass 编译成 CSS，默认使用 Node Sass
@@ -88,7 +88,6 @@ const devConfig = {
 						// }
 					}
         ],
-        include: path.resolve(__dirname, '../src')
       },
       {
         test: /\.css$/,
@@ -99,7 +98,6 @@ const devConfig = {
           // postcss可以设置css浏览器厂商前缀
           'postcss-loader'
         ],
-        include: path.resolve(__dirname, '../src')
       }     
     ]
   },

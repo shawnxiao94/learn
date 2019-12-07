@@ -29,7 +29,7 @@ const prodConfig = {
             // 使@import导入的scss模块也能使用sass和postcss模块
             // 在样式里如果嵌套引入了其他的样式文件时，继续引入下面的两个loader进行打包            
             importLoaders: 2,
-            modules: true // 开启css模块化,这样子，在哪个模块里导入css，css则对某个模块起作用，不会影响全局
+            // modules: true // 开启css模块化,这样子，在哪个模块里导入css，css则对某个模块起作用，不会影响全局
 					}
 				},
 				'sass-loader',
@@ -63,12 +63,12 @@ const prodConfig = {
     new PurgecssPlugin ({
       //*.html 表示 src 文件夹下的所有 html 文件，还可以清除其它文件 *.js、*.php···
       //注意这里是 paths      
-			paths: glob.sync([
-				// 要做 CSS Tree Shaking 的路径文件
-				path.resolve(__dirname, '..', 'src/*.html'),
-				path.resolve(__dirname, '..', 'src/*.js'),
-				path.resolve(__dirname, '..', 'src/**/*.jsx')
-			])
+			// paths: glob.sync([
+			// 	// 要做 CSS Tree Shaking 的路径文件
+			// 	path.resolve(__dirname, '..', 'src/*.html'),
+			// 	path.resolve(__dirname, '..', 'src/*.js'),
+			// 	path.resolve(__dirname, '..', 'src/**/*.jsx')
+			// ])
 		}), 
 		new MiniCssExtractPlugin({
 			filename: '[name].css', // 打包后的html里直接引用的css走这个配置

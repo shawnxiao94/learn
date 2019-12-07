@@ -10,10 +10,10 @@ const webpack = require('webpack');
 // 引入 多进程插件 happypack
 const HappyPack = require('happypack');
 const os = require('os');
-// cpu支持多少进程就执行多少进程
-// const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
+// cpu几核就执行多少进程
+const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 // 创建 happypack 共享进程池，其中包含 6 个子进程
-const happyThreadPool = HappyPack.ThreadPool({ size: 6 });
+// const happyThreadPool = HappyPack.ThreadPool({ size: 6 });
 
 const makePlugins = (configs) => {
 	const plugins = [       
@@ -27,7 +27,18 @@ const makePlugins = (configs) => {
       id: 'happyBabelLoader',
       // 需要使用的 loader，用法和 rules 中 Loader 配置一样
       // 可以直接是字符串，也可以是对象形式
-      loaders: ['babel-loader'],
+      loaders: [
+        'babel-loader',
+        {
+          loader: 'eslint-loader',
+          // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
+          options: {
+            // 指定错误报告的格式规范,静态类型检测插件，传参类型，顺序，弱类型等
+            formatter: require('eslint-friendly-formatter')
+          },
+          include: [path.resolve(__dirname, 'src')], // 指定检查的目录
+        }
+      ],
       // 共享进程池threadPool: HappyThreadPool 代表共享进程池，
       // 即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
       threadPool: happyThreadPool,
@@ -113,7 +124,7 @@ const configs = {
       },
       {
         // 是图片文件时候 采用url-loader或file-loader 方案进行打包
-        test: /\.(jpg|png|gif)$/i,
+        test: /\.(jpe?g|png|gif)$/i,
         use: {
           // url-loader未配置大小时时会直接把图片以base64打包进JS内，不管文件大小
           loader: 'url-loader',
@@ -123,11 +134,10 @@ const configs = {
             name: '[name]_[hash].[ext]',
             // 输出路径
             outputPath: 'images/',
-            // 大小超过102400B即100kb打包成图片,小于的话打包成base64
-            limit: 102400
+            // 大小超过10240B即10kb打包成图片,小于的话打包成base64
+            limit: 10240
           },
-        },
-        include: path.resolve(__dirname, '../src')
+        }
       },
       {
         // 是字体文件时 采用file-loader 方案进行打包
@@ -142,8 +152,7 @@ const configs = {
             publicPath: 'fonts/',
             outputPath: 'fonts/'
           },
-        },
-        include: path.resolve(__dirname, '../src')
+        }
       }      
     ]
 	},
