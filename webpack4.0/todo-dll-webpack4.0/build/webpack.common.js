@@ -1,5 +1,5 @@
-const path = require('path')
-const fs = require('fs')
+const path = require('path');
+const fs = require('fs');
 // 生成HTML5文件的插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 // 新版本下是这样引入，且下面应用的时候不需要传参配置，自动会在你设置的输出的目录清理下面的文件
@@ -16,7 +16,7 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 // const happyThreadPool = HappyPack.ThreadPool({ size: 6 });
 
 const makePlugins = (configs) => {
-	const plugins = [       
+  const plugins = [
     // 打包前会自动把输出目录下的文件全删除的插件
     new CleanWebpackPlugin(),
     new HappyPack({
@@ -29,58 +29,53 @@ const makePlugins = (configs) => {
       // 可以直接是字符串，也可以是对象形式
       loaders: [
         'babel-loader',
-        {
-          loader: 'eslint-loader',
-          // 这里的配置项参数将会被传递到 eslint 的 CLIEngine 
-          options: {
-            // 指定错误报告的格式规范,静态类型检测插件，传参类型，顺序，弱类型等
-            formatter: require('eslint-friendly-formatter')
-          },
-          include: [path.resolve(__dirname, 'src')], // 指定检查的目录
-        }
+        // {
+        //   loader: 'eslint-loader',
+        //   include: [path.resolve(__dirname, 'src')] // 指定检查的目录
+        // }
       ],
       // 共享进程池threadPool: HappyThreadPool 代表共享进程池，
       // 即多个 HappyPack 实例都使用同一个共享进程池中的子进程去处理任务，以防止资源占用过多。
       threadPool: happyThreadPool,
-      //允许 HappyPack 输出日志
-      verbose: true,      
-    })    
+      // 允许 HappyPack 输出日志
+      verbose: true,
+    }),
   ];
   // 如果有多个入口文件则遍历通过HtmlWebpackPlugin插件把打包生成的JS插入到HTML中
-	Object.keys(configs.entry).forEach(item => {
-		plugins.push(
+  Object.keys(configs.entry).forEach(item => {
+    plugins.push(
       // 打包结束后会自动生成HTML5文件,并把打包生成的JS自动引入到HTML中的插件
-			new HtmlWebpackPlugin({
-				template: 'src/index.html',
-				filename: `${item}.html`,
+      new HtmlWebpackPlugin({
+        template: 'src/index.html',
+        filename: `${item}.html`,
         chunks: ['runtime', 'vendors', item],
         minify: {
-          //移除HTML中的注释
+          // 移除HTML中的注释
           removeComments: true,
-          //折叠空白区域 也就是压缩代码
+          // 折叠空白区域 也就是压缩代码
           collapseWhitespace: true,
-          //去除属性引用
-          removeAttributeQuotes: true
-        }
-			})
-		)
+          // 去除属性引用
+          removeAttributeQuotes: true,
+        },
+      }),
+    );
   });
   // 读取mainifest文件中的映射文件动态链接
-	const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
-	files.forEach(file => {
-		if(/.*\.dll.js/.test(file)) {
-			plugins.push(new AddAssetHtmlWebpackPlugin({
-				filepath: path.resolve(__dirname, '../dll', file)
-			}))
-		}
-		if(/.*\.manifest.json/.test(file)) {
-			plugins.push(new webpack.DllReferencePlugin({
-				manifest: path.resolve(__dirname, '../dll', file)
-			}))
-		}
-	});
-	return plugins;
-}
+  const files = fs.readdirSync(path.resolve(__dirname, '../dll'));
+  files.forEach(file => {
+    if (/.*\.dll.js/.test(file)) {
+      plugins.push(new AddAssetHtmlWebpackPlugin({
+        filepath: path.resolve(__dirname, '../dll', file),
+      }));
+    }
+    if (/.*\.manifest.json/.test(file)) {
+      plugins.push(new webpack.DllReferencePlugin({
+        manifest: path.resolve(__dirname, '../dll', file),
+      }));
+    }
+  });
+  return plugins;
+};
 
 const configs = {
   entry: {
@@ -95,10 +90,10 @@ const configs = {
     mainFiles: ['index', 'child'],
     alias: {
       // 配置别名
-      '@': path.resolve(__dirname, '../src')
-    }
+      '@': path.resolve(__dirname, '../src'),
+    },
   },
-	module: {
+  module: {
     rules: [
       {
         // 问号表示x可有可无
@@ -106,21 +101,21 @@ const configs = {
         // node_modules下的除外的JS 执行babel-loader进行ES6转es5
         // exclude: /node_modules/,
         // 或者include直接指定执行babel-oader的目录
-        include: path.resolve(__dirname, '../src'),    
-        // 之前单进程是使用这种方式直接使用loader    
+        include: path.resolve(__dirname, '../src'),
+        // 之前单进程是使用这种方式直接使用loader
         // use: [
-          // 解析es6转成es5
-          // {
-          //   loader: 'babel-loader'
-          // },
-          // webpack默认是this指向模块本身，通过这个loader可以改变this指向 this=>window 指向window
-          // {
-            // loader: 'imports-loader?this=>window',
-          // }          
+        // 解析es6转成es5
+        // {
+        //   loader: 'babel-loader'
+        // },
+        // webpack默认是this指向模块本身，通过这个loader可以改变this指向 this=>window 指向window
+        // {
+        // loader: 'imports-loader?this=>window',
+        // }
         // ]
         // 现在多进程则用下面的方式替换成 happypack/loader，并使用 id 指定创建的 HappyPack 插件
-        //把对.js or .jsx 的文件处理交给id为happyBabelLoader 的HappyPack 的实例执行
-        use: ['happypack/loader?id=happyBabelLoader']
+        // 把对.js or .jsx 的文件处理交给id为happyBabelLoader 的HappyPack 的实例执行
+        use: ['happypack/loader?id=happyBabelLoader'],
       },
       {
         // 是图片文件时候 采用url-loader或file-loader 方案进行打包
@@ -135,9 +130,9 @@ const configs = {
             // 输出路径
             outputPath: 'images/',
             // 大小超过10240B即10kb打包成图片,小于的话打包成base64
-            limit: 10240
+            limit: 10240,
           },
-        }
+        },
       },
       {
         // 是字体文件时 采用file-loader 方案进行打包
@@ -150,12 +145,12 @@ const configs = {
             // fonts file size <= 5kb,use 'base64';else output svg file
             limit: 5000,
             publicPath: 'fonts/',
-            outputPath: 'fonts/'
+            outputPath: 'fonts/',
           },
-        }
-      }      
-    ]
-	},
+        },
+      },
+    ],
+  },
   optimization: {
     runtimeChunk: {
       // 旧版本webpack打包时，如果输出文件名有[contenthash]也无法实现 文件没修改就不改变hash,
@@ -205,16 +200,16 @@ const configs = {
   },
   // 引入第三方库文件过大时编辑器控制台会报出黄色警告,
   // 这个配置可以关闭性能提示
-  performance: false,  
+  performance: false,
   output: {
     // publicPath: 'https://lib.baomitu.com',  // 如何需要引入js 的cdn地址可以使用这个配置
     // filename: '[name]_[hash:8].js',// 入口文件都走该配置项
     // chunkFilename: '[name].chunk.js',// 间接打包的文件走该配置
-    path: path.resolve(__dirname, '../dist')
-  }
-}
+    path: path.resolve(__dirname, '../dist'),
+  },
+};
 
 // 插件
 configs.plugins = makePlugins(configs);
 
-module.exports = configs
+module.exports = configs;
