@@ -16,4 +16,5 @@
 5.parserOptions里通过parser: "babel-eslint"配置指定babel-eslint为eslint解析器
 6.在settings和rules里自定义重新覆盖 extends: 'airbnb'的规则
 7.根目录新建.eslintignore文件配置指定文件或者文件夹不执行eslint规范校验
+8.vscode编辑器选择'文件'=>'首选项'=>'设置' 打开'settings.json'文件配置"eslint.autoFixOnSave": true 可以保存文件时自动按照.eslintrc.js里配置的规范进行自动修复。注意，settings.json里的配置项的优先级低于.eslintrc.js里的配置
 ```
