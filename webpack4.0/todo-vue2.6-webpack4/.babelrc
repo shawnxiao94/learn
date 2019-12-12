@@ -1,0 +1,18 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "targets": {
+          // 浏览器列表
+          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+        },
+        "corejs": "2",
+        "useBuiltIns": "usage"
+      }
+    ]
+  ],
+  "plugins": [
+    "@babel/plugin-syntax-dynamic-import"
+  ]
+}
