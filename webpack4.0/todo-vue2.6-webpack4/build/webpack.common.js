@@ -33,7 +33,7 @@ const makePlugins = (configs) => {
     }),
     new VueLoaderPlugin(),
     new CopyWebpackPlugin([{
-      from: path.resolve(__dirname, '../src/static'),
+      from: path.resolve(__dirname, '../public/static'),
       to: './static',
       ignore: ['.*']
     }])    
@@ -41,7 +41,7 @@ const makePlugins = (configs) => {
   Object.keys(configs.entry).forEach(item => {
     plugins.push(
       new HtmlWebpackPlugin({
-        template: 'src/index.html',
+        template: 'public/index.html',
         filename: `${item}.html`,
         chunks: ['runtime', 'vendors', item],
         minify: {
