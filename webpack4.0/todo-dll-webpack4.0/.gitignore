@@ -3,6 +3,8 @@ node_modules
 /dist
 /dll
 .zip
+stats.json
+.lock
 
 # local env files
 .env.local
