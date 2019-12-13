@@ -146,6 +146,12 @@ const configs = {
     ],
   },
   optimization: {
+    runtimeChunk: {
+      // 旧版本webpack打包时，如果输出文件名有[contenthash]也无法实现 文件没修改就不改变hash,
+      // 此时配置这个可以解决问题
+      // 兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
+      name: 'runtime',
+    },    
     usedExports: true,
     splitChunks: {
       chunks: 'all',
