@@ -49,7 +49,11 @@ const devConfig = {
     },
     hot: true,
     // 不会自动刷新页面,去掉此项后，文件变动会导致刷新页面
-    // hotOnly: true
+    // hotOnly: true,
+    // 端口号
+    // port: 3000,
+    progress: true, // 编译的进度条
+    compress: true // 自动压缩
   },
   module: {
     rules: [
@@ -71,8 +75,7 @@ const devConfig = {
               // modules: true
             },
           },
-          // 将 Sass 编译成 CSS，默认使用 Node Sass
-          'sass-loader',
+          //注意postcss-loader放置位置，应放在css-loader之后，sass|less|stylus-loader之前。
           // postcss可以设置css浏览器厂商前缀
           {
             loader: 'postcss-loader',
@@ -87,6 +90,8 @@ const devConfig = {
             // ]
             // }
           },
+          // 将 Sass 编译成 CSS，默认使用 Node Sass
+          'sass-loader',          
         ],
       },
       {

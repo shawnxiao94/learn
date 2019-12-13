@@ -15,6 +15,10 @@ const happyThreadPool = HappyPack.ThreadPool({ size: os.cpus().length });
 // 创建 happypack 共享进程池，其中包含 6 个子进程
 // const happyThreadPool = HappyPack.ThreadPool({ size: 6 });
 
+function resolve (dir) {
+  return path.join(__dirname, '..', dir)
+}
+
 const makePlugins = (configs) => {
   const plugins = [
     // 打包前会自动把输出目录下的文件全删除的插件
@@ -40,6 +44,9 @@ const makePlugins = (configs) => {
       // 允许 HappyPack 输出日志
       verbose: true,
     }),
+    // 让 moment.js 中的语言文件，按需加载。使用的时候配置即可。没有导入的语言文件不会被加载。
+    // 默认情况下，加载moment.js会导入全部的语言文件。
+    // new webpack.IgnorePlugin(/^\.\/locale$/, /moment$/),    
   ];
   // 如果有多个入口文件则遍历通过HtmlWebpackPlugin插件把打包生成的JS插入到HTML中
   Object.keys(configs.entry).forEach(item => {
@@ -85,12 +92,14 @@ const configs = {
   },
   resolve: {
     // 会先查询.js的存在与否,再查找.jsx
-    extensions: ['.js', '.jsx'],
+    //导入的时候不用写拓展名
+    extensions: [' ', '.js', '.jsx', '.json', '.vue', '.scss', '.css'],    
     // 不写的话也是默认index
     mainFiles: ['index', 'child'],
     alias: {
       // 配置别名
       '@': path.resolve(__dirname, '../src'),
+      'styles': resolve('src/assets/styles'),
     },
   },
   module: {
@@ -118,25 +127,40 @@ const configs = {
         use: ['happypack/loader?id=happyBabelLoader'],
       },
       {
+        test: /\.svg$/,
+        loader: 'svg-sprite-loader',
+        include: [resolve('src/assets/icons')],
+        options: {
+          symbolId: 'icon-[name]'//去掉svg这个图片加载不出来
+        }
+      },      
+      {
         // 是图片文件时候 采用url-loader或file-loader 方案进行打包
-        test: /\.(jpe?g|png|gif)$/i,
+        test: /\.(png|jpe?g|gif|svg)(\?.*)?$/,
         use: {
           // url-loader未配置大小时时会直接把图片以base64打包进JS内，不管文件大小
           loader: 'url-loader',
+          exclude: [resolve('src/assets/icons')], //这个不处理svg图片，因为我们独立拆开让svg-sprite-loader来处理了
           // 配置项
           options: {
             // 配置打包后的文件名称和后缀 => placeholder 占位符
-            name: '[name]_[hash].[ext]',
-            // 输出路径
-            outputPath: 'images/',
+            name: 'images/[name].[hash:7].[ext]', // 将图片都放入 images 文件夹下，[hash:7]防缓存
             // 大小超过10240B即10kb打包成图片,小于的话打包成base64
             limit: 10240,
           },
         },
       },
       {
+        test: /\.(mp4|webm|ogg|mp3|wav|flac|aac)(\?.*)?$/,
+        loader: 'url-loader',
+        options: {
+          limit: 10000,
+          name: 'media/[name].[hash:7].[ext]' // 媒体文件放入 media 文件夹下
+        }
+      },      
+      {
         // 是字体文件时 采用file-loader 方案进行打包
-        test: /\.(eot|svg|ttf|woff|woff2)$/,
+        test: /\.(woff2?|eot|ttf|otf)(\?.*)?$/,
         use: {
           loader: 'file-loader',
           // 配置项
@@ -155,6 +179,7 @@ const configs = {
     runtimeChunk: {
       // 旧版本webpack打包时，如果输出文件名有[contenthash]也无法实现 文件没修改就不改变hash,
       // 此时配置这个可以解决问题
+      // 兼容老版本webpack4，把manifest打包到runtime里，不影响业务代码和第三方模块
       name: 'runtime',
     },
     // 开启tree shaking过滤没用到的方法，tree shaking只支持 ES module,
@@ -201,12 +226,24 @@ const configs = {
   // 引入第三方库文件过大时编辑器控制台会报出黄色警告,
   // 这个配置可以关闭性能提示
   performance: false,
+  node: {
+    // prevent webpack from injecting useless setImmediate polyfill because Vue
+    // source contains it (although only uses it if it's native).
+    setImmediate: false,
+    // prevent webpack from injecting mocks to Node native modules
+    // that does not make sense for the client
+    dgram: 'empty',
+    fs: 'empty',
+    net: 'empty',
+    tls: 'empty',
+    child_process: 'empty'
+  },  
   output: {
     // publicPath: 'https://lib.baomitu.com',  // 如何需要引入js 的cdn地址可以使用这个配置
     // filename: '[name]_[hash:8].js',// 入口文件都走该配置项
     // chunkFilename: '[name].chunk.js',// 间接打包的文件走该配置
     path: path.resolve(__dirname, '../dist'),
-  },
+  }
 };
 
 // 插件

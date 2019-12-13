@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import avatar from "@/assets/images/test.JPG";
+import avatar from "@/assets/images/test.jpg";
 
 class Home extends Component {
   render() {

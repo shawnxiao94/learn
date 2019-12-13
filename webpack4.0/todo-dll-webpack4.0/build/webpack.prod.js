@@ -8,9 +8,6 @@ const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 // 静态资源输出插件
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-// 消除冗余的css插件
-const PurgecssPlugin = require('purgecss-webpack-plugin');
-const glob = require('glob-all');
 const merge = require('webpack-merge');
 const commonConfig = require('./webpack.common.js');
 
@@ -22,6 +19,8 @@ const prodConfig = {
     rules: [{
       test: /\.scss$/,
       use: [
+        // tree-shaking会默认移除 JavaScript 上下文中的未引用的代码，用来达到减轻重量的思想，tree-shaking通过 package.json 的 "sideEffects" 属性判定哪个文件具有副作用，
+        // 当 "sideEffects" ：false时，项目中未被引用到的文件会被移除判定均无副作用，就会把没有被引用的代码从环境中自动移除        
         MiniCssExtractPlugin.loader,
         {
           loader: 'css-loader',
@@ -32,8 +31,8 @@ const prodConfig = {
             // modules: true // 开启css模块化,这样子，在哪个模块里导入css，css则对某个模块起作用，不会影响全局
           },
         },
-        'sass-loader',
         'postcss-loader',
+        'sass-loader',
       ],
       include: path.resolve(__dirname, '../src'),
     }, {
@@ -59,17 +58,6 @@ const prodConfig = {
       to: './static',
       ignore: ['.*'],
     }]),
-    // 消除未使用的CSS--生产环境---csstree-shaking
-    new PurgecssPlugin({
-      //* .html 表示 src 文件夹下的所有 html 文件，还可以清除其它文件 *.js、*.php···
-      // 注意这里是 paths
-      paths: glob.sync([
-        // 要做 CSS Tree Shaking 的路径文件
-        path.resolve(__dirname, '..', 'src/*.html'),
-        path.resolve(__dirname, '..', 'src/*.js'),
-        path.resolve(__dirname, '..', 'src/**/*.jsx'),
-      ]),
-    }),
     new MiniCssExtractPlugin({
       filename: '[name].css', // 打包后的html里直接引用的css走这个配置
       chunkFilename: '[name].chunk.css', // 打包后的html里间接引用的css走这个配置

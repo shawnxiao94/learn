@@ -4,13 +4,17 @@
       "@babel/preset-env",
       {
         "targets": {
-          "browsers": ["> 1%", "last 2 versions", "not ie <= 8"]
+          "edge": "17",
+          "firefox": "60",
+          "chrome": "67",
+          "safari": "11.1"
         },
         // 此项也是按需引入polyfill的配置项
         // corejs 替代@babel/polyfill
         "corejs": "2",
         // 设置了此项 在业务逻辑页面可以不引入@babel/polyfill
-        // 按需引入polyfill,es6转es5语法，减少体积
+        // 按需引入polyfill,es6转es5语法，减少体积,
+        // 注意: @babel/polyfill 依然需要安装
         "useBuiltIns": "usage"
       }
     ],

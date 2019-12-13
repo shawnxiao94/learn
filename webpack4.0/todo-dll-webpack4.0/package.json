@@ -39,8 +39,6 @@
     "eslint-plugin-jsx-a11y": "^6.2.3",
     "eslint-plugin-react": "^7.17.0",
     "file-loader": "^5.0.2",
-    "glob": "^7.1.6",
-    "glob-all": "^3.1.0",
     "happypack": "^5.0.1",
     "html-webpack-plugin": "^3.2.0",
     "http-server": "^0.12.0",
@@ -49,9 +47,9 @@
     "node-sass": "^4.13.0",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "postcss-loader": "^3.0.0",
-    "purgecss-webpack-plugin": "^1.6.0",
     "sass-loader": "^8.0.0",
     "style-loader": "^1.0.1",
+    "svg-sprite-loader": "^4.1.6",
     "url-loader": "^3.0.0",
     "webpack": "^4.41.2",
     "webpack-cli": "^3.3.10",
@@ -60,6 +58,8 @@
     "workbox-webpack-plugin": "^4.3.1"
   },
   "dependencies": {
+    "@babel/polyfill": "^7.7.0",
+    "@babel/runtime": "^7.7.6",
     "@babel/runtime-corejs2": "^7.7.4",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
