@@ -1,5 +1,7 @@
-import Vue from 'vue'
-import App from './App.vue'
+import Vue from "vue";
+import App from "./App.vue";
+// 路由
+import router from "router";
 
 // PWA => 判断该浏览器支不支持 serviceWorker
 if (process.env.envList.NODE_ENV === "production") {
@@ -28,13 +30,13 @@ if (process.env.envList.NODE_ENV === "production") {
   console.log(process.env.NODE_ENV, process.env.envList);
 }
 
-
 // render
 new Vue({
-  // router,
+  router,
   // store,
   // i18n,
-  render(createElement) {
-    return createElement(App)
+  render (createElement) {
+    return createElement(App);
   }
-}).$mount('#app')
+}).$mount("#app")
+;
