@@ -1,0 +1,92 @@
+/* Element UI tag标签在table组件中撑开单元格浏览器兼容性问题修复*/
+.el-table
+  .el-tag
+    max-width 100%
+    overflow hidden
+    text-overflow ellipsis
+    white-space nowrap
+    vertical-align middle
+/* End Element UI tag标签在table组件中撑开单元格浏览器兼容性问题修复*/
+
+/* Element UI 标签组样式 */
+.el-tag-group
+  max-height 122px
+  overflow-y auto
+  // 在表单样式布局中，内居上5px
+  .el-form-item-box &
+    padding-top 5px
+  .el-tag
+    margin-bottom 10px
+    margin-right 10px
+/* End Element UI 标签组样式 */
+
+
+/*标签*/
+.el-tag
+  // 标签关闭样式优化
+  position relative
+  display inline-flex
+  align-items center
+  justify-content space-between
+  &.theme-style-a
+    padding-right 30px
+    .el-icon-close
+      position absolute
+      right 5px
+      top 50%
+      transform translateY(-50%)
+  &>.el-tag-name
+    flex 1
+    width 100%
+    display block
+    overflow hidden
+    white-space nowrap
+    text-overflow ellipsis
+  &>.el-tag-flex
+    width 100%
+    display flex
+    align-items center
+    justify-content space-between
+    .el-tag-flex-name
+      overflow hidden
+      white-space nowrap
+      text-overflow ellipsis
+      width 100%
+    .el-tag-flex-right
+      display flex
+      align-items center
+      padding-left 5px
+      flex 0 0 38px
+      .el-checkbox
+        cursor pointer
+        .el-checkbox__label
+          padding-left 5px
+  .el-tag__close
+    top 0
+    position relative
+  // 标签色系
+  &.theme-a
+    color $color-white
+    background $color-a
+    border-color $color-a
+  &.theme-b
+    color $color-white
+    background $color-b
+    border-color $color-b
+  &.theme-c
+    color $color-white
+    background $color-c
+    border-color $color-c
+  &.theme-d
+    color $color-white
+    background $color-d
+    border-color $color-d
+  &.theme-e
+    color $color-white
+    background $color-e
+    border-color $color-e
+  &.theme-f
+    color $color-white
+    background $color-f
+    border-color $color-f
+/*End 标签*/

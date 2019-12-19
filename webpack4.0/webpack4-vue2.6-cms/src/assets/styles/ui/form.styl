@@ -1,0 +1,102 @@
+/*Element UI form表单宽度*/
+.el-form-item-w-320
+  .el-input__inner
+    width 320px
+.el-form-item-w-280
+  .el-input__inner
+    width 280px
+.el-form-item-w-240
+  .el-input__inner
+    width 240px
+.el-form-item-w-200
+  .el-input__inner
+    width 200px
+.el-form-item-w-160
+  .el-input__inner
+    width 160px
+.el-form-item-w-120
+  .el-input__inner
+    width 120px
+/*
+* @see 手机端适配，表单
+*/
+@media (max-width 400px)
+  .el-form-item-w-320,.el-form-item-w-280,.el-form-item-w-240,.el-form-item-w-200,.el-form-item-w-160,.el-form-item-w-120
+    .el-input__inner
+      width 100%
+/*End Element UI form表单宽度*/
+
+/*Element UI el-date-picker*/
+.el-date-editor
+  width auto
+  display-flex()
+  .el-range-separator
+    width auto
+  // 行间距解决IE不能垂直居中问题
+  &.el-range-editor--mini
+    input,.el-range-input
+      line-height 20px
+  // 背景透明
+  &.el-date-picker-transparent
+    border none
+    background transparent
+    color $color-white
+    padding-right 0
+    .el-range__close-icon
+      color $color-white
+    .el-icon-date
+      color $color-white
+    input,.el-range-input
+      background transparent
+      color $color-white
+      font-size $fontsize-medium
+    .el-range-separator
+      color $color-white
+  // End 背景透明
+/*End Element UI el-date-picker*/
+
+/*Form 默认表单布局*/
+.form-layout
+  // 表单组样式
+  .form-layout-main
+    .el-form-item
+      // 加标题备注
+      .form-item-label-message
+        font-weight normal
+        color $color-03
+        font-size $fontsize-small
+        font-style normal
+      // 文本内容
+      .el-form-item-text
+        line-height 28px
+      // 增加底边距
+      margin-bottom 35px
+      // 所有表单宽度100%
+      .el-input,.el-select,.el-cascader
+        width 100%!important
+      .el-date-editor--daterange.el-input, .el-date-editor--daterange.el-input__inner, .el-date-editor--timerange.el-input, .el-date-editor--timerange.el-input__inner
+        width 100%!important
+    // 解决element组件form表单el-form-item__label浮动问题
+    .el-form-item-box
+      width 100%
+      clear both
+      .el-form-item
+        margin-bottom 0
+  // 按钮组样式
+  .form-layout-footer
+    margin 0px 0 15px
+/*End Form 默认表单布局*/
+/*Element UI 去掉表单验证通过绿色边框样式*/
+.el-form-item.is-success .el-input__inner, .el-form-item.is-success .el-textarea__inner
+  border-color #DCDFE6
+  &:hover
+    border-color #C0C4CC
+/*End Element UI 去掉表单验证通过绿色边框样式*/
+
+/*解决checkbox框不垂直居中问题*/
+.el-checkbox
+  display inline-flex!important
+  align-items center
+  .el-checkbox__inner
+    display block
+/*End 解决checkbox框不垂直居中问题*/

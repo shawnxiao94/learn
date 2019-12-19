@@ -1,0 +1,53 @@
+display-flex()
+  display flex
+  align-items center
+
+flex-fix()
+  flex 1
+  flex-basis 0.000000001px
+  width 1%
+
+clearfix()
+  &:after
+    visibility hidden
+    display block
+    font-size 0
+    content " "
+    clear both
+    height 0
+
+text-ellipsis()
+  overflow hidden
+  white-space nowrap
+  text-overflow ellipsis
+
+hide-scrollbar()
+  &::-webkit-scrollbar
+    width: 0
+    height: 0
+
+bg-image($url, $ext = ".png")
+  background-image url($url + "@2x" + $ext)
+  @media (min-resolution 3dppx)
+    background-image url($url + "@3x" + $ext)
+
+functions = constant env
+safe-area-fn(fn, position)
+  s("%s(safe-area-inset-%s)", fn, position)
+safe-area-mixin(property, position, important = false)
+  for fn in functions
+    {property} safe-area-fn(fn, position) important == true ? !important : unquote("")
+
+// 容器宽高等边、正方体
+square-box()
+  width 100%
+  background #ccc
+  position relative
+  &:after
+    visibility hidden
+    display block
+    font-size 0
+    content " "
+    clear both
+    height 0
+    padding-top 100%

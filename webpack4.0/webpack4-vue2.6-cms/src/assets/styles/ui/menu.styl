@@ -1,0 +1,71 @@
+// 菜单样式
+
+// 顶部导航菜单
+.nav-menu
+  width 100%
+  .el-menu--horizontal
+    background-color transparent
+    color $color-white
+    .el-submenu
+      color $color-white
+      .el-submenu__title
+        color $color-white
+        border-bottom 2px solid transparent
+        i 
+          color $color-white
+        &:hover
+          background-color transparent
+      &.is-active
+        .el-submenu__title
+          background-color $color-n
+    .el-menu-item
+      color $color-white
+      &:hover
+        background-color $color-n
+        color $color-white
+      &:focus
+        background-color $color-n
+        color $color-white
+      &.is-active
+        background-color $color-n
+        color $color-white
+        border-bottom 2px solid transparent
+// 多级菜单子浮窗
+.el-menu--horizontal
+  background-color transparent
+  .el-menu--popup
+    background-color $color-n
+    min-width 130px
+    color $color-white
+    .el-menu-item
+      background-color transparent
+      color $color-white
+      &.is-active
+        color $color-white
+        background-color $color-n
+        border-bottom 2px solid transparent
+      &:not(.is-disabled)
+        color $color-white
+    .el-submenu
+      color $color-white
+      .el-submenu__title
+        background-color transparent
+        color $color-white
+        i  
+          color $color-white
+      &.is-active
+        .el-submenu__title
+          background-color transparent
+          color $color-white
+          i 
+            color $color-white
+      .el-menu--popup
+        padding 2px 0
+        .el-menu-item
+          min-width 130px
+      .el-menu-item
+        &:hover
+          background-color $color-n
+          color $color-white
+        &:focus
+          color $color-white

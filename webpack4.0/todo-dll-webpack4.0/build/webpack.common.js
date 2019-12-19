@@ -102,6 +102,10 @@ const configs = {
       'styles': resolve('src/assets/styles'),
     },
   },
+  // cdn引入的资源不打包进buundle.js
+  // externals : {
+  //   react: 'react'
+  // },
   module: {
     rules: [
       {

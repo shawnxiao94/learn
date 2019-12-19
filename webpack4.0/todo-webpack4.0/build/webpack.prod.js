@@ -1,6 +1,6 @@
 // 抽离css文件插件
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
-// 压缩css文件插件
+// 压缩去重css文件插件
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const WorkboxPlugin = require('workbox-webpack-plugin');
 
@@ -82,5 +82,4 @@ const prodConfig = {
   },
 };
 
-module.exports = prodConfig
-;
+module.exports = prodConfig;
