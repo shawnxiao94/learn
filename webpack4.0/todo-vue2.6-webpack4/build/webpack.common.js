@@ -152,6 +152,7 @@ const configs = {
     ]
   },
   optimization: {
+    sideEffects: false,
     runtimeChunk: {
       // 旧版本webpack打包时，如果输出文件名有[contenthash]也无法实现 文件没修改就不改变hash,
       // 此时配置这个可以解决问题
