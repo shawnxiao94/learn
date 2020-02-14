@@ -1,6 +1,13 @@
+/*
+ * @Author: your name
+ * @Date: 2019-08-20 14:08:08
+ * @LastEditTime : 2020-01-17 10:22:49
+ * @LastEditors  : Please set LastEditors
+ * @Description: In User Settings Edit
+ * @FilePath: \react-train-ticket\src\index.js
+ */
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 

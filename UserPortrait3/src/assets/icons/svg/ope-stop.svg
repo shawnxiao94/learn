@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="14px" height="14px" viewBox="0 0 14 14" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <defs></defs>
+    <g id="活动管理" stroke="none" stroke-width="1" fill-rule="evenodd">
+        <g id="活动列表" transform="translate(-1743.000000, -387.000000)">
+            <g id="Group-3" transform="translate(1730.000000, 312.000000)">
+                <g id="结束" transform="translate(14.000000, 76.000000)">
+                    <g id="停止">
+                        <path d="M6,0 C2.68635,0 0,2.68635 0,6 C0,9.31365 2.68635,12 6,12 C9.31365,12 12,9.31365 12,6 C12,2.68635 9.31365,0 6,0 Z M6,11.4 C3.0225,11.4 0.6,8.9775 0.6,6 C0.6,3.0225 3.0225,0.6 6,0.6 C8.9775,0.6 11.4,3.0225 11.4,6 C11.4,8.9775 8.9775,11.4 6,11.4 Z M3.6,8.4 L8.4,8.4 L8.4,3.6 L3.6,3.6 L3.6,8.4 Z M4.2,4.2 L7.8,4.2 L7.8,7.8 L4.2,7.8 L4.2,4.2 Z" id="Shape"></path>
+                    </g>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

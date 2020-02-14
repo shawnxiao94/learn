@@ -1,0 +1,31 @@
+body{
+  .ant-cascader-menu{
+    height: 192px;
+    overflow-y: auto;
+    /**
+    * 改变select-dropdown竖向滚动条样式
+    */
+    &::-webkit-scrollbar{
+      width: 5px;
+    }
+    &:hover::-webkit-scrollbar-thumb {
+      border-radius: 5px;
+      background: @c-gray-charts-bg;
+    }
+    &:hover::-webkit-scrollbar-track {
+      -webkit-box-shadow: 0;
+      box-shadow: 0;
+      border-radius: 0;
+      // background: @component-background;
+    }
+    .ant-cascader-menu-item-active{
+      color: @c-blue-6;
+    }
+    .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled), 
+    .ant-cascader-menu-item-active:not(.ant-cascader-menu-item-disabled):hover, 
+    .ant-cascader-menu-item:hover {
+      color: @c-blue-6;
+      background-color: #24262c;
+    }
+  }
+}

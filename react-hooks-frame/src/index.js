@@ -4,6 +4,7 @@ import ReactDOM from 'react-dom'
 // import zhCN from 'antd/es/locale/zh_CN'
 import 'moment/locale/zh-cn'
 import 'antd/dist/antd.css'
+
 import { ResetStyle } from '@assets/style/common/reset.js'
 import { IconFont } from '@assets/iconfont/iconfont.js'
 import { Provider } from 'react-redux'

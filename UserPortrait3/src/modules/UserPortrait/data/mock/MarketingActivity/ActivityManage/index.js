@@ -1,0 +1,223 @@
+/**
+ * 活动管理列表 前端MOCK 数据仓库
+ */
+import Mock from 'mockjs'
+const getFindByMarketPage = {
+  'ErrorCode': 0,
+  'Result': {
+    'data': {
+      'number': 1,
+      'last': true,
+      'numberOfElements': 5,
+      'size': 5,
+      'totalPages': 2,
+      'content': [{
+        'filePath': 'ftp://172.16.10.155/activityFile/01to05/算法测试活动主活动_226.csv',
+        'markStartTime': 1567612800000,
+        'markEndTime': 1572364800000,
+        'parentId': 0,
+        'userGroupId': 0,
+        'createBy': '测试',
+        'children': [{
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567672876000,
+          'markName': '乘用车 算法型子活动5',
+          'filePath': 'ftp://172.16.10.155/activityFile/01to05/乘用车算法型子活动5_228.csv.encrypt',
+          'markStartTime': 1567612800000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 228,
+          'markEndTime': 1572278400000,
+          'fileBuildStatus': '2',
+          'parentId': 226,
+          'status': '1'
+        }, {
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567672827000,
+          'markName': '车享家算法子活动5',
+          'filePath': '',
+          'markStartTime': 1567612800000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 227,
+          'markEndTime': 1572278400000,
+          'fileBuildStatus': '2',
+          'parentId': 226,
+          'status': '1'
+        }],
+        'createTime': 1567672794000,
+        'markName': '算法测试活动主活动',
+        'markChannel': '10001,10002,10003,10004,10005',
+        'id': 226,
+        'fileBuildStatus': '1',
+        'status': '1'
+      }, {
+        'filePath': '',
+        'markStartTime': 1567612800000,
+        'markEndTime': 1572364800000,
+        'parentId': 0,
+        'userGroupId': 0,
+        'createBy': '测试',
+        'children': [{
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567648261000,
+          'markName': '车享家算法子活动4',
+          'filePath': '',
+          'markStartTime': 1567612800000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 225,
+          'markEndTime': 1572278400000,
+          'fileBuildStatus': '',
+          'parentId': 223,
+          'status': '1'
+        }, {
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567648207000,
+          'markName': '乘用车算法型子活动',
+          'filePath': '',
+          'markStartTime': 1567612800000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 224,
+          'markEndTime': 1572364800000,
+          'fileBuildStatus': '',
+          'parentId': 223,
+          'status': '1'
+        }],
+        'createTime': 1567648151000,
+        'markName': ' 算法测试活动主活动4',
+        'markChannel': '10001,10002,10003,10004,10005',
+        'id': 223,
+        'fileBuildStatus': '2',
+        'status': '1'
+      }, {
+        'filePath': 'ftp://172.16.10.155/activityFile/01to05/算法测试活动主活动3_220.csv',
+        'markStartTime': 1567526400000,
+        'markEndTime': 1572364800000,
+        'parentId': 0,
+        'userGroupId': 0,
+        'createBy': '测试',
+        'children': [{
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567590092000,
+          'markName': '乘用车算法型子活动3',
+          'filePath': 'ftp://172.16.10.155/activityFile/01to05/乘用车算法型子活动3_222.csv',
+          'markStartTime': 1567526400000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 222,
+          'markEndTime': 1572364800000,
+          'fileBuildStatus': '1',
+          'parentId': 220,
+          'status': '1'
+        }, {
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567590048000,
+          'markName': '车享家算法子活动3',
+          'filePath': 'ftp://172.16.10.155/activityFile/01to05/车享家算法子活动3_221.csv',
+          'markStartTime': 1567526400000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 221,
+          'markEndTime': 1572278400000,
+          'fileBuildStatus': '1',
+          'parentId': 220,
+          'status': '1'
+        }],
+        'createTime': 1567590002000,
+        'markName': '算法测试活动主活动3',
+        'markChannel': '10001,10002,10003,10004,10005',
+        'id': 220,
+        'fileBuildStatus': '1',
+        'status': '1'
+      }, {
+        'filePath': '',
+        'markStartTime': 1567526400000,
+        'markEndTime': 1569772800000,
+        'parentId': 0,
+        'userGroupId': 0,
+        'createBy': '测试',
+        'children': [{
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567582653000,
+          'markName': '乘用车 算法型子活动',
+          'filePath': 'ftp://172.16.10.155/activityFile/01to05/乘用车算法型子活动_219.csv',
+          'markStartTime': 1567526400000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 219,
+          'markEndTime': 1569772800000,
+          'fileBuildStatus': '1',
+          'parentId': 217,
+          'status': '0'
+        }, {
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567582649000,
+          'markName': '车享家算法子活动2',
+          'filePath': '',
+          'markStartTime': 1567526400000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 218,
+          'markEndTime': 1569772800000,
+          'fileBuildStatus': '',
+          'parentId': 217,
+          'status': '0'
+        }],
+        'createTime': 1567582609000,
+        'markName': '算法测试活动主活动2',
+        'markChannel': '10002,10001,10003,10004,10005',
+        'id': 217,
+        'fileBuildStatus': '',
+        'status': '0'
+      }, {
+        'filePath': 'ftp://172.16.10.155/activityFile/01to05/算法型主活动_214.csv',
+        'markStartTime': 1567440000000,
+        'markEndTime': 1572451200000,
+        'parentId': 0,
+        'userGroupId': 0,
+        'createBy': '测试',
+        'children': [{
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567487674000,
+          'markName': '乘用车 算法子活动',
+          'filePath': '',
+          'markStartTime': 1567440000000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 215,
+          'markEndTime': 1572451200000,
+          'fileBuildStatus': '',
+          'parentId': 214,
+          'status': '0'
+        }, {
+          'userGroupId': 0,
+          'createBy': '测试',
+          'createTime': 1567487674000,
+          'markName': '车享家 测试算法子活动',
+          'filePath': '',
+          'markStartTime': 1567440000000,
+          'markChannel': '10001,10002,10003,10004,10005',
+          'id': 216,
+          'markEndTime': 1569772800000,
+          'fileBuildStatus': '',
+          'parentId': 214,
+          'status': '0'
+        }],
+        'createTime': 1567487526000,
+        'markName': '算法型主活动',
+        'markChannel': '10001,10002,10003,10004,10005',
+        'id': 214,
+        'fileBuildStatus': '1',
+        'status': '1'
+      }],
+      'first': false,
+      'totalElements': 10
+    },
+    'errCode': 0,
+    'errMsg': 'ok'
+  }
+}
+
+Mock.mock(/\/ActivityMarketOpenService\/findByMarketPage/, getFindByMarketPage)

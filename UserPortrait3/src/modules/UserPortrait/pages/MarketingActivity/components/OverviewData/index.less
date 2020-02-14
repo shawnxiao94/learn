@@ -1,0 +1,21 @@
+.overview-data {
+  display: flex;
+  & > div {
+    width: 20%;
+    padding: 0 8px;
+    &:first-child {
+      padding-left: 0;
+    }
+    &:last-child {
+      padding-right: 0;
+      .ant-card {
+        height: 100%;
+        display: flex;
+        .ant-card-body{
+          display: flex;
+          align-items: center;
+        }
+      }
+    }
+  }
+}

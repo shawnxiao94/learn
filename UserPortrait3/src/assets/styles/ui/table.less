@@ -1,0 +1,40 @@
+/**
+ * 去除表格鼠标滑过hover背景颜色
+ */
+.w-table-hover-none {
+  .ant-table-thead > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr.ant-table-row-hover:not(.ant-table-expanded-row) > td, .ant-table-thead > tr:hover:not(.ant-table-expanded-row) > td, .ant-table-tbody > tr:hover:not(.ant-table-expanded-row) > td{
+    background: transparent!important;
+  }
+}
+/**
+ * 含表格的table组件
+ */
+.w-table-form {
+  .ant-form-item {
+    margin-bottom: 0;
+  }
+}
+
+.ant-table-row{
+  .ant-table-row-expand-icon {
+    border: none;
+    background: transparent;
+    transition: .3s;
+    display: inline-block;
+    vertical-align: middle;
+    &:hover {
+      opacity: .7;
+    }
+    &:after {
+      content: ' ';
+      display: inline-block;
+      background: url(../../images/common/collapsed.png);
+      transition: .3s;
+      width: 14px;
+      height: 14px;
+    }
+  }
+  .ant-table-row-expanded:after {
+    transform: rotate(90deg);
+  }
+}

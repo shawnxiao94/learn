@@ -1,0 +1,55 @@
+@import '../color/color.less';
+/**
+ * 新增卡片样式
+ * @merge ant design card style
+ */
+/*
+ * 风格一
+ * 标题栏右侧可支持表单控件
+ */
+.w-theme-a-card {
+  /**
+    * head右侧减少行间距，以便放入表单控件
+    */
+  .ant-card-extra {
+    padding: 12px 0;
+  }
+}
+.ant-card {
+  .ant-card-head {
+    .ant-card-extra {
+      color: @c-gray-6;
+    }
+    .ant-tabs {
+      color: @c-gray-6;
+    }
+  }
+  .ant-card-body {
+    /*
+    * 当卡片里带表格时布局
+    */
+    .table-group {
+      .ant-table-pagination {
+        margin-bottom: 0;
+      }
+    }
+    /**
+    * 改变table增加fixed属性横向滚动条样式
+    */
+    .ant-table-body {
+      &::-webkit-scrollbar{
+        height: 5px;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: @c-gray-charts-bg;
+      }
+      &:hover::-webkit-scrollbar-track {
+        -webkit-box-shadow: 0;
+        box-shadow: 0;
+        border-radius: 0;
+        background: @component-background;
+      }
+    }
+  }
+}

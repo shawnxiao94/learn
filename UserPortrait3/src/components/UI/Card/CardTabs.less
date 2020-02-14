@@ -1,0 +1,35 @@
+/**
+ * 带Tabs的卡片
+ */
+.w-card-tabs {
+  .w-card-tabs-extra {
+    position: absolute;
+    display: flex;
+    right: 24px;
+    height: 57px;
+    top: 0;
+    z-index: 1;
+    .ant-tabs {
+      margin-bottom: 0;
+      .ant-tabs-tab {
+        padding: 12px 8px;
+        margin-right: 16px;
+        &:last-child {
+          margin-right: 0;
+        }
+      }
+    }
+    .ant-tabs-bar {
+      border-bottom: none;
+      margin-bottom: 0;
+      .ant-tabs-nav-container {
+        line-height: 34px;
+      }
+    }
+    & > span {
+      display: flex;
+      align-items: center;
+      margin-left: 15px;
+    }
+  }
+}

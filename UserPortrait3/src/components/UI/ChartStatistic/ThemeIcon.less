@@ -1,0 +1,25 @@
+.c-chart-icon-wrapper {
+  display: flex;
+  .c-chart-icon-wrapper-left {
+    width: 52px;
+    display: flex;
+    align-items: center;
+    margin-right: 10px;
+    .svg-class {
+      font-size: 52px;
+    }
+  }
+  .c-chart-icon-wrapper-right {
+    flex: 1;
+    .sub-number {
+      & > div {
+        display: inline-block;
+        width: 50%;
+        font-size: 13px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+/*
+ * 筛选框
+ */
+.search-bar {
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+  margin-top: -6px;
+  margin-bottom: 10px;
+  &.search-bar-padding-none {
+    margin: 0;
+  }
+  .search-bar-left {
+    text-align: left;
+  }
+  .search-bar-right {
+    text-align: right;
+    .ant-form-inline .ant-form-item {
+      margin-right: 0;
+      margin-left: 16px;
+      text-align: left;
+    }
+  }
+  &.search-bar-no-flex {
+    display: inline-block;
+  }
+  .ant-form-item {
+    margin-top: 6px;
+    margin-bottom: 6px;
+  }
+}

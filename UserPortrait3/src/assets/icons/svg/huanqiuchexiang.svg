@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="46px" height="46px" viewBox="0 0 46 46" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <defs></defs>
+    <g id="环球logl" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Group-13">
+            <g id="Group-21" fill="#14B5C8">
+                <circle id="Oval-2" cx="23" cy="23" r="23"></circle>
+            </g>
+            <g id="Group" transform="translate(11.000000, 7.000000)" fill-rule="nonzero" stroke="#FFFFFF" stroke-width="2">
+                <path d="M5.27504322,24.5343582 C2.18251248,23.3095426 0,20.3343574 0,16.8585366 C0,12.2893906 3.77148211,8.58536585 8.42384106,8.58536585 C13.0762,8.58536585 16.8476821,12.2893906 16.8476821,16.8585366 C16.8476821,20.2623609 14.7546483,23.1860747 11.7636279,24.4560056 L8.79525031,31.7131108 C8.76321333,31.791435 8.70104742,31.8536009 8.62272324,31.8856379 C8.46148976,31.9515873 8.27732162,31.8743443 8.21137221,31.7131108 L5.27504322,24.5343582 Z" id="Combined-Shape"></path>
+                <polyline id="Path-6" stroke-linecap="round" points="8.26490066 12.8 8.26490066 17.5453659 11.2847682 20.5771274"></polyline>
+                <path d="M20.0264901,11.7073171 C18.7630273,8.89516051 16.495024,6.61574306 13.6688742,5.30731707" id="Oval" stroke-linecap="round"></path>
+                <path d="M24,10.7707317 C22.2927281,6.3225788 18.691842,2.78121463 14.1584325,1.08725099" id="Oval" stroke-linecap="round"></path>
+            </g>
+        </g>
+    </g>
+</svg>

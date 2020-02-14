@@ -1,0 +1,97 @@
+/**
+ * select-multiple多选条件禁用颜色重置
+ */
+.ant-select{
+  /**
+   * 调整下拉框颜色，由于antd内置表单组件默认继承组件颜色规范，未开放变量配置，所以单独覆盖一下。
+   */
+  .ant-select-selection {
+    background-color: @input-bg;
+  }
+  &.ant-select-disabled {
+    .ant-select-selection--multiple {
+      .ant-select-selection__choice {
+      color: rgba(255, 255, 255, 0.25);
+      }
+    }
+  }
+}
+
+.ant-select-dropdown {
+  max-height: 192px;
+  overflow-y: auto;
+  /**
+   * 改变select-dropdown竖向滚动条样式
+  */
+  &::-webkit-scrollbar{
+    width: 5px;
+  }
+  &:hover::-webkit-scrollbar-thumb {
+    border-radius: 5px;
+    background: @c-gray-charts-bg;
+  }
+  &:hover::-webkit-scrollbar-track {
+    -webkit-box-shadow: 0;
+    box-shadow: 0;
+    border-radius: 0;
+    // background: @component-background;
+  }
+  .ant-select-dropdown-menu-item-selected{
+    color: @c-blue-6;
+  }
+  .ant-select-dropdown-menu-item:hover:not(.ant-select-dropdown-menu-item-disabled){
+    color: @c-blue-6;
+    background-color: #24262c;
+    .ant-select-selected-icon{
+      display: none;
+    }
+  }
+}
+
+body {
+  .ant-select-dropdown--multiple{
+    .ant-select-dropdown-menu {
+      max-height: 192px;
+      overflow-y: auto;
+      /**
+      * 改变select-dropdown竖向滚动条样式
+      */
+      &::-webkit-scrollbar{
+        width: 5px;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: @c-gray-charts-bg;
+      }
+      &:hover::-webkit-scrollbar-track {
+        -webkit-box-shadow: 0;
+        box-shadow: 0;
+        border-radius: 0;
+      }
+    }
+  }
+}
+
+body {
+  .ant-select-dropdown--single{
+    .ant-select-dropdown-menu {
+      max-height: 192px;
+      overflow-y: auto;
+      /**
+      * 改变select-dropdown竖向滚动条样式
+      */
+      &::-webkit-scrollbar{
+        width: 5px;
+      }
+      &:hover::-webkit-scrollbar-thumb {
+        border-radius: 5px;
+        background: @c-gray-charts-bg;
+      }
+      &:hover::-webkit-scrollbar-track {
+        -webkit-box-shadow: 0;
+        box-shadow: 0;
+        border-radius: 0;
+      }
+    }
+  }
+}

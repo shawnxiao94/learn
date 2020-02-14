@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="16px" height="16px" viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 51.2 (57519) - http://www.bohemiancoding.com/sketch -->
+    <title>exclamation-circle</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="活动管理" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="活动结束" transform="translate(-753.000000, -481.000000)" fill-rule="nonzero">
+            <g id="Group-4" transform="translate(718.000000, 396.000000)">
+                <g id="exclamation-circle" transform="translate(35.000000, 85.000000)">
+                    <rect id="Path" x="0" y="0" width="16" height="16"></rect>
+                    <path d="M8,1 C4.13359375,1 1,4.13359375 1,8 C1,11.8664062 4.13359375,15 8,15 C11.8664062,15 15,11.8664062 15,8 C15,4.13359375 11.8664062,1 8,1 Z" id="Shape" stroke="#DC283E" stroke-width="0.875"></path>
+                    <path d="M7.453125,4.15820312 C7.453125,3.85605469 7.69785156,3.61132812 8,3.61132812 C8.30214844,3.61132812 8.546875,3.85605469 8.546875,4.15820312 L8.546875,9.203125 C8.546875,9.50527344 8.30214844,9.75 8,9.75 C7.69785156,9.75 7.453125,9.50527344 7.453125,9.203125 L7.453125,4.15820312 Z" id="Path" fill="#DC283E"></path>
+                    <path d="M8,11.8554688 C7.65957031,11.8554688 7.38476562,11.5806641 7.38476562,11.2402344 C7.38476562,10.8998047 7.65957031,10.625 8,10.625 C8.34042969,10.625 8.61523438,10.8998047 8.61523438,11.2402344 C8.61523438,11.5792969 8.34042969,11.8554688 8,11.8554688 Z" id="Path" fill="#DC283E"></path>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

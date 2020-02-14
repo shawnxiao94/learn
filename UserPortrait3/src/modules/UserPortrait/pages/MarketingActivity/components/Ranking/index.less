@@ -1,0 +1,39 @@
+@import 'assets/styles/color/color.less';
+.ranking {
+  clear: both;
+  padding-top: 30px;
+  .ranking-item {
+    display: flex;
+    margin-bottom: 22px;
+    .ranking-num {
+      width: 20px;
+    }
+    .ranking-name {
+      width: 120px;
+      margin-right: 10px;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .ranking-percent {
+      flex: 1;
+      .ant-progress-bg {
+        height: 6px!important;
+      }
+      .c-rank-tip {
+        position: relative;
+        .c-rank-tip-percent {
+          display: none;
+          position: absolute;
+          bottom: 15px;
+          right: 0;
+          font-size: 12px;
+          color: @c-gray-6;
+        }
+        &:hover .c-rank-tip-percent{
+          display: block;
+        }
+      }
+    }
+  }
+}

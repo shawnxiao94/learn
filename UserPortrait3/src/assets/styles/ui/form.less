@@ -1,0 +1,79 @@
+@import '../color/color.less';
+/**
+ * 上下间距为0的form item
+ */
+.w-ant-form-padding-none {
+  &.ant-form {
+    margin-top: -4px;
+    margin-bottom: -4px;
+  }
+}
+/**
+ * 定义form-item的label颜色
+ */
+.ant-form-item {
+  .ant-form-item-label {
+    &>label {
+      color: @text-color
+    }
+  }
+}
+/**
+ * 定义ant-form-inline下的ant-form-item间距
+ */
+.search-bar{
+  .ant-form-inline {
+    .ant-form-item {
+      margin-right: 40px;
+    }
+    .search-btn {
+      display: inline-block;
+      .ant-form-item {
+        margin-right: 20px;
+      }
+    }
+  }
+}
+/**
+ * 定义input搜索图标悬浮效果
+ */
+.ant-input-suffix{
+  .ant-input-search-icon {
+    color: @text-color;
+  }
+  .ant-input-search-icon:hover {
+    color: @text-color;
+    opacity: 0.8;
+  }
+}
+
+/**
+ * extra 表单说明文字样式
+ */
+.ant-form {
+  .ant-form-extra {
+    color: @c-gray-6;
+  }
+}
+
+/**
+ * 解决搜索框文本居右
+ */
+.ant-input-search {
+  text-align: left;
+}
+
+.c-form {
+  width: 580px;
+}
+
+.mi {
+  color: #DC283E;
+  margin-right: 4px;
+}
+
+@media screen and (min-width: 1600px) {
+  .c-form {
+    width: 700px;
+  }
+}

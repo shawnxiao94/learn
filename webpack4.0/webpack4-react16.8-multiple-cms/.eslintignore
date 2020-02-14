@@ -1,0 +1,6 @@
+# 设置某个文件或者文件夹忽略eslint检查
+/build
+/config
+/dist
+/dll
+/node_modules

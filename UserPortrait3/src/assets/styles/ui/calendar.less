@@ -1,0 +1,31 @@
+/**
+ * 根据ui要求对日期面板进行样式调整
+ */
+body {
+  .ant-calendar{
+    border: none;
+    background-color: #20232A;
+    &.ant-calendar-range {
+      overflow: visible;
+      .ant-calendar-in-range-cell::before {
+        background-color: #2f3338;
+      }
+      .ant-calendar-today {
+        .ant-calendar-date {
+          border-radius: 50%;
+        }
+      }
+      .ant-calendar-date:hover, .ant-calendar-date:active {
+        border-radius: 50%;
+      }
+      .ant-calendar-input {
+        background-color: #20232A;
+      }
+      .ant-calendar-selected-start-date, .ant-calendar-selected-end-date {
+        .ant-calendar-date {
+          border-radius: 50%;
+        }
+      }
+    }
+  }
+}

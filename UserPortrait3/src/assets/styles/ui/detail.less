@@ -1,0 +1,25 @@
+.detail-layout{
+  max-width: 950px;
+  min-height: 500px;
+  dl{
+    display: flex;
+    margin-bottom: 25px;
+    dt{
+      width: 100px;
+      font-weight: normal;
+      text-align: right;
+      margin-right: 20px;
+      color: @heading-color;
+    }  
+    dd{
+      word-break: break-all;
+      flex: 1;
+      margin-bottom: 0;
+    }
+    .detail-tags-group {
+      .ant-tag {
+        margin: 0 10px 10px 0;
+      }
+    }
+  }
+}

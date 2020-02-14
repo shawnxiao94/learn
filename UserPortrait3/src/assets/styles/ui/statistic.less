@@ -1,0 +1,27 @@
+@import '../color/color.less';
+
+/**
+* 自定义统计数值title颜色
+*/
+.w-chart-percent-wrapper, .c-chart-icon-wrapper {
+  .ant-statistic-title {
+    color: @c-gray-6
+  }
+}
+@media screen and (max-width: 1500px) {
+  .w-chart-percent-wrapper, .c-chart-icon-wrapper {
+    .ant-statistic-content {
+      font-size: 22px;
+    }
+  }
+}
+@media screen and (max-width: 1400px) {
+  .w-chart-percent-wrapper, .c-chart-icon-wrapper {
+    .ant-statistic-content {
+      font-size: 18px;
+      .ant-statistic-content-value-decimal, .ant-statistic-content-suffix {
+        font-size: 14px;
+      }
+    }
+  }
+}

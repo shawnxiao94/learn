@@ -1,0 +1,37 @@
+@import 'antd/es/style/themes/default.less';
+@import '../color/color.less';
+/**
+ * 虚线边框按钮
+ */
+.ant-btn-dashed {
+  // 蓝色系
+  &.w-ant-btn-dashed-blue {
+    color: @primary-color;
+    background-color: transparent;
+    border-color: @primary-color;
+    &:hover,&:active,&:focus {
+      color: @c-blue-4;
+      background-color: transparent;
+      border-color: @c-blue-4;
+    }
+  }
+}
+
+/**
+ * tooltip-link 解决<Link> disabled属性时tooltip弹不出来问题
+ */
+a.tooltip-link[disabled] {
+  pointer-events: auto!important;
+}
+
+/**
+ * 活动管理按钮更多框样式调整
+ */
+.popover-btn-mgr{
+  i{
+    margin-right: 10px;
+  }
+  .btn-space-ud{
+    margin-bottom: 10px;
+  }
+}

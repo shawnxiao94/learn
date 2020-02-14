@@ -1,0 +1,71 @@
+@import 'antd/es/style/themes/default.less';
+@import '../color/color.less';
+.c-ant-list-theme {
+  .ant-list-lg {
+    .ant-list-item-meta-avatar {
+      width: 46px;
+      height: 46px;
+      .svg-class {
+        font-size: 46px;
+      }
+    }
+  }
+
+  .c-ant-list-theme-title {
+    display: flex;
+    align-items: center;
+    a {
+      display: inline-block;
+      font-weight: normal;
+      width: 30%;
+      margin-right: 10px;
+      line-height: 1;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      color: @text-color;
+      &:hover {
+        color: @link-color
+      }
+    }
+  }
+
+  .c-ant-list-theme-desc-ellipsis {
+    display: flex;
+    font-size: 12px;
+    color: @c-gray-6;
+    > span {
+      margin-right: 20px;
+      display: flex;
+      overflow: hidden; 
+      white-space: nowrap; 
+      text-overflow: ellipsis;
+      .number {
+        color: @text-color;
+        margin-left: 5px;
+      }
+      &:first-child {
+        width: 30%;
+        margin-right: 10px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1280px) {
+  .c-ant-list-theme {
+    .c-ant-list-theme-title {
+      a {
+        width: 20%;
+      }
+    }
+
+    .c-ant-list-theme-desc-ellipsis {
+      > span {
+        &:first-child {
+          width: 20%;
+        }
+      }
+    }
+  }
+}

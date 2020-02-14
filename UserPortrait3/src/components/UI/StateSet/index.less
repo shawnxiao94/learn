@@ -1,0 +1,41 @@
+@import '../../../assets/styles/color/color.less';
+.status-btn {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  .ant-btn {
+    display: flex;
+    align-items: center;
+    padding: 0;
+    margin-left: 10px;
+  }
+  .status-btn-green {
+    .status-btn-line {
+      background-color: @c-green-6;
+    }
+  }
+  .status-btn-red {
+    .status-btn-line {
+      background-color: @c-red-6;
+    }
+  }
+  .status-btn-blue {
+    .status-btn-line {
+      background-color: @c-blue-6;
+    }
+  }
+  .status-btn-gray{
+    .status-btn-line{
+      background-color: @c-gray-6;
+    }
+  }
+  .status-btn-line {
+    width: 21px;
+    height: 8px;
+    margin-right: 10px;
+    border-radius: 1px;
+  }
+  .status-btn-text {
+    color: @c-gray-6;
+  }
+}

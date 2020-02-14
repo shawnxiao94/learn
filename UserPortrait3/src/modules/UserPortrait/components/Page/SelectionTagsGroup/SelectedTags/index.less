@@ -1,0 +1,36 @@
+@import 'antd/es/style/themes/default.less';
+@import 'assets/styles/color/color.less';
+/**
+ * 选中标签样式
+ */
+.w-selected-tags {
+  margin-top: 16px;
+  .w-selected-tags-header {
+    margin-bottom: 16px;
+    .w-selected-tags-title {
+      font-size: 16px;
+    }
+    .w-selected-tags-text {
+      color: @c-gray-6;
+      margin-left: 16px;
+      em {
+        font-style: normal;
+        color: @text-color;
+      }
+    }
+  }
+}
+.w-selected-tags-empty {
+  background: rgba(0,0,0,.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #787A7E;
+  .ant-empty-normal {
+    color: @text-color;
+  }
+}
+.w-selected-tags-btns {
+  text-align: right;
+  margin-top: 16px;
+}
