@@ -1,7 +1,7 @@
 /*
  * @Author: your name
  * @Date: 2020-02-01 17:01:05
- * @LastEditTime : 2020-02-14 13:50:10
+ * @LastEditTime : 2020-02-14 13:49:24
  * @LastEditors  : Please set LastEditors
  * @Description: In User Settings Edit
  * @FilePath: \paichong\src\dellAnalyzer.ts
