@@ -1,0 +1,21 @@
+{
+  "name": "react-hook-parcel",
+  "version": "1.0.0",
+  "description": "react hook parcel",
+  "main": "index.js",
+  "scripts": {
+    "start": "parcel serve src/index.html",
+    "build": "rm -rf ./dist && parcel build src/index.html"
+  },
+  "author": "shawn",
+  "license": "ISC",
+  "dependencies": {},
+  "devDependencies": {
+    "babel-plugin-emotion": "^9.2.11",
+    "emotion": "^9.2.12",
+    "parcel-bundler": "^1.12.4",
+    "react": "0.0.0-235a6c4af",
+    "react-dom": "0.0.0-235a6c4af",
+    "react-emotion": "^9.2.12"
+  }
+}
