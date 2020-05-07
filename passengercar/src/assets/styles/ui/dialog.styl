@@ -1,0 +1,113 @@
+/**
+ * 弹窗样式
+ */
+//弹窗宽度
+//// 小+s
+.dialog-width-sm-s
+  .el-dialog
+    width 480px
+//// 小
+.dialog-width-sm
+  .el-dialog
+    width 520px
+//// 中
+.dialog-width
+  .el-dialog
+    width 640px
+//// 大
+.dialog-width-lg
+  .el-dialog
+    width 780px
+//// 大+x
+.dialog-width-lg-x
+  .el-dialog
+    width 920px
+//// 大+xx
+.dialog-width-lg-xx
+  .el-dialog
+    width 1060px
+//// 大+xx
+.dialog-width-lg-xxx
+  .el-dialog
+    width 1180px
+/*Element UI 弹窗样式变更*/
+.ui-dialog
+  .el-dialog
+    border-radius 5px
+  .dialog-title
+    display flex
+    align-items center
+    font-weight bold
+    svg
+      width 18px
+      height 18px
+      color $color-a
+      margin-right 10px
+  .el-dialog__header
+    display flex
+    align-items center
+    height 40px
+    padding 0 20px
+    border-bottom 1px solid $color-05
+    .el-dialog__title
+      padding-left 28px
+      font-size $fontsize-medium
+    .el-dialog__headerbtn
+      top 11px
+  .el-dialog__footer
+    padding-top 20px
+    border-top 1px solid $color-06
+    text-align right
+    .el-button+.el-button
+      margin-left 5px
+/*End Element UI 弹窗样式变更*/
+
+/*弹窗中DataList列表样式*/
+.ui-dialog
+  .el-dialog
+    .data-list
+      margin -30px -20px
+      &>.filter-box
+        margin-bottom 0
+        border-bottom 1px $color-line solid
+        // 解决IE弹窗内筛选栏溢出问题
+        .form-box
+          .form-box-searchs
+            float none
+        // End 解决IE弹窗内筛选栏溢出问题
+      // 单独只有搜索栏时样式风格
+      &.dialog-data-list-theme-a
+        margin-bottom 0
+        &>.filter-box
+          border-bottom none
+/*End 弹窗中DataList列表样式*/
+
+/*移动端适配*/
+@media (max-width 780px)
+  .dialog-width-lg
+    .el-dialog
+      width 95%
+  // Element UI message提示框移动端适配
+  .el-message-box
+    width 95%
+  // End Element UI message提示框移动端适配
+@media (max-width 920px)
+  .dialog-width-lg-x
+    .el-dialog
+      width 95%
+@media (max-width 1060px)
+  .dialog-width-lg-xx
+    .el-dialog
+      width 95%
+@media (max-width 1180px)
+  .dialog-width-lg-xxx
+    .el-dialog
+      width 95%
+@media (max-width 768px)
+  .el-dialog
+    width 95%!important
+  .ui-dialog
+    .form-box-left,.form-box-searchs
+      float none!important
+/*End 移动端适配*/
+

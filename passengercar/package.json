@@ -1,0 +1,65 @@
+{
+  "name": "vue-cli3-multiple",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve --mode development",
+    "serve-test": "vue-cli-service serve --mode testing",
+    "serve-pro": "vue-cli-service serve --mode production",
+    "develop": "vue-cli-service build --mode development",
+    "test": "vue-cli-service build --mode testing",
+    "build": "vue-cli-service build --mode production",
+    "lint": "vue-cli-service lint",
+    "test:unit": "vue-cli-service test:unit"
+  },
+  "dependencies": {
+    "@babel/polyfill": "^7.4.4",
+    "core-js": "^2.6.5",
+    "js-cookie": "^2.2.0",
+    "mockjs": "^1.0.1-beta3",
+    "moment": "^2.24.0",
+    "normalize.css": "^8.0.1",
+    "nprogress": "^0.2.0",
+    "register-service-worker": "^1.6.2",
+    "svg-sprite-loader": "^4.1.6"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "^3.8.0",
+    "@vue/cli-plugin-eslint": "^3.8.0",
+    "@vue/cli-service": "^3.8.0",
+    "@vue/eslint-config-prettier": "^4.0.1",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-remove-console": "^6.9.4",
+    "compression-webpack-plugin": "^3.0.0",
+    "eslint": "^6.0.1",
+    "eslint-plugin-vue": "^5.0.0",
+    "glob-all": "^3.1.0",
+    "purgecss-webpack-plugin": "^1.5.0",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "vue-template-compiler": "^2.6.10"
+  },
+  "eslintConfig": {
+    "root": true,
+    "env": {
+      "node": true
+    },
+    "extends": [
+      "plugin:vue/essential",
+      "eslint:recommended"
+    ],
+    "rules": {},
+    "parserOptions": {
+      "parser": "babel-eslint"
+    }
+  },
+  "postcss": {
+    "plugins": {
+      "autoprefixer": {}
+    }
+  },
+  "browserslist": [
+    "> 1%",
+    "last 2 versions"
+  ]
+}

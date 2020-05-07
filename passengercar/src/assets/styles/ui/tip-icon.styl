@@ -1,0 +1,24 @@
+// 图标样式
+.svg-color-tips
+  display inline-flex
+  vertical-align top
+  align-items center
+  height 28px
+  margin-left 10px
+  .svg-icon
+    color $color-f
+    font-size $fontsize-large
+
+// 图标svg添加鼠标移上去titleName
+.el-tooltip__popper
+  &.is-dark
+    &.svgTip
+      margin-top 8px
+      padding 2px
+      background $color-08
+      border 1px solid $color-03
+      border-radius 0
+      color $color-01
+      font-size 12px
+      .popper__arrow
+        display none !important
